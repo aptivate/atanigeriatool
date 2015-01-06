@@ -11,26 +11,16 @@ easy-thumbnails==1.4
 pillow==2.7.0
 image_diet==0.7.1
 
-
-
-
-
-# search
-django-haystack==2.1.0
-pyelasticsearch==0.6
-
 # custom apps
 django-crispy-forms==1.4.0
 django-extended-choices==0.3.0
 django-recaptcha==0.0.6
 django-registration==1.0
 
-
 # testing
 pytest-django==2.7
 django-dynamic-fixture==1.6.5
 mock==1.0.1
-
 
 # development
 django-extensions
@@ -38,11 +28,8 @@ django-debug-toolbar
 
 # CSS and assets
 
-# Until https://github.com/miracle2k/django-assets/pull/30 is fixed, we need
-# to use our fork of django-assets for tests to pass, and to fix command-line
-# build failures with no assets defined.
-# django-assets==0.8
--e git+https://github.com/aptivate/django-assets.git@775e5bb619a44a29703f7c09eaf91b780e35e8cf#egg=django-assets
+# django-assets==0.10
+-e git+https://github.com/miracle2k/django-assets.git@32216757f9393b01951782b08efe837015f9d262#egg=django-assets
 # Need to use webassets >= 0.9. https://github.com/miracle2k/django-assets/pull/31
 webassets==0.9
 pyScss==1.2.0.post3
