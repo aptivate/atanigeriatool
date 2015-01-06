@@ -20,7 +20,7 @@
 
 #set -e
 
-PROJECT_NAME="atanigeriakms"
+PROJECT_NAME="atanigeriatool"
 
 DEFAULT_PID_FILE="/var/run/celeryd_${PROJECT_NAME}@%n.pid"
 DEFAULT_LOG_FILE="/var/log/celeryd_${PROJECT_NAME}@%n.log"

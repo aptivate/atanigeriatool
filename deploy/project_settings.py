@@ -8,7 +8,7 @@ from os import path
 
 # This is the directory inside the project dev dir that contains the django
 # application
-project_name = "atanigeriakms"
+project_name = "atanigeriatool"
 
 # The django apps that are part of this project - used for running tests
 # and migrations

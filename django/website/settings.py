@@ -27,7 +27,7 @@ SECRET_KEY = private_settings.SECRET_KEY
 # These email addresses will get all the error email for the production server
 # (and any other servers with DEBUG = False )
 ADMINS = (
-    ('Aptivate atanigeriakms team', 'atanigeriakms-team@aptivate.org'),
+    ('Aptivate atanigeriatool team', 'atanigeriatool-team@aptivate.org'),
     ('Hamish Downer', 'hamish@aptivate.org'),  # this is in case the above email doesn't work
 )
 
@@ -35,8 +35,8 @@ MANAGERS = ADMINS
 
 # these are the settings for production. We can override in the various
 # local_settings if we want to
-DEFAULT_FROM_EMAIL = 'donotreply@atanigeriakms.aptivate.org'
-SERVER_EMAIL = 'server@atanigeriakms.aptivate.org'
+DEFAULT_FROM_EMAIL = 'donotreply@atanigeriatool.aptivate.org'
+SERVER_EMAIL = 'server@atanigeriatool.aptivate.org'
 ########## MANAGER/EMAIL CONFIGURATION
 
 
@@ -206,7 +206,7 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'atanigeriakms',
+        'INDEX_NAME': 'atanigeriatool',
     },
 }
 
@@ -349,12 +349,12 @@ if DEBUG is False:
     # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
     #ALLOWED_HOSTS = ["*"]
     ALLOWED_HOSTS = [
-        '.atanigeriakms.aptivate.org',
-        'www.atanigeriakms.aptivate.org',
-        'fen-vz-atanigeriakms-stage.fen.aptivate.org',
-        'fen-vz-atanigeriakms-dev.fen.aptivate.org',
-        'atanigeriakms.dev.aptivate.org',
-        'atanigeriakms.stage.aptivate.org',
+        '.atanigeriatool.aptivate.org',
+        'www.atanigeriatool.aptivate.org',
+        'fen-vz-atanigeriatool-stage.fen.aptivate.org',
+        'fen-vz-atanigeriatool-dev.fen.aptivate.org',
+        'atanigeriatool.dev.aptivate.org',
+        'atanigeriatool.stage.aptivate.org',
     ]
     ########## END SITE CONFIGURATION
 

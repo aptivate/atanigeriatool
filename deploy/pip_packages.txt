@@ -3,7 +3,7 @@
 
 # core django
 Django<1.7
-pytz==2014.10
+pytz
 MySQL-python>=1.2.3
 south==1.0.1
 
