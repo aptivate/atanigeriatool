@@ -31,7 +31,7 @@ django-debug-toolbar
 # django-assets==0.10
 -e git+https://github.com/miracle2k/django-assets.git@32216757f9393b01951782b08efe837015f9d262#egg=django-assets
 # Need to use webassets >= 0.9. https://github.com/miracle2k/django-assets/pull/31
-webassets==0.9
+webassets==0.10
 pyScss==1.2.0.post3
 cssmin==0.2.0
 argparse==1.2.1
