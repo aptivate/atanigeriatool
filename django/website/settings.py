@@ -144,6 +144,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     # Your stuff: custom apps go here
     'main',
+    'lscharts',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
