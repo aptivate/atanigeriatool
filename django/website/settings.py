@@ -1,5 +1,5 @@
 # Django settings for  project.
-from __future__ import unicode_literals, absolute_imports
+from __future__ import unicode_literals, absolute_import
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 from os import path
