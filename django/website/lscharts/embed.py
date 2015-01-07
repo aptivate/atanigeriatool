@@ -1,6 +1,6 @@
 from __future__ import unicode_literals, absolute_import
 
-from django.utils.html import escape
+from django.utils.html import escape, mark_safe
 
 
 class EmbedChartSettings(object):
@@ -36,4 +36,4 @@ class EmbedChartSettings(object):
         # this is an unsafe string that django will do html escaping on
         formatted = '&'.join(['filters.Term=' + term for term in filter_list])
         formatted = escape(formatted)
-        return formatted.replace(' ', '%20')
+        return mark_safe(formatted.replace(' ', '%20'))

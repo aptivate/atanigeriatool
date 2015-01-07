@@ -23,7 +23,6 @@ class ChartsView(TemplateView):
             chart_type="pie",
             domain="insight.livestories.com",
             text="Crop",
-            filters=['ivory pieces', 'ivory scraps', 'tusks'],
         )
         context['test_chart2'] = EmbedChartSettings(
             dataset="a00a9f40966c11e4871706909bee25eb",
@@ -32,6 +31,7 @@ class ChartsView(TemplateView):
             operation="sum",
             chart_type="column",
             domain="ata.livestories.com",
-            text="Total Exporter reported quantity across Exporter"
+            text="Total Exporter reported quantity across Exporter",
+            filters=['ivory pieces', 'ivory scraps', 'tusks'],
         )
         return context
