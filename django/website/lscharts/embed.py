@@ -1,5 +1,7 @@
 from __future__ import unicode_literals, absolute_import
 
+from django.utils.html import escape
+
 
 class EmbedChartSettings(object):
 
@@ -21,9 +23,17 @@ class EmbedChartSettings(object):
         self.indicators = kwargs.get("indicators", "__entry")
         self.operation = kwargs.get("operation", "count")
         self.chart_type = kwargs.get("chart_type", "pie")
+        if 'filters' in kwargs:
+            self.filters = self.format_filters(kwargs["filters"])
 
         self.text = "Crop"
 
         self.show_dataset = kwargs.get("show_dataset", "false")
         self.data_labels = kwargs.get("data_labels", "false")
         self.legend = kwargs.get("legend", "false")
+
+    def format_filters(self, filter_list):
+        # this is an unsafe string that django will do html escaping on
+        formatted = '&'.join(['filters.Term=' + term for term in filter_list])
+        formatted = escape(formatted)
+        return formatted.replace(' ', '%20')

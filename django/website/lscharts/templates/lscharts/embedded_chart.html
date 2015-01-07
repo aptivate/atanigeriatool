@@ -2,18 +2,19 @@
 	class="{{ chart.html_class }}"
 	data-width="{{ chart.width }}"
 	data-height="{{ chart.height }}"
+	data-background="{{ chart.background }}"
+	data-colors="{{ chart.colors }}"
 	data-enable-filtering="{{ chart.enable_filtering }}"
 	data-enable-interaction="{{ chart.enable_interaction }}"
-	data-data-labels="{{ chart.data_labels }}"
-	data-legend="{{ chart.legend }}"
-	data-background="{{ chart.background }}"
 	data-dataset="{{ chart.dataset }}"
 	data-variables="{{ chart.variables }}"
 	data-indicators="{{ chart.indicators }}"
 	data-operation="{{ chart.operation }}"
 	data-chart-type="{{ chart.chart_type }}"
-	data-colors="{{ chart.colors }}"
 	data-show-dataset="{{ chart.show_dataset }}"
+	data-data-labels="{{ chart.data_labels }}"
+	data-legend="{{ chart.legend }}"
+	{% if chart.filters %}data-filters="{{ chart.filters }}"{% endif %}
 	href="//{{ chart.domain }}/chart/embed" target="_blank">
 	{{ chart.text }}
 	</a>

@@ -22,7 +22,8 @@ class ChartsView(TemplateView):
             operation="count",
             chart_type="pie",
             domain="insight.livestories.com",
-            text="Crop"
+            text="Crop",
+            filters=['ivory pieces', 'ivory scraps', 'tusks'],
         )
         context['test_chart2'] = EmbedChartSettings(
             dataset="a00a9f40966c11e4871706909bee25eb",
