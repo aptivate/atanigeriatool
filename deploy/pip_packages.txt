@@ -21,6 +21,7 @@ django-registration==1.0
 pytest-django==2.7
 django-dynamic-fixture==1.6.5
 mock==1.0.1
+-e git+https://github.com/aptivate/django-harness.git@555caddb1488e6071e90bcf1b117ccdb0d94d47c#egg=django-harness
 
 # development
 django-extensions

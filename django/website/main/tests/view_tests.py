@@ -2,7 +2,7 @@ from __future__ import unicode_literals, absolute_import
 
 from django.test.testcases import TestCase
 
-from lib.fast_dispatch import FastDispatchMixin
+from django_harness.fast_dispatch import FastDispatchMixin
 
 
 class BasicViewTestsMixin(object):
