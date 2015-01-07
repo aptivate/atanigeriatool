@@ -6,3 +6,7 @@ from django.views.generic import TemplateView
 # NOT included in main/urls.py - included directly in the root urls.py
 class HomeView(TemplateView):
     template_name = 'main/homepage.html'
+
+
+class ChartsView(TemplateView):
+    template_name = 'main/charts.html'

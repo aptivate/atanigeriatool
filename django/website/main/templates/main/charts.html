@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Charts Page</h1>
+
+<div>
+<a
+	class="insight-tile"
+	data-width="600"
+	data-height="600"
+	data-enable-filtering="true"
+	data-dataset="5b19fd0a92bf11e4acc406909bee25eb"
+	data-variables="Crop"
+	data-indicators="__entry"
+	data-operation="count"
+	data-chart-type="pie"
+	data-colors="#0066b3,#00aaad,#00a65d,#72bf44,#fff200,#faa61a,#f58220,#ef413d,#ed1c24,#a3238e,#5c2d91,#214009"
+	data-show-dataset="false"
+	href="//insight.livestories.com/chart/embed" target="_blank">
+		Crop
+	</a>
+</div>
+
+<script src="//insight.livestories.com/static/js/embed-api.js"></script>
+{% endblock %}
