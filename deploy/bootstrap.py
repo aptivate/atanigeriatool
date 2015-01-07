@@ -14,6 +14,8 @@ Options for the plain command:
     -q, --quiet            # don't ask for user input
 """
 # a script to set up the virtualenv so we can use fabric and tasks
+from __future__ import unicode_literals, absolute_import
+
 import sys
 import getopt
 import ve_mgr

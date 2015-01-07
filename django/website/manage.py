@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals, absolute_import
+
 import os
 import sys
 from os import path
@@ -47,7 +49,7 @@ if __name__ == "__main__":
             "does it contain errors? Did you run tasks.py deploy:dev?"
             % e)
 
-    # 
+    #
     # we're using pytest so treat tests as special
     if 'test' in sys.argv:
         import pytest
@@ -57,4 +59,4 @@ if __name__ == "__main__":
     else:
         from django.core.management import execute_from_command_line
         execute_from_command_line(sys.argv)
-    # 
+    #

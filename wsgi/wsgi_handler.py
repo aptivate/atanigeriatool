@@ -1,3 +1,5 @@
+from __future__ import unicode_literals, absolute_import
+
 """
 WSGI config for atanigeriatool project.
 
