@@ -26,7 +26,7 @@ class EmbedChartSettings(object):
         if 'filters' in kwargs:
             self.filters = self.format_filters(kwargs["filters"])
 
-        self.text = "Crop"
+        self.text = kwargs.get("text", "Crop")
 
         self.show_dataset = kwargs.get("show_dataset", "false")
         self.data_labels = kwargs.get("data_labels", "false")
