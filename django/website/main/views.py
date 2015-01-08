@@ -16,13 +16,13 @@ class ChartsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ChartsView, self).get_context_data(**kwargs)
         context['test_chart'] = EmbedChartSettings(
-            dataset="5b19fd0a92bf11e4acc406909bee25eb",
-            variables="Crop",
+            dataset="a00a9f40966c11e4871706909bee25eb",
+            variables="Exporter",
             indicators="__entry",
             operation="count",
             chart_type="pie",
-            domain="insight.livestories.com",
-            text="Crop",
+            domain="ata.livestories.com",
+            text="Exporter",
         )
         context['test_chart2'] = EmbedChartSettings(
             dataset="a00a9f40966c11e4871706909bee25eb",
