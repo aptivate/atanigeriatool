@@ -339,6 +339,7 @@ if DEBUG is False:
     ALLOWED_HOSTS = [
         '.atanigeriatool.aptivate.org',
         'www.atanigeriatool.aptivate.org',
+        'lin-atanigeriatool.aptivate.org',
         'fen-vz-atanigeriatool-stage.fen.aptivate.org',
         'fen-vz-atanigeriatool-dev.fen.aptivate.org',
         'atanigeriatool.dev.aptivate.org',
