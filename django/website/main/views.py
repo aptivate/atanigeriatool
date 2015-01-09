@@ -12,29 +12,31 @@ class HomeView(TemplateView):
 
 class ChartsView(TemplateView):
     template_name = 'main/charts.html'
+    # move to settings
+    dataset = "5d50a14c97fa11e482e606909bee25eb"
+    domain = "ata.livestories.com"
 
     def get_context_data(self, **kwargs):
         context = super(ChartsView, self).get_context_data(**kwargs)
         context['test_chart'] = EmbedChartSettings(
-            dataset="5d50a14c97fa11e482e606909bee25eb",
+            dataset=self.dataset,
+            domain=self.domain,
             variables="state,Commodity",
             indicators="Value",
             operation="avg",
             chart_type="stackedcolumn",
-            domain="ata.livestories.com",
             legend="true",
             text="Average value across state, food type",
             filters=['benue', 'kogi'],
             filter_type='state'
         )
         context['test_chart2'] = EmbedChartSettings(
-            dataset="a00a9f40966c11e4871706909bee25eb",
-            variables="Exporter",
-            indicators="Exporter reported quantity",
+            dataset=self.dataset,
+            domain=self.domain,
+            variables="Commodity",
+            indicators="Value",
             operation="sum",
-            chart_type="column",
-            domain="ata.livestories.com",
-            text="Total Exporter reported quantity across Exporter",
-            filters=['ivory pieces', 'ivory scraps', 'tusks'],
+            chart_type="pie",
+            text="Relative amounts of crop consumed",
         )
         return context
