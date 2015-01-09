@@ -16,7 +16,7 @@ class EmbedChartSettings(object):
             "#0066b3,#00aaad,#00a65d,#72bf44,#fff200,#faa61a,#f58220,#ef413d,#ed1c24,#a3238e,#5c2d91,#214009")
 
         self.enable_filtering = kwargs.get("enable_filtering", "true")
-        self.enable_interaction = kwargs.get("enable_interaction", "true")
+        self.enable_interaction = kwargs.get("enable_interaction", "false")
 
         self.domain = kwargs.get("domain", "insight.livestories.com")
         self.dataset = kwargs.get("dataset", "5b19fd0a92bf11e4acc406909bee25eb")
