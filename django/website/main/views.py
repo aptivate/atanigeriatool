@@ -16,13 +16,16 @@ class ChartsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ChartsView, self).get_context_data(**kwargs)
         context['test_chart'] = EmbedChartSettings(
-            dataset="a00a9f40966c11e4871706909bee25eb",
-            variables="Exporter",
-            indicators="__entry",
-            operation="count",
-            chart_type="pie",
+            dataset="5d50a14c97fa11e482e606909bee25eb",
+            variables="state,Commodity",
+            indicators="Value",
+            operation="avg",
+            chart_type="stackedcolumn",
             domain="ata.livestories.com",
-            text="Exporter",
+            legend="true",
+            text="Average value across state, food type",
+            filters=['benue', 'kogi'],
+            filter_type='state'
         )
         context['test_chart2'] = EmbedChartSettings(
             dataset="a00a9f40966c11e4871706909bee25eb",
