@@ -13,7 +13,7 @@ class HomeView(TemplateView):
 class ChartsView(TemplateView):
     template_name = 'main/charts.html'
     # move to settings
-    dataset = "5d50a14c97fa11e482e606909bee25eb"
+    dataset = "29277fe2981511e4bbe006909bee25eb"
     domain = "ata.livestories.com"
 
     def get_context_data(self, **kwargs):
@@ -33,10 +33,12 @@ class ChartsView(TemplateView):
         context['test_chart2'] = EmbedChartSettings(
             dataset=self.dataset,
             domain=self.domain,
-            variables="Commodity",
+            variables="Commodity,year",
             indicators="Value",
-            operation="sum",
-            chart_type="pie",
-            text="Relative amounts of crop consumed",
+            operation="avg",
+            chart_type="column",
+            legend="true",
+            data_labels="true",
+            text="Percentage of households who consume each crop, in 2010 and 2012",
         )
         return context
