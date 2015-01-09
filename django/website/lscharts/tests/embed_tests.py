@@ -11,13 +11,14 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings()
         self.assertFalse(hasattr(ecs, 'filters'))
 
-    def test_filters_set_if_supplied_in_kwargs(self):
-        ecs = EmbedChartSettings(filters=['afilter'])
+    def test_filters_set_if_filters_and_filter_type_supplied_in_kwargs(self):
+        ecs = EmbedChartSettings(filters=['afilter'], filter_type='type')
         self.assertTrue(hasattr(ecs, 'filters'))
 
     def test_format_filters_combines_filters_correctly(self):
         filters = ['ivory pieces', 'ivory scraps', 'tusks']
-        actual_output = EmbedChartSettings().format_filters(filters)
+        filter_type = 'Term'
+        actual_output = EmbedChartSettings().format_filters(filters, filter_type)
         expected_output = "filters.Term=ivory%20pieces&amp;filters.Term=ivory" \
             "%20scraps&amp;filters.Term=tusks"
         self.assertEqual(expected_output, actual_output)

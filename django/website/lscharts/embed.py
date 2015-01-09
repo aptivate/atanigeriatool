@@ -6,6 +6,7 @@ from django.utils.html import escape, mark_safe
 class EmbedChartSettings(object):
 
     def __init__(self, **kwargs):
+        # TODO: could split into chart types with relevant bits in each type
         self.html_class = kwargs.get("html_class", "insight-tile")
         self.width = kwargs.get("width", "600")
         self.height = kwargs.get("height", "600")
@@ -23,17 +24,18 @@ class EmbedChartSettings(object):
         self.indicators = kwargs.get("indicators", "__entry")
         self.operation = kwargs.get("operation", "count")
         self.chart_type = kwargs.get("chart_type", "pie")
-        if 'filters' in kwargs:
-            self.filters = self.format_filters(kwargs["filters"])
+        if 'filters' in kwargs and 'filter_type' in kwargs:
+            self.filters = self.format_filters(kwargs["filters"], kwargs['filter_type'])
 
         self.text = kwargs.get("text", "Crop")
 
         self.show_dataset = kwargs.get("show_dataset", "false")
         self.data_labels = kwargs.get("data_labels", "false")
         self.legend = kwargs.get("legend", "false")
+        self.grid_lines = kwargs.get("grid_lines", "false")
 
-    def format_filters(self, filter_list):
+    def format_filters(self, filter_list, filter_type):
         # this is an unsafe string that django will do html escaping on
-        formatted = '&'.join(['filters.Term=' + term for term in filter_list])
+        formatted = '&'.join(['filters.' +filter_type + '=' + term for term in filter_list])
         formatted = escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
