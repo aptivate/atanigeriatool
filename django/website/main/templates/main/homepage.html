@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>The home page</h1>
+<h1>ATA Indicators</h1>
 
-<p><a href="{% url 'charts' %}">Charts</a></p>
+<h2>Nutrition</h2>
+<div>
+	{% include "lscharts/embedded_chart.html" with chart=food_consumed_chart %}
+</div>
+
+<h2 style="color: grey">Technology Adoption</h2>
+
+<h2 style="color: grey">Sales</h2>
+
+<h2 style="color: grey">Productivity</h2>
+
+<script src="//insight.livestories.com/static/js/embed-api.js"></script>
 {% endblock %}
