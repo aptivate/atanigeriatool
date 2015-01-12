@@ -5,15 +5,12 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-from main.views import HomeView
-
 admin.autodiscover()
 
 urlpatterns = patterns(
     '',
     # Examples:
-    url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^main/', include('main.urls')),
+    url(r'^', include('main.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
