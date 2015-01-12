@@ -11,7 +11,6 @@ common_css = Bundle(
     output='css/bootstrap/common.min.css',
     depends=['sass/bootstrap/*.scss', 'sass/*.scss'],
 )
-
 register('bootstrap.common_css', common_css)
 
 common_js = Bundle(
