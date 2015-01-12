@@ -23,7 +23,7 @@ class HomeView(TemplateView):
             chart_type="column",
             legend="true",
             data_labels="true",
-            text="Percentage of households who consume each foodstuff, in 2010 and 2012",
+            text="Percentage of households who consume each food type, in 2010 and 2012",
         )
         return context
 
