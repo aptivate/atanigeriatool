@@ -1,18 +1,125 @@
+{% load assets %}
 <!doctype html>
 
 <html>
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
 
-  <title>atanigeriatool</title>
-  <meta name="description" content="atanigeriatool - M&E tool for ATA Nigeria with LiveStories backend">
-  <meta name="author" content="Hamish Downer">
+	<title>atanigeriatool</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="atanigeriatool - M&E tool for ATA Nigeria with LiveStories backend">
+	<meta name="author" content="Hamish Downer">
+	{% block media %}
+		{% block standard_css %}
+			{% assets "bootstrap.common_css" %}
+					<link rel="stylesheet" href="{{ ASSET_URL }}" />
+			{% endassets %}
+		{% endblock standard_css %}
+
+		{% block form_media %}
+			{% if form %}
+				{{ form.media }}
+			{% endif %}
+		{% endblock form_media %}
+	{% endblock media %}
 </head>
 
 <body>
-    
-    {% block content %}
-    {% endblock content %}
-    
+
+	{% block header %}
+		<header class="{% block header_classes %}bootstrap_header container-fluid{% endblock %}" role="banner">
+			{% block logo %}
+				<div class="logo">
+					<div class="row">
+						<div class="col-sm-6">
+							<img src="{{ STATIC_URL }}images/bootstrap-solid.svg" 
+								style="height: 60px; float: left; margin-right: 1em; vertical-align: baseline;" />
+							<h1 style="font-size: 40px; margin: 12px 0 8px; line-height: 1; color: #563d7c;">bootstrap</h1>
+						</div>
+					</div>
+
+				</div>
+			{% endblock %}
+
+			{% block user_access %}
+			<nav class="user_access">
+				<a href="#maincontent" class="hide">Skip to content</a>
+			</nav>
+			{% endblock user_access %}
+
+			{% block search_box %}
+			{% comment %}
+			<form class="navbar-search" action="{% page_url "search" %}">
+				<input type="text" name="q" id="id_q" value="{{ request.GET.q }}" class="search-query" placeholder="Search" />
+				<input type="submit" class="btn" value="Search" />
+			</form>
+			{% endcomment %}
+			{% endblock search_box %}
+
+			{% block header_nav %}
+			<nav class="{% block header_nav_classes %}bootstrap_header navbar navbar-default{% endblock %}" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						{% block header_nav_brand %}<a class="navbar-brand" href="#">Brand</a>{% endblock %}
+					</div><!-- navbar-header -->
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bootstrap-navbar-collapse-1">
+						<ul class="{% block header_nav_ul_classes %}nav navbar-nav{% endblock %}">
+						{% block header_nav_menu %}
+						<li class="disabled"><a href="#">Productivity</a></li>
+						<li class="disabled"><a href="#">Technology Adoption</a></li>
+						<li class="disabled"><a href="#">Sales</a></li>
+						<li class=""><a href="#">Nutrition</a></li>
+						{% endblock header_nav_menu %}
+						</ul>
+					</div><!-- navbar-collapse -->
+				</div><!-- container-fluid -->
+			</nav><!-- header_nav -->
+			{% endblock header_nav %}
+
+	{% endblock header %}
+
+	{% block main %}
+	<main class="{% block main_classes %}container-fluid{% endblock %}" role="main">
+		<a id="maincontent"></a>
+
+		{% block article %}
+		<article class="main_article">
+			{% block content %}{% endblock %}
+		</article>
+		{% endblock %}
+	</main>
+	{% endblock main %}
+
+	{% block footer %}
+		<footer class="{% block footer_classes %}bootstrap_footer container-fluid{% endblock %}" role="contentinfo">
+			<div class="footer_nav_wrapper">
+				<nav class="{% block footer_nav_classes %}footer_nav navbar navbar-default{% endblock %}" role="navigation">
+					<div class="footer_left navbar-left navbar-text">
+						{% block footer_left %}{% endblock %}
+					</div>
+					<div class="footer_right navbar-right navbar-text">
+						{% block footer_right %}{% endblock %}
+						{% block credits %}
+						Site by <a href="http://www.aptivate.org">Aptivate</a>
+						{% endblock %}
+					</div>
+				</nav>
+			</div><!-- footer_nav_wrapper -->
+		</footer>
+	{% endblock footer %}
+
+	{% block js_footer %}
+		{% assets "bootstrap.common_js" %}
+			<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+		{% endassets %}
+	{% endblock js_footer %}
 </body>
 </html>

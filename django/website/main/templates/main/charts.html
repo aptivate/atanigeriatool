@@ -3,8 +3,10 @@
 {% block content %}
 <h1>Charts Page</h1>
 
-<div>
+<div class="col-md-6">
 	{% include "lscharts/embedded_chart.html" with chart=test_chart %}
+</div>
+<div class="col-md-6">
 	{% include "lscharts/embedded_chart.html" with chart=test_chart2 %}
 </div>
 
