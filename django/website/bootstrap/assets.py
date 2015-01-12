@@ -8,7 +8,8 @@ common_css = Bundle(
     # 'bower_components/bootstrap-material-design/sass/material.scss',
     'sass/bootstrap.scss',
     filters='pyscss, cssmin',
-    output='css/bootstrap/common.min.css'
+    output='css/bootstrap/common.min.css',
+    depends=['sass/bootstrap/*.scss', 'sass/*.scss'],
 )
 
 register('bootstrap.common_css', common_css)
