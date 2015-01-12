@@ -21,6 +21,17 @@ class ChartsView(TemplateView):
         context['test_chart'] = EmbedChartSettings(
             dataset=self.dataset,
             domain=self.domain,
+            variables="Commodity,year",
+            indicators="Value",
+            operation="avg",
+            chart_type="column",
+            legend="true",
+            data_labels="true",
+            text="Percentage of households who consume each foodstuff, in 2010 and 2012",
+        )
+        """context['test_chart'] = EmbedChartSettings(
+            dataset=self.dataset,
+            domain=self.domain,
             variables="state,Commodity",
             indicators="Value",
             operation="avg",
@@ -29,16 +40,5 @@ class ChartsView(TemplateView):
             text="Average value across state, food type",
             filters=['benue', 'kogi'],
             filter_type='state'
-        )
-        context['test_chart2'] = EmbedChartSettings(
-            dataset=self.dataset,
-            domain=self.domain,
-            variables="Commodity,year",
-            indicators="Value",
-            operation="avg",
-            chart_type="column",
-            legend="true",
-            data_labels="true",
-            text="Percentage of households who consume each crop, in 2010 and 2012",
-        )
+        )"""
         return context
