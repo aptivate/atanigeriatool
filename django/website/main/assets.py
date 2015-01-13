@@ -3,17 +3,10 @@ from __future__ import unicode_literals, absolute_import
 from django_assets import Bundle, register
 
 common_css = Bundle(
-    Bundle(
-        # 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss',
-        # 'sass/bootstrap/bootstrap.scss',
-        # 'bower_components/bootstrap-material-design/sass/material.scss',
-        'sass/main.scss',
-        filters='pyscss',
-        output='css/main/from-scss.css',
-    ),
-    'bower_components/bootstrap/dist/css/bootstrap.css',
-    'bower_components/bootstrap-material-design/dist/css/material.css',
-    filters='cssmin',
+    'bower_components/bootstrap/less/bootstrap_modified.less',
+    'bower_components/bootstrap-material-design/less/material.less',
+    'less/main.less',
+    filters='less,cssmin',
     output='css/main/common.min.css',
 )
 register('main.common_css', common_css)

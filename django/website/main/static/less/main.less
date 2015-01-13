@@ -1,0 +1,86 @@
+body {
+    padding: 1em 0;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: inherit;
+}
+
+header {
+    position: relative;
+}
+
+header > nav > div {
+    &:extend(.col-sm-12);
+}
+
+.logo {
+    margin-bottom: 1em;
+}
+
+.user_access {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.user_access .user_login_link {
+    display: block;
+    text-align: right;
+}
+
+.page_intro > div {
+    border: 5px solid #ddd;
+    padding: 1em;
+}
+
+.page_features > div {
+    border: 5px solid #eee;
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.latest > section > div {
+    background: #eee;
+    padding: 1em;
+}
+
+footer {
+    margin-top: 1em;
+}
+
+.footer_right .plugin_link:after {
+	content: " | ";
+}
+
+.footer_left > .plugin_link {
+	padding-right: 0.75em;
+}
+
+.footer_site > nav {
+	padding-right: 15px;
+}
+
+.navbar-text > a {
+    color: #bbdefb;
+}
+
+.navbar-text > a:hover {
+    color: #ffb74d;
+}
+
+.navbar-header > .navbar-toggle {
+    float: left;
+}
+
+.main-navbar-filter-button {
+    float: right;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+.main-navbar-filter-button > .glyphicon {
+    color: rgba(255, 255, 255, 0.84);
+}
