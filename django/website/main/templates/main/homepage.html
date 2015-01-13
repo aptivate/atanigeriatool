@@ -3,16 +3,41 @@
 {% block content %}
 <h1>ATA Indicators</h1>
 
-<h2>Nutrition</h2>
+<h2 id="main-nutrition">Nutrition</h2>
 <div>
 	{% include "lscharts/embedded_chart.html" with chart=food_consumed_chart %}
 </div>
 
-<h2 style="color: grey">Technology Adoption</h2>
+<h2 id="main-technology" style="color: grey">Technology Adoption</h2>
 
-<h2 style="color: grey">Sales</h2>
+<h2 id="main-sales" style="color: grey">Sales</h2>
 
-<h2 style="color: grey">Productivity</h2>
+<h2 id="main-productivity" style="color: grey">Productivity</h2>
 
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade" id="main-modal-filter" tabindex="-1" role="dialog" aria-labelledby="filter modal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Filters</h4>
+			</div>
+			<div class="modal-body">
+				<ul>
+					<li>Cassava</li>
+					<li>Rice</li>
+					<li>Benue</li>
+					<li>Kogi</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block js_footer %}
+{{ block.super }}
 <script src="//ata.livestories.com/static/js/embed-api.js"></script>
 {% endblock %}

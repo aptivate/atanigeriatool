@@ -78,10 +78,10 @@
 					<div class="collapse navbar-collapse" id="main-navbar-collapse-1">
 						<ul class="{% block header_nav_ul_classes %}nav navbar-nav{% endblock %}">
 							{% block header_nav_menu %}
-								<li class="disabled"><a href="#">Productivity</a></li>
-								<li class="disabled"><a href="#">Technology Adoption</a></li>
-								<li class="disabled"><a href="#">Sales</a></li>
-								<li class=""><a href="#">Nutrition</a></li>
+								<li class="disabled"><a href="{% url 'home' %}#main-productivity">Productivity</a></li>
+								<li class="disabled"><a href="{% url 'home' %}#main-technology">Technology Adoption</a></li>
+								<li class="disabled"><a href="{% url 'home' %}#main-sales">Sales</a></li>
+								<li class=""><a href="{% url 'home' %}#main-nutrition">Nutrition</a></li>
 								<li class="disabled"><a href="#">About</a></li>
 							{% endblock header_nav_menu %}
 						</ul>
@@ -122,6 +122,9 @@
 			</div><!-- footer_nav_wrapper -->
 		</footer>
 	{% endblock footer %}
+
+	{% block modals %}
+	{% endblock modals %}
 
 	{% block js_footer %}
 		{% assets "main.common_js" %}
