@@ -77,19 +77,20 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="main-navbar-collapse-1">
 						<ul class="{% block header_nav_ul_classes %}nav navbar-nav{% endblock %}">
-						{% block header_nav_menu %}
-						<li class="disabled"><a href="#">Productivity</a></li>
-						<li class="disabled"><a href="#">Technology Adoption</a></li>
-						<li class="disabled"><a href="#">Sales</a></li>
-						<li class=""><a href="#">Nutrition</a></li>
-						<li class="disabled"><a href="#">About</a></li>
-						{% endblock header_nav_menu %}
+							{% block header_nav_menu %}
+								<li class="disabled"><a href="#">Productivity</a></li>
+								<li class="disabled"><a href="#">Technology Adoption</a></li>
+								<li class="disabled"><a href="#">Sales</a></li>
+								<li class=""><a href="#">Nutrition</a></li>
+								<li class="disabled"><a href="#">About</a></li>
+							{% endblock header_nav_menu %}
 						</ul>
 					</div><!-- navbar-collapse -->
 				</div><!-- container-fluid -->
 			</nav><!-- header_nav -->
 			{% endblock header_nav %}
 
+		</header>
 	{% endblock header %}
 
 	{% block main %}
