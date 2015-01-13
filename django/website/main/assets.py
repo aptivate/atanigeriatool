@@ -12,7 +12,7 @@ common_css = Bundle(
 register('main.common_css', common_css)
 
 common_js = Bundle(
-    'bootstrap/ie_version.js',
+    # 'bootstrap/ie_version.js',
     'bower_components/jquery/dist/jquery.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
     # 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
