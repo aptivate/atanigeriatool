@@ -17,7 +17,7 @@ common_js = Bundle(
     'bower_components/bootstrap/dist/js/bootstrap.js',
     # 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
     'bower_components/bootstrap-material-design/dist/js/material.js',
-    filters='jsmin',
+    filters='rjsmin',
     output='js/main/common.min.js'
 )
 register('main.common_js', common_js)
