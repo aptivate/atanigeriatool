@@ -11,7 +11,7 @@ common_css = Bundle(
     output='css/bootstrap/common.min.css',
     depends=['sass/bootstrap/*.scss', 'sass/*.scss'],
 )
-register('bootstrap.common_css', common_css)
+register('main.common_css', common_css)
 
 common_js = Bundle(
     'bootstrap/ie_version.js',
@@ -22,4 +22,4 @@ common_js = Bundle(
     filters='jsmin',
     output='js/bootstrap/common.min.js'
 )
-register('bootstrap.common_js', common_js)
+register('main.common_js', common_js)

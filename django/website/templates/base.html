@@ -11,7 +11,7 @@
 	<meta name="author" content="Hamish Downer">
 	{% block media %}
 		{% block standard_css %}
-			{% assets "bootstrap.common_css" %}
+			{% assets "main.common_css" %}
 					<link rel="stylesheet" href="{{ ASSET_URL }}" />
 			{% endassets %}
 		{% endblock standard_css %}
@@ -29,6 +29,7 @@
 	{% block header %}
 		<header class="{% block header_classes %}bootstrap_header container-fluid{% endblock %}" role="banner">
 			{% block logo %}
+			{% comment %}
 				<div class="logo">
 					<div class="row">
 						<div class="col-sm-6">
@@ -39,6 +40,7 @@
 					</div>
 
 				</div>
+			{% endcomment %}
 			{% endblock %}
 
 			{% block user_access %}
@@ -66,7 +68,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						{% block header_nav_brand %}<a class="navbar-brand" href="#">Brand</a>{% endblock %}
+						{% block header_nav_brand %}<a class="navbar-brand" href="#">ATA Progress Dashboard</a>{% endblock %}
 					</div><!-- navbar-header -->
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -117,7 +119,7 @@
 	{% endblock footer %}
 
 	{% block js_footer %}
-		{% assets "bootstrap.common_js" %}
+		{% assets "main.common_js" %}
 			<script type="text/javascript" src="{{ ASSET_URL }}"></script>
 		{% endassets %}
 	{% endblock js_footer %}
