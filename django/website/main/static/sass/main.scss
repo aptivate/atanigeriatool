@@ -68,3 +68,19 @@ footer {
 .navbar-text > a:hover {
     color: #ffb74d;
 }
+
+.navbar-header > .navbar-toggle {
+    float: left;
+}
+
+.main-navbar-filter-button {
+    float: right;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+.main-navbar-filter-button > .glyphicon {
+    color: rgba(255, 255, 255, 0.84);
+}
