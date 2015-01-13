@@ -33,9 +33,10 @@ class EmbedChartSettings(object):
         self.data_labels = kwargs.get("data_labels", "false")
         self.legend = kwargs.get("legend", "false")
         self.grid_lines = kwargs.get("grid_lines", "false")
+        self.precision = kwargs.get("precision", 0)
 
     def format_filters(self, filter_list, filter_type):
         # this is an unsafe string that django will do html escaping on
-        formatted = '&'.join(['filters.' +filter_type + '=' + term for term in filter_list])
+        formatted = '&'.join(['filters.' + filter_type + '=' + term for term in filter_list])
         formatted = escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
