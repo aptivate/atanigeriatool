@@ -4,6 +4,8 @@ from django.test.testcases import TestCase
 
 from django_harness.fast_dispatch import FastDispatchMixin
 
+from main.views import HomeView
+
 
 class BasicViewTestsMixin(object):
     args = []
@@ -21,7 +23,17 @@ class BasicViewTestsMixin(object):
 class HomeViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'home'
 
+    def test_get_charts_does_not_set_filter(self):
+        view = HomeView()
+        charts = view.get_charts(state=None)
+        self.assertFalse(hasattr(charts['nutrition'], 'filters'))
+
 
 class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'state_filter'
     args = ['kogi']
+
+    def test_get_charts_sets_filter(self):
+        view = HomeView()
+        charts = view.get_charts(state='kogi')
+        self.assertTrue(hasattr(charts['nutrition'], 'filters'))
