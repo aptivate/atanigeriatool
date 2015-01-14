@@ -25,7 +25,3 @@ class HomeViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
 class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'state_filter'
     args = ['kogi']
-
-
-class ChartsViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
-    url_name = 'charts'
