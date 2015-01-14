@@ -4,19 +4,22 @@ from django.views.generic import TemplateView
 
 from lscharts.embed import EmbedChartSettings
 
+# TODO: move to settings?
+DOMAIN = "ata.livestories.com"
+DATASETS = {
+    "nutrition": "29277fe2981511e4bbe006909bee25eb",
+}
+
 
 # NOT included in main/urls.py - included directly in the root urls.py
 class HomeView(TemplateView):
     template_name = 'main/homepage.html'
-    # TODO: move to settings
-    dataset = "29277fe2981511e4bbe006909bee25eb"
-    domain = "ata.livestories.com"
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['food_consumed_chart'] = EmbedChartSettings(
-            dataset=self.dataset,
-            domain=self.domain,
+            dataset=DATASETS['nutrition'],
+            domain=DOMAIN,
             variables="Commodity,year",
             indicators="Value",
             operation="avg",
@@ -41,8 +44,8 @@ class ChartsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ChartsView, self).get_context_data(**kwargs)
         context['test_chart'] = EmbedChartSettings(
-            dataset=self.dataset,
-            domain=self.domain,
+            dataset=DATASETS['nutrition'],
+            domain=DOMAIN,
             variables="Commodity,year",
             indicators="Value",
             operation="avg",
