@@ -28,6 +28,10 @@ class HomeView(TemplateView):
         return context
 
 
+class StateFilterView(TemplateView):
+    template_name = 'main/homepage.html'
+
+
 class ChartsView(TemplateView):
     template_name = 'main/charts.html'
     # move to settings
