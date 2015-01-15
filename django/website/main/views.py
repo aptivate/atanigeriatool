@@ -40,8 +40,8 @@ class HomeView(TemplateView):
         if valuechain:
             if valuechain == 'rice':
                 nutrition_args['filters'] = [
-                        ('Commodity', 'Rice - imported'),
-                        ('Commodity', 'Rice - local')
+                    ('Commodity', 'Rice - imported'),
+                    ('Commodity', 'Rice - local')
                 ]
             elif valuechain == 'cassava':
                 nutrition_args['filters'] = [
