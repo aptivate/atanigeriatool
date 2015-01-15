@@ -4,59 +4,55 @@ from django.views.generic import TemplateView
 
 from lscharts.embed import EmbedChartSettings
 
+# TODO: move to settings?
+DOMAIN = "ata.livestories.com"
+DATASETS = {
+    "nutrition": "29277fe2981511e4bbe006909bee25eb",
+}
+
 
 # NOT included in main/urls.py - included directly in the root urls.py
 class HomeView(TemplateView):
     template_name = 'main/homepage.html'
-    # TODO: move to settings
-    dataset = "29277fe2981511e4bbe006909bee25eb"
-    domain = "ata.livestories.com"
 
     def get_context_data(self, **kwargs):
+        state = kwargs.get('state', None)
+        valuechain = kwargs.get('valuechain', None)
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['food_consumed_chart'] = EmbedChartSettings(
-            dataset=self.dataset,
-            domain=self.domain,
-            variables="Commodity,year",
-            indicators="Value",
-            operation="avg",
-            chart_type="column",
-            legend="true",
-            data_labels="true",
-            text="Percentage of households who consume each food type, in 2010 and 2012",
-        )
+        context['charts'] = self.get_charts(state, valuechain)
         return context
 
-
-class ChartsView(TemplateView):
-    template_name = 'main/charts.html'
-    # move to settings
-    dataset = "29277fe2981511e4bbe006909bee25eb"
-    domain = "ata.livestories.com"
-
-    def get_context_data(self, **kwargs):
-        context = super(ChartsView, self).get_context_data(**kwargs)
-        context['test_chart'] = EmbedChartSettings(
-            dataset=self.dataset,
-            domain=self.domain,
-            variables="Commodity,year",
-            indicators="Value",
-            operation="avg",
-            chart_type="column",
-            legend="true",
-            data_labels="true",
-            text="Percentage of households who consume each foodstuff, in 2010 and 2012",
-        )
-        """context['test_chart'] = EmbedChartSettings(
-            dataset=self.dataset,
-            domain=self.domain,
-            variables="state,Commodity",
-            indicators="Value",
-            operation="avg",
-            chart_type="stackedcolumn",
-            legend="true",
-            text="Average value across state, food type",
-            filters=['benue', 'kogi'],
-            filter_type='state'
-        )"""
-        return context
+    def get_charts(self, state, valuechain):
+        nutrition_args = {
+            'dataset': DATASETS['nutrition'],
+            'domain': DOMAIN,
+            'variables': "Commodity,year",
+            'indicators': "Value",
+            'operation': "avg",
+            'chart_type': "column",
+            'legend': "true",
+            'data_labels': "true",
+            'text': "Percentage of households who consume each food type, in 2010 and 2012",
+        }
+        if state:
+            nutrition_args.update({
+                'filters': [state],
+                'filter_type': 'state',
+            })
+            nutrition_args['text'] += " in %s" % state.capitalize()
+        if valuechain:
+            if valuechain == 'rice':
+                nutrition_args.update({
+                    'filters': ['Rice - imported', 'Rice - local'],
+                    'filter_type': 'Commodity',
+                })
+            elif valuechain == 'cassava':
+                nutrition_args.update({
+                    'filters': ['Cassava - roots', 'Cassava flour',
+                                'Gari - white', 'Gari - yellow'],
+                    'filter_type': 'Commodity',
+                })
+            nutrition_args['text'] += " (%s value chain)" % valuechain
+        return {
+            'nutrition': EmbedChartSettings(**nutrition_args)
+        }

@@ -5,7 +5,7 @@
 
 <h2 id="main-nutrition">Nutrition</h2>
 <div>
-	{% include "lscharts/embedded_chart.html" with chart=food_consumed_chart %}
+	{% include "lscharts/embedded_chart.html" with chart=charts.nutrition %}
 </div>
 
 <h2 id="main-technology" style="color: grey">Technology Adoption</h2>
@@ -26,11 +26,11 @@
 			</div>
 			<div class="modal-body">
 				<ul>
-					<li>No Filters</li>
-					<li>Cassava</li>
-					<li>Rice</li>
-					<li>Benue</li>
-					<li>Kogi</li>
+					<li><a href="{% url "home" %}">No Filters</a></li>
+					<li><a href="{% url "valuechain_filter" "cassava" %}">Cassava</a></li>
+					<li><a href="{% url "valuechain_filter" "rice" %}">Rice</a></li>
+					<li><a href="{% url "state_filter" "benue" %}">Benue</a></li>
+					<li><a href="{% url "state_filter" "kogi" %}">Kogi</a></li>
 				</ul>
 			</div>
 		</div>
