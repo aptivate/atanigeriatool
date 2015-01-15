@@ -8,4 +8,5 @@ urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^state/(?P<state>\w+)/$', HomeView.as_view(), name='state_filter'),
+    url(r'^valuechain/(?P<valuechain>\w+)/$', HomeView.as_view(), name='valuechain_filter'),
 )

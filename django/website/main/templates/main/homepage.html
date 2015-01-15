@@ -27,8 +27,8 @@
 			<div class="modal-body">
 				<ul>
 					<li><a href="{% url "home" %}">No Filters</a></li>
-					<li>Cassava</li>
-					<li>Rice</li>
+					<li><a href="{% url "valuechain_filter" "cassava" %}">Cassava</a></li>
+					<li><a href="{% url "valuechain_filter" "rice" %}">Rice</a></li>
 					<li><a href="{% url "state_filter" "benue" %}">Benue</a></li>
 					<li><a href="{% url "state_filter" "kogi" %}">Kogi</a></li>
 				</ul>

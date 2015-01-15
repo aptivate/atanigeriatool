@@ -17,11 +17,12 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         state = kwargs.get('state', None)
+        valuechain = kwargs.get('valuechain', None)
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['charts'] = self.get_charts(state)
+        context['charts'] = self.get_charts(state, valuechain)
         return context
 
-    def get_charts(self, state):
+    def get_charts(self, state, valuechain):
         nutrition_args = {
             'dataset': DATASETS['nutrition'],
             'domain': DOMAIN,
@@ -38,6 +39,20 @@ class HomeView(TemplateView):
                 'filters': [state],
                 'filter_type': 'state',
             })
+            nutrition_args['text'] += " in %s" % state.capitalize()
+        if valuechain:
+            if valuechain == 'rice':
+                nutrition_args.update({
+                    'filters': ['Rice - imported', 'Rice - local'],
+                    'filter_type': 'Commodity',
+                })
+            elif valuechain == 'cassava':
+                nutrition_args.update({
+                    'filters': ['Cassava - roots', 'Cassava flour',
+                                'Gari - white', 'Gari - yellow'],
+                    'filter_type': 'Commodity',
+                })
+            nutrition_args['text'] += " (%s value chain)" % valuechain
         return {
             'nutrition': EmbedChartSettings(**nutrition_args)
         }

@@ -25,7 +25,7 @@ class HomeViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
 
     def test_get_charts_does_not_set_filter(self):
         view = HomeView()
-        charts = view.get_charts(state=None)
+        charts = view.get_charts(state=None, valuechain=None)
         self.assertFalse(hasattr(charts['nutrition'], 'filters'))
 
 
@@ -35,5 +35,15 @@ class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
 
     def test_get_charts_sets_filter(self):
         view = HomeView()
-        charts = view.get_charts(state='kogi')
+        charts = view.get_charts(state='kogi', valuechain=None)
+        self.assertTrue(hasattr(charts['nutrition'], 'filters'))
+
+
+class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
+    url_name = 'valuechain_filter'
+    args = ['rice']
+
+    def test_get_charts_sets_filter(self):
+        view = HomeView()
+        charts = view.get_charts(state=None, valuechain='rice')
         self.assertTrue(hasattr(charts['nutrition'], 'filters'))
