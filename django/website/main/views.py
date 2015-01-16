@@ -37,7 +37,7 @@ class HomeView(TemplateView):
         }
         if state:
             nutrition_args['filters'] = [('state', state)]
-            nutrition_args['text'] += " in %s" % state.capitalize()
+            nutrition_args['text'] += " in " + state.capitalize()
         if valuechain:
             if valuechain == 'rice':
                 nutrition_args['filters'] = [
@@ -51,7 +51,7 @@ class HomeView(TemplateView):
                     ('Commodity', 'Gari - white'),
                     ('Commodity', 'Gari - yellow')
                 ]
-            nutrition_args['text'] += " (%s value chain)" % valuechain
+            nutrition_args['text'] += " ({0} value chain)".format(valuechain)
         return nutrition_args
 
     def get_technology_args(self, state, valuechain):
@@ -68,10 +68,10 @@ class HomeView(TemplateView):
         }
         if state:
             args['filters'] = [('state', state)]
-            args['text'] += " in %s" % state.capitalize()
+            args['text'] += " in " + state.capitalize()
         if valuechain:
             args['filters'] = [('crop', valuechain)]
-            args['text'] += " (%s value chain)" % valuechain
+            args['text'] += " ({0} value chain)".format(valuechain)
         return args
 
 
