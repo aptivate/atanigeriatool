@@ -8,7 +8,7 @@ from lscharts.embed import EmbedChartSettings
 DOMAIN = "ata.livestories.com"
 DATASETS = {
     "nutrition": "29277fe2981511e4bbe006909bee25eb",
-    "technology": "60c7d2229d6e11e4a14406909bee25eb",
+    "technology": "9e3d0cd49d7e11e4a93606909bee25eb",
 }
 
 
@@ -66,6 +66,9 @@ class HomeView(TemplateView):
             'data_labels': "true",
             'text': "Percentage of households using technologies in 2010 and 2012",
         }
+        if state:
+            args['filters'] = [('state', state)]
+            args['text'] += " in %s" % state.capitalize()
         return args
 
 
