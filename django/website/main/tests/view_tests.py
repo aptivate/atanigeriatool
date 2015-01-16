@@ -43,6 +43,10 @@ class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         args = view.get_nutrition_args(state='kogi', valuechain=None)
         self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
 
+    def test_get_technology_args_for_state_has_state_filter(self):
+        view = HomeView()
+        args = view.get_technology_args(state='kogi', valuechain=None)
+        self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
 
 class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'valuechain_filter'
@@ -69,3 +73,8 @@ class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase
             self.assertEqual(filter_detail[0], 'Commodity')
             self.assertTrue(filter_detail[1].startswith('Gari') or
                             filter_detail[1].startswith('Cassava'))
+
+    def test_get_technology_args_for_valuechain_has_crop_filter(self):
+        view = HomeView()
+        args = view.get_technology_args(state=None, valuechain='rice')
+        self.assertSequenceEqual(args['filters'], [('crop','rice')])

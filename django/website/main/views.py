@@ -69,6 +69,9 @@ class HomeView(TemplateView):
         if state:
             args['filters'] = [('state', state)]
             args['text'] += " in %s" % state.capitalize()
+        if valuechain:
+            args['filters'] = [('crop', valuechain)]
+            args['text'] += " (%s value chain)" % valuechain
         return args
 
 
