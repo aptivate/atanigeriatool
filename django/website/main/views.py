@@ -8,6 +8,7 @@ from lscharts.embed import EmbedChartSettings
 DOMAIN = "ata.livestories.com"
 DATASETS = {
     "nutrition": "29277fe2981511e4bbe006909bee25eb",
+    "technology": "60c7d2229d6e11e4a14406909bee25eb",
 }
 
 
@@ -53,8 +54,25 @@ class HomeView(TemplateView):
             nutrition_args['text'] += " (%s value chain)" % valuechain
         return nutrition_args
 
+    def get_technology_args(self, state, valuechain):
+        args = {
+            'dataset': DATASETS['technology'],
+            'domain': DOMAIN,
+            'variables': "Technology,year",
+            'indicators': "Value",
+            'operation': "avg",
+            'chart_type': "column",
+            'legend': "true",
+            'data_labels': "true",
+            'text': "Percentage of households using technologies in 2010 and 2012",
+        }
+        return args
+
+
     def get_charts(self, state, valuechain):
         return {
             'nutrition':
                 EmbedChartSettings(**self.get_nutrition_args(state, valuechain)),
+            'technology':
+                EmbedChartSettings(**self.get_technology_args(state, valuechain)),
         }
