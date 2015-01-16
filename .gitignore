@@ -1,5 +1,6 @@
 *.pyc
 .*.swp
+.swp
 *~
 .ropeproject
 django/website/local_settings.py
