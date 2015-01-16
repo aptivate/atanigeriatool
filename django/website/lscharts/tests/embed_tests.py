@@ -16,9 +16,12 @@ class EmbedChartSettingsTests(TestCase):
         self.assertTrue(hasattr(ecs, 'filters'))
 
     def test_format_filters_combines_filters_correctly(self):
-        filters = ['ivory pieces', 'ivory scraps', 'tusks']
-        filter_type = 'Term'
-        actual_output = EmbedChartSettings().format_filters(filters, filter_type)
+        filters = [
+            ('Term', 'ivory pieces'),
+            ('Term', 'ivory scraps'),
+            ('food', 'cassava')
+        ]
+        actual_output = EmbedChartSettings().format_filters(filters)
         expected_output = "filters.Term=ivory%20pieces&amp;filters.Term=ivory" \
-            "%20scraps&amp;filters.Term=tusks"
+            "%20scraps&amp;filters.food=cassava"
         self.assertEqual(expected_output, actual_output)

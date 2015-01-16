@@ -22,7 +22,7 @@ class HomeView(TemplateView):
         context['charts'] = self.get_charts(state, valuechain)
         return context
 
-    def get_charts(self, state, valuechain):
+    def get_nutrition_args(self, state, valuechain):
         nutrition_args = {
             'dataset': DATASETS['nutrition'],
             'domain': DOMAIN,
@@ -35,24 +35,26 @@ class HomeView(TemplateView):
             'text': "Percentage of households who consume each food type, in 2010 and 2012",
         }
         if state:
-            nutrition_args.update({
-                'filters': [state],
-                'filter_type': 'state',
-            })
+            nutrition_args['filters'] = [('state', state)]
             nutrition_args['text'] += " in %s" % state.capitalize()
         if valuechain:
             if valuechain == 'rice':
-                nutrition_args.update({
-                    'filters': ['Rice - imported', 'Rice - local'],
-                    'filter_type': 'Commodity',
-                })
+                nutrition_args['filters'] = [
+                    ('Commodity', 'Rice - imported'),
+                    ('Commodity', 'Rice - local')
+                ]
             elif valuechain == 'cassava':
-                nutrition_args.update({
-                    'filters': ['Cassava - roots', 'Cassava flour',
-                                'Gari - white', 'Gari - yellow'],
-                    'filter_type': 'Commodity',
-                })
+                nutrition_args['filters'] = [
+                    ('Commodity', 'Cassava - roots'),
+                    ('Commodity', 'Cassava flour'),
+                    ('Commodity', 'Gari - white'),
+                    ('Commodity', 'Gari - yellow')
+                ]
             nutrition_args['text'] += " (%s value chain)" % valuechain
+        return nutrition_args
+
+    def get_charts(self, state, valuechain):
         return {
-            'nutrition': EmbedChartSettings(**nutrition_args)
+            'nutrition':
+                EmbedChartSettings(**self.get_nutrition_args(state, valuechain)),
         }

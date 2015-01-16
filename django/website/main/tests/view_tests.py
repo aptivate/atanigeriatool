@@ -38,6 +38,11 @@ class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         charts = view.get_charts(state='kogi', valuechain=None)
         self.assertTrue(hasattr(charts['nutrition'], 'filters'))
 
+    def test_get_nutrition_args_for_state_has_state_filter(self):
+        view = HomeView()
+        args = view.get_nutrition_args(state='kogi', valuechain=None)
+        self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
+
 
 class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'valuechain_filter'
@@ -47,3 +52,20 @@ class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase
         view = HomeView()
         charts = view.get_charts(state=None, valuechain='rice')
         self.assertTrue(hasattr(charts['nutrition'], 'filters'))
+
+    def test_get_nutrition_args_for_rice_has_correct_filters(self):
+        view = HomeView()
+        args = view.get_nutrition_args(state=None, valuechain='rice')
+        filters = args['filters']
+        for filter_detail in filters:
+            self.assertEqual(filter_detail[0], 'Commodity')
+            self.assertTrue(filter_detail[1].startswith('Rice'))
+
+    def test_get_nutrition_args_for_cassava_has_correct_filters(self):
+        view = HomeView()
+        args = view.get_nutrition_args(state=None, valuechain='cassava')
+        filters = args['filters']
+        for filter_detail in filters:
+            self.assertEqual(filter_detail[0], 'Commodity')
+            self.assertTrue(filter_detail[1].startswith('Gari') or
+                            filter_detail[1].startswith('Cassava'))
