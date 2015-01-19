@@ -3,20 +3,57 @@
 {% block content %}
 <h1>ATA Indicators</h1>
 
-<h2 id="main-nutrition">Nutrition</h2>
-<div>
-	{% include "lscharts/embedded_chart.html" with chart=charts.nutrition %}
+<div class="row">
+    <div class="col-xs-12 divider">
+        <h2 id="main-nutrition">Nutrition</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-1">
+        {% include "lscharts/embedded_chart.html" with chart=charts.nutrition %}
+    </div>
+    <div class="col-md-4">
+        <p>
+        Scotch ale lambic, hoppy ester double bock/dopplebock. brewpub
+        units of bitterness amber copper grainy specific gravity. mouthfeel
+        bunghole mash double bock/dopplebock, infusion hydrometer, " real
+        ale brewhouse." lager, copper brewpub goblet scotch ale all-malt
+        length pint glass, carbonation cold filter.
+        </p>
+    </div>
 </div>
 
-<h2 id="main-technology">Technology Adoption</h2>
-<div>
-	{% include "lscharts/embedded_chart.html" with chart=charts.technology %}
+<div class="row">
+    <div class="col-xs-12 divider">
+        <h2 id="main-technology">Technology Adoption</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-1">
+        {% include "lscharts/embedded_chart.html" with chart=charts.technology %}
+    </div>
+    <div class="col-md-4">
+        <p>
+        Scotch ale lambic, hoppy ester double bock/dopplebock. brewpub
+        units of bitterness amber copper grainy specific gravity. mouthfeel
+        bunghole mash double bock/dopplebock, infusion hydrometer, " real
+        ale brewhouse." lager, copper brewpub goblet scotch ale all-malt
+        length pint glass, carbonation cold filter.
+        </p>
+    </div>
 </div>
 
-<h2 id="main-sales" style="color: grey">Sales</h2>
+<div class="row">
+    <div class="col-xs-12 divider">
+        <h2 id="main-sales" style="color: grey">Sales</h2>
+    </div>
+</div>
 
-<h2 id="main-productivity" style="color: grey">Productivity</h2>
-
+<div class="row">
+    <div class="col-xs-12 divider">
+        <h2 id="main-productivity" style="color: grey">Productivity</h2>
+    </div>
+</div>
 {% endblock %}
 
 {% block modals %}
