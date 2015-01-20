@@ -10,6 +10,10 @@ DATASETS = {
     "nutrition": "29277fe2981511e4bbe006909bee25eb",
     "technology": "9e3d0cd49d7e11e4a93606909bee25eb",
 }
+DATASET_IDS = {
+    "nutrition": "54aff583a750b33915f0069c",
+    "technology": "54b909c7a750b30f24f31db7",
+}
 
 
 # NOT included in main/urls.py - included directly in the root urls.py
@@ -26,6 +30,7 @@ class HomeView(TemplateView):
     def get_nutrition_args(self, state, valuechain):
         nutrition_args = {
             'dataset': DATASETS['nutrition'],
+            'dataset_id': DATASET_IDS['nutrition'],
             'domain': DOMAIN,
             'variables': "Commodity,year",
             'indicators': "Value",
@@ -57,6 +62,7 @@ class HomeView(TemplateView):
     def get_technology_args(self, state, valuechain):
         args = {
             'dataset': DATASETS['technology'],
+            'dataset_id': DATASET_IDS['technology'],
             'domain': DOMAIN,
             'variables': "Technology,year",
             'indicators': "Value",

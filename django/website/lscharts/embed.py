@@ -2,6 +2,13 @@ from __future__ import unicode_literals, absolute_import
 
 from django.utils.html import escape, mark_safe
 
+DEFAULT_DESCRIPTION = \
+    "Scotch ale lambic, hoppy ester double bock/dopplebock. brewpub " \
+    "units of bitterness amber copper grainy specific gravity. mouthfeel " \
+    "bunghole mash double bock/dopplebock, infusion hydrometer, \" real " \
+    "ale brewhouse.\" lager, copper brewpub goblet scotch ale all-malt " \
+    "length pint glass, carbonation cold filter. "
+
 
 class EmbedChartSettings(object):
 
@@ -20,6 +27,7 @@ class EmbedChartSettings(object):
 
         self.domain = kwargs.get("domain", "insight.livestories.com")
         self.dataset = kwargs.get("dataset", "5b19fd0a92bf11e4acc406909bee25eb")
+        self.dataset_id = kwargs.get("dataset_id", "54aff583a750b33915f0069c")
         self.variables = kwargs.get("variables", "Crop")
         self.indicators = kwargs.get("indicators", "__entry")
         self.operation = kwargs.get("operation", "count")
@@ -28,6 +36,7 @@ class EmbedChartSettings(object):
             self.filters = self.format_filters(kwargs["filters"])
 
         self.text = kwargs.get("text", "Crop")
+        self.description = kwargs.get("description", DEFAULT_DESCRIPTION)
 
         self.show_dataset = kwargs.get("show_dataset", "false")
         self.data_labels = kwargs.get("data_labels", "false")

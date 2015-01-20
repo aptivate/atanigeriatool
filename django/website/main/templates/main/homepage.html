@@ -7,42 +7,14 @@
         <h2 id="main-nutrition">Nutrition</h2>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6 col-md-offset-1">
-        {% include "lscharts/embedded_chart.html" with chart=charts.nutrition %}
-    </div>
-    <div class="col-md-4">
-        <p>
-        Scotch ale lambic, hoppy ester double bock/dopplebock. brewpub
-        units of bitterness amber copper grainy specific gravity. mouthfeel
-        bunghole mash double bock/dopplebock, infusion hydrometer, " real
-        ale brewhouse." lager, copper brewpub goblet scotch ale all-malt
-        length pint glass, carbonation cold filter.
-        </p>
-        <a class="btn btn-default explore-button" href="http://ata.livestories.com/guest/chart?datasetId=54aff583a750b33915f0069c&dashId=&dashboard=&chartType=column&operation=avg&variables=Commodity&variables=year&indicators=Value">Explore</a>
-    </div>
-</div>
+{% include "main/chart_section.html" with chart=charts.nutrition %}
 
 <div class="row">
     <div class="col-xs-12 divider">
         <h2 id="main-technology">Technology Adoption</h2>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6 col-md-offset-1">
-        {% include "lscharts/embedded_chart.html" with chart=charts.technology %}
-    </div>
-    <div class="col-md-4">
-        <p>
-        Scotch ale lambic, hoppy ester double bock/dopplebock. brewpub
-        units of bitterness amber copper grainy specific gravity. mouthfeel
-        bunghole mash double bock/dopplebock, infusion hydrometer, " real
-        ale brewhouse." lager, copper brewpub goblet scotch ale all-malt
-        length pint glass, carbonation cold filter.
-        </p>
-        <a class="btn btn-default explore-button" href="http://ata.livestories.com/guest/chart?datasetId=54b909c7a750b30f24f31db7&dashId=&dashboard=&chartType=column&operation=avg&variables=Technology&variables=year&indicators=Value">Explore</a>
-    </div>
-</div>
+{% include "main/chart_section.html" with chart=charts.technology %}
 
 <div class="row">
     <div class="col-xs-12 divider">
