@@ -89,9 +89,9 @@ class HomeView(TemplateView):
             'variables': ["season"],
             'indicators': ["production", "yield"],
             'operation': "sum",
-            'secondary_operation': "sum",
+            'secondary_operation': "avg",
             'chart_type': "column",
-            'text': "Total production and Sum of yield across season",
+            'text': "Total production and average of yield across season",
         })
         if state:
             args['filters'] = [('state', state)]
