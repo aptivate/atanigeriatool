@@ -106,6 +106,7 @@
 	{% endblock main %}
 
 	{% block footer %}
+	{% comment %}
 		<footer class="{% block footer_classes %}bootstrap_footer container-fluid{% endblock %}" role="contentinfo">
 			<div class="footer_nav_wrapper">
 				<nav class="{% block footer_nav_classes %}footer_nav navbar navbar-default{% endblock %}" role="navigation">
@@ -121,6 +122,7 @@
 				</nav>
 			</div><!-- footer_nav_wrapper -->
 		</footer>
+	{% endcomment %}
 	{% endblock footer %}
 
 	{% block modals %}
