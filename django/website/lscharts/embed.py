@@ -117,4 +117,7 @@ class EmbedChartSettings(object):
         """
         link = "http://ata.livestories.com/guest/chart?"
         link += urlencode(self._get_query_params(), doseq=True)
+        filter_part = self.filters_for_embed_link()
+        if filter_part:
+            link += '&' + filter_part
         return mark_safe(link)

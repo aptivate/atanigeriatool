@@ -58,3 +58,13 @@ class EmbedChartSettingsTests(TestCase):
             '&dashboard=&title=Crop&indicators=__entry&chartType=pie'
             '&operation=count&dashId=&datasetId=54aff583a750b33915f0069c',
             ecs.explore_url())
+
+    def test_explore_url_includes_filters(self):
+        filters = [
+            ('Term', 'ivory pieces'),
+            ('Term', 'ivory scraps'),
+            ('food', 'cassava')
+        ]
+        ecs = EmbedChartSettings(filters=filters)
+        filter_url_part = ecs.filters_for_embed_link()
+        self.assertIn(filter_url_part, ecs.explore_url())
