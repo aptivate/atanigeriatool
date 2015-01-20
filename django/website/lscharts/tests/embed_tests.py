@@ -44,3 +44,11 @@ class EmbedChartSettingsTests(TestCase):
     def test_indicators_url_args_returns_filters_formatted_for_url(self):
         ecs = EmbedChartSettings(indicators=['afilter', 'bfilter'])
         self.assertEqual('indicators=afilter&indicators=bfilter', ecs.indicators_url_args())
+
+    def test_colors_comma_returns_comma_separated_list_with_hash_prefix(self):
+        ecs = EmbedChartSettings(colors=['123456', '789ABC'])
+        self.assertEqual('#123456,#789ABC', ecs.colors_comma())
+
+    def test_colors_url_args_returns_filters_formatted_for_url(self):
+        ecs = EmbedChartSettings(colors=['123456', '789ABC'])
+        self.assertEqual('colors=123456&colors=789ABC', ecs.colors_url_args())

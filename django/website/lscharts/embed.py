@@ -9,6 +9,21 @@ DEFAULT_DESCRIPTION = \
     "ale brewhouse.\" lager, copper brewpub goblet scotch ale all-malt " \
     "length pint glass, carbonation cold filter. "
 
+DEFAULT_COLORS = [
+    "1d976b",
+    "7a7654",
+    "00a65d",
+    "72bf44",
+    "fff200",
+    "faa61a",
+    "f58220",
+    "ef413d",
+    "ed1c24",
+    "a3238e",
+    "5c2d91",
+    "214009"
+]
+
 
 class EmbedChartSettings(object):
 
@@ -18,9 +33,7 @@ class EmbedChartSettings(object):
         self.width = kwargs.get("width", "600")
         self.height = kwargs.get("height", "600")
         self.background = kwargs.get("background", "false")
-        self.colors = kwargs.get(
-            "colors",
-            "#1d976b,#7a7654,#00a65d,#72bf44,#fff200,#faa61a,#f58220,#ef413d,#ed1c24,#a3238e,#5c2d91,#214009")
+        self.colors = kwargs.get("colors", DEFAULT_COLORS)
 
         self.enable_filtering = kwargs.get("enable_filtering", "true")
         self.enable_interaction = kwargs.get("enable_interaction", "false")
@@ -68,3 +81,9 @@ class EmbedChartSettings(object):
 
     def indicators_url_args(self):
         return self._iterable_url_args(self.indicators, 'indicators')
+
+    def colors_comma(self):
+        return self._iterable_comma(['#' + c for c in self.colors])
+
+    def colors_url_args(self):
+        return self._iterable_url_args(self.colors, 'colors')
