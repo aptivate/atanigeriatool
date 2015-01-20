@@ -20,7 +20,7 @@ class EmbedChartSettings(object):
         self.background = kwargs.get("background", "false")
         self.colors = kwargs.get(
             "colors",
-            "#0066b3,#00aaad,#00a65d,#72bf44,#fff200,#faa61a,#f58220,#ef413d,#ed1c24,#a3238e,#5c2d91,#214009")
+            "#1d976b,#7a7654,#00a65d,#72bf44,#fff200,#faa61a,#f58220,#ef413d,#ed1c24,#a3238e,#5c2d91,#214009")
 
         self.enable_filtering = kwargs.get("enable_filtering", "true")
         self.enable_interaction = kwargs.get("enable_interaction", "false")
