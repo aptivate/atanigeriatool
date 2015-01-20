@@ -39,7 +39,7 @@ class HomeView(TemplateView):
     def get_nutrition_args(self, state, valuechain):
         args = self.get_generic_args('nutrition')
         args.update({
-            'variables': "Commodity,year",
+            'variables': ["Commodity", "year"],
             'indicators': "Value",
             'operation': "avg",
             'chart_type': "column",
@@ -67,7 +67,7 @@ class HomeView(TemplateView):
     def get_technology_args(self, state, valuechain):
         args = self.get_generic_args('technology')
         args.update({
-            'variables': "Technology,year",
+            'variables': ["Technology", "year"],
             'indicators': "Value",
             'operation': "avg",
             'chart_type': "column",

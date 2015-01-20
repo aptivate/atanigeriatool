@@ -28,7 +28,7 @@ class EmbedChartSettings(object):
         self.domain = kwargs.get("domain", "insight.livestories.com")
         self.dataset = kwargs.get("dataset", "5b19fd0a92bf11e4acc406909bee25eb")
         self.dataset_id = kwargs.get("dataset_id", "54aff583a750b33915f0069c")
-        self.variables = kwargs.get("variables", "Crop")
+        self.variables = kwargs.get("variables", ["Crop"])
         self.indicators = kwargs.get("indicators", "__entry")
         self.operation = kwargs.get("operation", "count")
         self.chart_type = kwargs.get("chart_type", "pie")
@@ -49,3 +49,9 @@ class EmbedChartSettings(object):
         formatted = '&'.join(['filters.%s=%s' % (term[0], term[1]) for term in filter_list])
         formatted = escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
+
+    def variables_comma(self):
+        return ','.join(self.variables)
+
+    def variables_url_args(self):
+        return '&'.join(['variables=' + v for v in self.variables])
