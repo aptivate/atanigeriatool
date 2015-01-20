@@ -27,6 +27,8 @@ class HomeView(TemplateView):
         valuechain = kwargs.get('valuechain', None)
         context = super(HomeView, self).get_context_data(**kwargs)
         context['charts'] = self.get_charts(state, valuechain)
+        context['state'] = state
+        context['valuechain'] = valuechain
         return context
 
     def get_generic_args(self, chart_type):
@@ -91,14 +93,15 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
-            'title': "Total production and average of yield across season",
+            'title': "Total production and average of yield across season (rice only)",
         })
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " in " + state.capitalize()
-        if valuechain:
-            args['filters'] = [('crop', valuechain)]
-            args['title'] += " ({0} value chain)".format(valuechain)
+        # we ignore valuechain - we only have data for rice currently
+        # so for rice we just show the full chart, while for cassava we
+        # will show a message saying there is no data instead of a chart, but
+        # the logic for that is in the template
         return args
 
     def get_charts(self, state, valuechain):
