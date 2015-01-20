@@ -27,51 +27,52 @@ class HomeView(TemplateView):
         context['charts'] = self.get_charts(state, valuechain)
         return context
 
-    def get_nutrition_args(self, state, valuechain):
-        nutrition_args = {
-            'dataset': DATASETS['nutrition'],
-            'dataset_id': DATASET_IDS['nutrition'],
+    def get_generic_args(self, chart_type):
+        return {
+            'dataset': DATASETS[chart_type],
+            'dataset_id': DATASET_IDS[chart_type],
             'domain': DOMAIN,
+            'legend': "true",
+            'data_labels': "true",
+        }
+
+    def get_nutrition_args(self, state, valuechain):
+        args = self.get_generic_args('nutrition')
+        args.update({
             'variables': "Commodity,year",
             'indicators': "Value",
             'operation': "avg",
             'chart_type': "column",
-            'legend': "true",
-            'data_labels': "true",
             'text': "Percentage of households who consume each food type, in 2010 and 2012",
-        }
+        })
         if state:
-            nutrition_args['filters'] = [('state', state)]
-            nutrition_args['text'] += " in " + state.capitalize()
+            args['filters'] = [('state', state)]
+            args['text'] += " in " + state.capitalize()
         if valuechain:
             if valuechain == 'rice':
-                nutrition_args['filters'] = [
+                args['filters'] = [
                     ('Commodity', 'Rice - imported'),
                     ('Commodity', 'Rice - local')
                 ]
             elif valuechain == 'cassava':
-                nutrition_args['filters'] = [
+                args['filters'] = [
                     ('Commodity', 'Cassava - roots'),
                     ('Commodity', 'Cassava flour'),
                     ('Commodity', 'Gari - white'),
                     ('Commodity', 'Gari - yellow')
                 ]
-            nutrition_args['text'] += " ({0} value chain)".format(valuechain)
-        return nutrition_args
+            args['text'] += " ({0} value chain)".format(valuechain)
+        return args
 
     def get_technology_args(self, state, valuechain):
-        args = {
-            'dataset': DATASETS['technology'],
-            'dataset_id': DATASET_IDS['technology'],
-            'domain': DOMAIN,
+        args = self.get_generic_args('technology')
+        args.update({
             'variables': "Technology,year",
             'indicators': "Value",
             'operation': "avg",
             'chart_type': "column",
-            'legend': "true",
-            'data_labels': "true",
             'text': "Percentage of households using technologies in 2010 and 2012",
-        }
+        })
         if state:
             args['filters'] = [('state', state)]
             args['text'] += " in " + state.capitalize()
@@ -79,7 +80,6 @@ class HomeView(TemplateView):
             args['filters'] = [('crop', valuechain)]
             args['text'] += " ({0} value chain)".format(valuechain)
         return args
-
 
     def get_charts(self, state, valuechain):
         return {
