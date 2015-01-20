@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block header_nav_extra %}
+<button type="button" class="main-navbar-filter-button" data-toggle="modal" data-target="#main-modal-filter">
+	<span class="glyphicon glyphicon-filter"></span>
+</button>
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
