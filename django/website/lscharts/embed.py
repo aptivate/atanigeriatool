@@ -29,8 +29,9 @@ class EmbedChartSettings(object):
         self.dataset = kwargs.get("dataset", "5b19fd0a92bf11e4acc406909bee25eb")
         self.dataset_id = kwargs.get("dataset_id", "54aff583a750b33915f0069c")
         self.variables = kwargs.get("variables", ["Crop"])
-        self.indicators = kwargs.get("indicators", "__entry")
+        self.indicators = kwargs.get("indicators", ["__entry"])
         self.operation = kwargs.get("operation", "count")
+        self.secondary_operation = kwargs.get("secondary_operation", None)
         self.chart_type = kwargs.get("chart_type", "pie")
         if 'filters' in kwargs:
             self.filters = self.format_filters(kwargs["filters"])
@@ -50,8 +51,20 @@ class EmbedChartSettings(object):
         formatted = escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
 
+    def _iterable_comma(self, iterable):
+        return ','.join(iterable)
+
+    def _iterable_url_args(self, iterable, url_key):
+        return '&'.join([url_key + '=' + i for i in iterable])
+
     def variables_comma(self):
-        return ','.join(self.variables)
+        return self._iterable_comma(self.variables)
 
     def variables_url_args(self):
-        return '&'.join(['variables=' + v for v in self.variables])
+        return self._iterable_url_args(self.variables, 'variables')
+
+    def indicators_comma(self):
+        return self._iterable_comma(self.indicators)
+
+    def indicators_url_args(self):
+        return self._iterable_url_args(self.indicators, 'indicators')

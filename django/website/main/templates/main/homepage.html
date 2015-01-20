@@ -24,9 +24,10 @@
 
 <div class="row">
     <div class="col-xs-12 divider">
-        <h2 id="main-productivity" style="color: grey">Productivity</h2>
+        <h2 id="main-productivity">Productivity</h2>
     </div>
 </div>
+{% include "main/chart_section.html" with chart=charts.productivity %}
 {% endblock %}
 
 {% block modals %}

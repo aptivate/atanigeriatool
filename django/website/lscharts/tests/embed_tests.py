@@ -36,3 +36,11 @@ class EmbedChartSettingsTests(TestCase):
     def test_variables_url_args_returns_filters_formatted_for_url(self):
         ecs = EmbedChartSettings(variables=['afilter', 'bfilter'])
         self.assertEqual('variables=afilter&variables=bfilter', ecs.variables_url_args())
+
+    def test_indicators_comma_returns_comma_separated_list(self):
+        ecs = EmbedChartSettings(indicators=['afilter', 'bfilter'])
+        self.assertEqual('afilter,bfilter', ecs.indicators_comma())
+
+    def test_indicators_url_args_returns_filters_formatted_for_url(self):
+        ecs = EmbedChartSettings(indicators=['afilter', 'bfilter'])
+        self.assertEqual('indicators=afilter&indicators=bfilter', ecs.indicators_url_args())

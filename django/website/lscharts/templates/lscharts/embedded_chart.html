@@ -8,8 +8,9 @@
 	data-enable-interaction="{{ chart.enable_interaction }}"
 	data-dataset="{{ chart.dataset }}"
 	data-variables="{{ chart.variables_comma }}"
-	data-indicators="{{ chart.indicators }}"
+	data-indicators="{{ chart.indicators_comma }}"
 	data-operation="{{ chart.operation }}"
+	{% if chart.secondary_operation %}data-secondary-operation="{{ chart.secondary_operation }}"{% endif %}
 	data-chart-type="{{ chart.chart_type }}"
 	data-show-dataset="{{ chart.show_dataset }}"
 	data-data-labels="{{ chart.data_labels }}"
