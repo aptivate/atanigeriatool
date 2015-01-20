@@ -45,11 +45,11 @@ class HomeView(TemplateView):
             'indicators': ["Value"],
             'operation': "avg",
             'chart_type': "column",
-            'text': "Percentage of households who consume each food type, in 2010 and 2012",
+            'title': "Percentage of households who consume each food type, in 2010 and 2012",
         })
         if state:
             args['filters'] = [('state', state)]
-            args['text'] += " in " + state.capitalize()
+            args['title'] += " in " + state.capitalize()
         if valuechain:
             if valuechain == 'rice':
                 args['filters'] = [
@@ -63,7 +63,7 @@ class HomeView(TemplateView):
                     ('Commodity', 'Gari - white'),
                     ('Commodity', 'Gari - yellow')
                 ]
-            args['text'] += " ({0} value chain)".format(valuechain)
+            args['title'] += " ({0} value chain)".format(valuechain)
         return args
 
     def get_technology_args(self, state, valuechain):
@@ -73,14 +73,14 @@ class HomeView(TemplateView):
             'indicators': ["Value"],
             'operation': "avg",
             'chart_type': "column",
-            'text': "Percentage of households using technologies in 2010 and 2012",
+            'title': "Percentage of households using technologies in 2010 and 2012",
         })
         if state:
             args['filters'] = [('state', state)]
-            args['text'] += " in " + state.capitalize()
+            args['title'] += " in " + state.capitalize()
         if valuechain:
             args['filters'] = [('crop', valuechain)]
-            args['text'] += " ({0} value chain)".format(valuechain)
+            args['title'] += " ({0} value chain)".format(valuechain)
         return args
 
     def get_productivity_args(self, state, valuechain):
@@ -91,14 +91,14 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
-            'text': "Total production and average of yield across season",
+            'title': "Total production and average of yield across season",
         })
         if state:
             args['filters'] = [('state', state)]
-            args['text'] += " in " + state.capitalize()
+            args['title'] += " in " + state.capitalize()
         if valuechain:
             args['filters'] = [('crop', valuechain)]
-            args['text'] += " ({0} value chain)".format(valuechain)
+            args['title'] += " ({0} value chain)".format(valuechain)
         return args
 
     def get_charts(self, state, valuechain):
