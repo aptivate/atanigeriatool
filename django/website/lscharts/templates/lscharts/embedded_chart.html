@@ -17,7 +17,7 @@
 	data-grid-lines="{{ chart.grid_lines }}"
 	data-precision="{{ chart.precision }}"
 	data-legend="{{ chart.legend }}"
-	{% if chart.filters %}data-filters="{{ chart.filters }}"{% endif %}
+	{% if chart.filters %}data-filters="{{ chart.filters_for_embed_link }}"{% endif %}
 	href="//{{ chart.domain }}/chart/embed" target="_blank">
 	{{ chart.title }}
 	</a>

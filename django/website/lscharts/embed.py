@@ -46,8 +46,7 @@ class EmbedChartSettings(object):
         self.operation = kwargs.get("operation", "count")
         self.secondary_operation = kwargs.get("secondary_operation", None)
         self.chart_type = kwargs.get("chart_type", "pie")
-        if 'filters' in kwargs:
-            self.filters = self.format_filters(kwargs["filters"])
+        self.filters = kwargs.get("filters", None)
 
         self.title = kwargs.get("title", "Crop")
         self.description = kwargs.get("description", DEFAULT_DESCRIPTION)
@@ -58,9 +57,11 @@ class EmbedChartSettings(object):
         self.grid_lines = kwargs.get("grid_lines", "false")
         self.precision = kwargs.get("precision", 0)
 
-    def format_filters(self, filter_list):
+    def filters_for_embed_link(self):
+        if self.filters is None:
+            return ''
         # this is an unsafe string that django will do html escaping on
-        formatted = '&'.join(['filters.%s=%s' % (term[0], term[1]) for term in filter_list])
+        formatted = '&'.join(['filters.%s=%s' % (term[0], term[1]) for term in self.filters])
         formatted = escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
 

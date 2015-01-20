@@ -26,7 +26,7 @@ class HomeViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     def test_get_charts_does_not_set_filter(self):
         view = HomeView()
         charts = view.get_charts(state=None, valuechain=None)
-        self.assertFalse(hasattr(charts['nutrition'], 'filters'))
+        self.assertIsNone(charts['nutrition'].filters)
 
 
 class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
@@ -47,6 +47,7 @@ class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         view = HomeView()
         args = view.get_technology_args(state='kogi', valuechain=None)
         self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
+
 
 class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'valuechain_filter'
@@ -77,4 +78,4 @@ class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase
     def test_get_technology_args_for_valuechain_has_crop_filter(self):
         view = HomeView()
         args = view.get_technology_args(state=None, valuechain='rice')
-        self.assertSequenceEqual(args['filters'], [('crop','rice')])
+        self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
