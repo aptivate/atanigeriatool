@@ -1,5 +1,7 @@
 from __future__ import unicode_literals, absolute_import
 
+from urllib import urlencode
+
 from django.utils.html import escape, mark_safe
 
 DEFAULT_DESCRIPTION = \
@@ -68,23 +70,51 @@ class EmbedChartSettings(object):
     def _iterable_comma(self, iterable):
         return ','.join(iterable)
 
-    def _iterable_url_args(self, iterable, url_key):
-        return '&'.join([url_key + '=' + i for i in iterable])
-
     def variables_comma(self):
         return self._iterable_comma(self.variables)
-
-    def variables_url_args(self):
-        return self._iterable_url_args(self.variables, 'variables')
 
     def indicators_comma(self):
         return self._iterable_comma(self.indicators)
 
-    def indicators_url_args(self):
-        return self._iterable_url_args(self.indicators, 'indicators')
-
     def colors_comma(self):
         return self._iterable_comma(['#' + c for c in self.colors])
 
-    def colors_url_args(self):
-        return self._iterable_url_args(self.colors, 'colors')
+    def _get_query_params(self):
+        query_params = {
+            'datasetId': self.dataset_id,
+            'dashId': '',
+            'dashboard': '',
+            'chartType': self.chart_type,
+            'operation': self.operation,
+            'title': self.title,
+            'variables': self.variables,
+            'indicators': self.indicators,
+            'colors': self.colors,
+        }
+        if self.secondary_operation:
+            query_params['secondaryOperation'] = self.secondary_operation
+        return query_params
+
+    def explore_url(self):
+        """should return something like
+
+        http://ata.livestories.com/guest/chart?variables=season
+            & colors=1d976b
+            & colors=7a7654
+            ...
+            & colors=214009
+            & dashboard=
+            & title=Total+production+and+average+of+yield+across+season+%28cassava+value+chain%29
+            & indicators=production
+            & indicators=yield
+            & chartType=column
+            & operation=sum
+            & dashId=
+            & datasetId=54be3923a750b3418651e0d9
+            & secondaryOperation=avg
+
+        (without the whitespace)
+        """
+        link = "http://ata.livestories.com/guest/chart?"
+        link += urlencode(self._get_query_params(), doseq=True)
+        return mark_safe(link)

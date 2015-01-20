@@ -32,22 +32,29 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings(variables=['afilter', 'bfilter'])
         self.assertEqual('afilter,bfilter', ecs.variables_comma())
 
-    def test_variables_url_args_returns_filters_formatted_for_url(self):
-        ecs = EmbedChartSettings(variables=['afilter', 'bfilter'])
-        self.assertEqual('variables=afilter&variables=bfilter', ecs.variables_url_args())
-
     def test_indicators_comma_returns_comma_separated_list(self):
         ecs = EmbedChartSettings(indicators=['afilter', 'bfilter'])
         self.assertEqual('afilter,bfilter', ecs.indicators_comma())
-
-    def test_indicators_url_args_returns_filters_formatted_for_url(self):
-        ecs = EmbedChartSettings(indicators=['afilter', 'bfilter'])
-        self.assertEqual('indicators=afilter&indicators=bfilter', ecs.indicators_url_args())
 
     def test_colors_comma_returns_comma_separated_list_with_hash_prefix(self):
         ecs = EmbedChartSettings(colors=['123456', '789ABC'])
         self.assertEqual('#123456,#789ABC', ecs.colors_comma())
 
-    def test_colors_url_args_returns_filters_formatted_for_url(self):
-        ecs = EmbedChartSettings(colors=['123456', '789ABC'])
-        self.assertEqual('colors=123456&colors=789ABC', ecs.colors_url_args())
+    def test_get_query_params_does_not_have_secondary_operations_key_when_not_set(self):
+        ecs = EmbedChartSettings()
+        self.assertNotIn('secondaryOperation', ecs._get_query_params())
+
+    def test_get_query_params_does_have_secondary_operations_key_when_is_set(self):
+        ecs = EmbedChartSettings(secondary_operation='avg')
+        self.assertIn('secondaryOperation', ecs._get_query_params())
+
+    def test_explore_url_produces_correct_url(self):
+        ecs = EmbedChartSettings()
+        self.assertEqual(
+            'http://ata.livestories.com/guest/chart?variables=Crop'
+            '&colors=1d976b&colors=7a7654&colors=00a65d&colors=72bf44'
+            '&colors=fff200&colors=faa61a&colors=f58220&colors=ef413d'
+            '&colors=ed1c24&colors=a3238e&colors=5c2d91&colors=214009'
+            '&dashboard=&title=Crop&indicators=__entry&chartType=pie'
+            '&operation=count&dashId=&datasetId=54aff583a750b33915f0069c',
+            ecs.explore_url())

@@ -1,3 +1,1 @@
-<a class="btn btn-default explore-button"
-	href="http://ata.livestories.com/guest/chart?datasetId={{ chart.dataset_id }}&dashId=&dashboard=&chartType={{ chart.chart_type }}&operation={{ chart.operation }}{% if chart.secondary_operation %}&secondaryOperation={{ chart.secondary_operation }}{% endif %}&{{ chart.variables_url_args|safe }}&{{ chart.indicators_url_args|safe }}&{{ chart.colors_url_args|safe }}&title={{ chart.title }}"
-	>Explore</a>
+<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" >Explore</a>
