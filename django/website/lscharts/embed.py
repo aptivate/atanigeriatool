@@ -51,6 +51,7 @@ class EmbedChartSettings(object):
         self.filters = kwargs.get("filters", None)
 
         self.title = kwargs.get("title", "Crop")
+        self.show_title = kwargs.get("show_title", "false")
         self.description = kwargs.get("description", DEFAULT_DESCRIPTION)
 
         self.show_dataset = kwargs.get("show_dataset", "false")
