@@ -48,6 +48,7 @@ class EmbedChartSettings(object):
         self.operation = kwargs.get("operation", "count")
         self.secondary_operation = kwargs.get("secondary_operation", None)
         self.chart_type = kwargs.get("chart_type", "pie")
+        self.category_order = kwargs.get("category_order", None)
         self.filters = kwargs.get("filters", None)
 
         self.title = kwargs.get("title", "Crop")
@@ -94,6 +95,8 @@ class EmbedChartSettings(object):
         }
         if self.secondary_operation:
             query_params['secondaryOperation'] = self.secondary_operation
+        if self.category_order:
+            query_params['categoryOrder'] = self.category_order
         return query_params
 
     def explore_url(self):

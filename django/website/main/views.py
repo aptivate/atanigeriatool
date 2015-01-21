@@ -96,6 +96,7 @@ class HomeView(TemplateView):
             'indicators': ["production", "yield"],
             'operation': "sum",
             'secondary_operation': "avg",
+            'category_order': "alphabetical",
             'chart_type': "column",
             'title': "Total production and average of yield across season (rice only)",
         })
