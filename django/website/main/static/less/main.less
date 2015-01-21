@@ -17,21 +17,17 @@ nav.ata-header {
 
 .divider {
     background-color: @divider-bg;
-    color: @divider-fg;
     padding: 1em;
-}
-.divider > h2 {
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
 }
 
 .filter-title {
     background-color: @filter-title-bg;
-    color: @divider-fg;
     padding: 1.5em;
 }
-.filter-title > h2 {
+
+.filter-title > h2,
+.divider > h2 {
+    color: @divider-fg;
     text-transform: uppercase;
     text-align: center;
     font-weight: bold;
