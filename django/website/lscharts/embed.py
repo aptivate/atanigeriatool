@@ -48,7 +48,7 @@ class EmbedChartSettings(object):
         self.operation = kwargs.get("operation", "count")
         self.secondary_operation = kwargs.get("secondary_operation", None)
         self.chart_type = kwargs.get("chart_type", "pie")
-        self.category_order = kwargs.get("category_order", None)
+        self.category_order = kwargs.get("category_order", "alphabetical")
         self.filters = kwargs.get("filters", None)
 
         self.title = kwargs.get("title", "Crop")
