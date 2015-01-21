@@ -88,7 +88,7 @@ class HomeView(TemplateView):
     def get_productivity_args(self, state, valuechain):
         productivity_colors = DEFAULT_COLORS[:]
         productivity_colors[0] = '849E92'
-        productivity_colors[1] = '000000'
+        productivity_colors[1] = '949292'
         args = self.get_generic_args('productivity')
         args.update({
             'colors': productivity_colors,
