@@ -28,6 +28,11 @@ class HomeViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         charts = view.get_charts(state=None, valuechain=None)
         self.assertIsNone(charts['nutrition'].filters)
 
+    def test_get_filter_title_returns_none_for_no_filter(self):
+        view = HomeView()
+        filter_title = view.get_filter_title(state=None, valuechain=None)
+        self.assertIsNone(filter_title)
+
 
 class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'state_filter'
@@ -47,6 +52,11 @@ class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         view = HomeView()
         args = view.get_technology_args(state='kogi', valuechain=None)
         self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
+
+    def test_get_filter_title_returns_state_name(self):
+        view = HomeView()
+        filter_title = view.get_filter_title(state='kogi', valuechain=None)
+        self.assertEqual('kogi', filter_title)
 
 
 class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
@@ -79,3 +89,8 @@ class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase
         view = HomeView()
         args = view.get_technology_args(state=None, valuechain='rice')
         self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
+
+    def test_get_filter_title_returns_filter_chain_name(self):
+        view = HomeView()
+        filter_title = view.get_filter_title(state=None, valuechain='cassava')
+        self.assertIn('cassava', filter_title.lower())

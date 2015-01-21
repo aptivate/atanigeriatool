@@ -29,9 +29,18 @@ class HomeView(TemplateView):
         valuechain = kwargs.get('valuechain', None)
         context = super(HomeView, self).get_context_data(**kwargs)
         context['charts'] = self.get_charts(state, valuechain)
+        context['filter_title'] = self.get_filter_title(state, valuechain)
         context['state'] = state
         context['valuechain'] = valuechain
         return context
+
+    def get_filter_title(self, state, valuechain):
+        if state:
+            return state
+        elif valuechain:
+            return "%s Value Chain" % valuechain
+        else:
+            return None
 
     def get_generic_args(self, chart_type):
         return {
