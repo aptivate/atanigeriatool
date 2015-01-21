@@ -10,7 +10,7 @@ body {
     padding-top: 60px;
 }
 
-nav.bootstrap_header {
+nav.ata-header {
     background-color: @header-bg;
 }
 
@@ -43,6 +43,65 @@ header {
 
 header > nav > div {
     &:extend(.col-sm-12);
+}
+
+.col-xs-12.full-width {
+    padding:0;
+}
+
+.top-image {
+    display: inline-block;
+    width: 100%;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    @media only screen and (min-width: 1200px) {
+        background-image: url("/static/images/asset-Desktop-Cover-Photo-fs8.png");
+    }
+    @media only screen and (max-width: 1199px) {
+        background-image: url("/static/images/asset-mobile-cover-photo-fs8.png");
+    }
+}
+
+.top-image-inner {
+    display: block;
+    height: 0;
+    @media only screen and (min-width: 1200px) {
+        padding-top: 37.5%;
+    }
+    @media only screen and (max-width: 1199px) {
+        padding-top: 75%;
+    }
+}
+
+.title-container {
+    padding-top: 2em;
+    padding-left: 2em;
+    font-size: 14px;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+}
+
+.title-text {
+    color: rgba(255,255,255,0.84);
+}
+
+.title-text-1 {
+    margin-top: 1em;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: serif;
+}
+
+.title-text-2 {
+    margin-top: 1em;
+    font-size: 5em;
+    font-weight: bold;
+    font-family: sans-serif;
 }
 
 .logo {
@@ -104,12 +163,23 @@ footer {
     float: left;
 }
 
+.nav.internal-links {
+    text-transform: uppercase;
+}
+
 .main-navbar-filter-button {
     float: right;
     background-color: transparent;
-    border: none;
-    font-size: 1.5em;
-    padding: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.84);
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    color: rgba(255, 255, 255, 0.84);
+    text-transform: uppercase;
+    line-height: 1.42857;
 }
 
 .main-navbar-filter-button > .glyphicon {

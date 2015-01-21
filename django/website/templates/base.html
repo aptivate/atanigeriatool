@@ -27,7 +27,7 @@
 <body>
 
 	{% block header %}
-		<header class="{% block header_classes %}bootstrap_header container-fluid{% endblock %}" role="banner">
+		<header class="{% block header_classes %}ata-header container-fluid{% endblock %}" role="banner">
 			{% block logo %}
 			{% comment %}
 				<div class="logo">
@@ -59,7 +59,7 @@
 			{% endblock search_box %}
 
 			{% block header_nav %}
-			<nav class="{% block header_nav_classes %}bootstrap_header navbar navbar-fixed-top{% endblock %}" role="navigation">
+			<nav class="{% block header_nav_classes %}ata-header navbar navbar-fixed-top{% endblock %}" role="navigation">
 				<div class="container-fluid">
 					{% block header_nav_extra %}{% endblock %}
 					<div class="navbar-header">
@@ -69,16 +69,16 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						{% block header_nav_brand %}<a class="navbar-brand" href="#">ATA Progress Dashboard</a>{% endblock %}
+						{% block header_nav_brand %}{% endblock %}
 					</div><!-- navbar-header -->
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="main-navbar-collapse-1">
-						<ul class="{% block header_nav_ul_classes %}nav navbar-nav{% endblock %}">
+						<ul class="{% block header_nav_ul_classes %}nav navbar-nav navbar-right internal-links{% endblock %}">
 							{% block header_nav_menu %}
 								<li><a href="#main-productivity">Productivity</a></li>
 								<li><a href="#main-technology">Technology Adoption</a></li>
-								<li class="disabled"><a href="#main-sales">Sales</a></li>
+								{% comment %}<li class="disabled"><a href="#main-sales">Sales</a></li>{% endcomment %}
 								<li><a href="#main-nutrition">Nutrition</a></li>
 								<!-- <li class="disabled"><a href="#">About</a></li> -->
 							{% endblock header_nav_menu %}
