@@ -10,11 +10,13 @@ DATASETS = {
     "nutrition": "29277fe2981511e4bbe006909bee25eb",
     "technology": "9e3d0cd49d7e11e4a93606909bee25eb",
     "productivity": "d4aa5ffaa09511e4a41406909bee25eb",
+    "productivity2": "8ba9c30ca16e11e4927006909bee25eb",
 }
 DATASET_IDS = {
     "nutrition": "54aff583a750b33915f0069c",
     "technology": "54b909c7a750b30f24f31db7",
     "productivity": "54be3923a750b3418651e0d9",
+    "productivity2": "54bfa4b9a750b3418651e0fc",
 }
 
 
@@ -106,6 +108,23 @@ class HomeView(TemplateView):
         # the logic for that is in the template
         return args
 
+    def get_productivity2_args(self, state, valuechain):
+        productivity_colors = DEFAULT_COLORS[:]
+        productivity_colors[0] = '849E92'
+        productivity_colors[1] = '949292'
+        args = self.get_generic_args('productivity2')
+        args.update({
+            'colors': productivity_colors,
+            'variables': ["Crop"],
+            'indicators': ["Production","Yield Per Hectare"],
+            'operation': "sum",
+            'secondary_operation': "avg",
+            'chart_type': "column",
+            'title': "Total production and average of yield across crop",
+        })
+        print(args)
+        return args
+
     def get_charts(self, state, valuechain):
         return {
             'nutrition':
@@ -114,4 +133,6 @@ class HomeView(TemplateView):
                 EmbedChartSettings(**self.get_technology_args(state, valuechain)),
             'productivity':
                 EmbedChartSettings(**self.get_productivity_args(state, valuechain)),
+            'productivity2':
+                EmbedChartSettings(**self.get_productivity2_args(state, valuechain)),
         }
