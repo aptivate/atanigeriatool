@@ -12,8 +12,8 @@ DEFAULT_DESCRIPTION = \
     "length pint glass, carbonation cold filter. "
 
 DEFAULT_COLORS = [
-    "1d976b",
     "7a7654",
+    "1d976b",
     "00a65d",
     "72bf44",
     "fff200",
