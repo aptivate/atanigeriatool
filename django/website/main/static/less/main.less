@@ -10,7 +10,7 @@ body {
     padding-top: 60px;
 }
 
-nav.bootstrap_header {
+nav.ata-header {
     background-color: @header-bg;
 }
 
@@ -43,6 +43,67 @@ header {
 
 header > nav > div {
     &:extend(.col-sm-12);
+}
+
+.col-xs-12.full-width {
+    padding:0;
+}
+
+/*.image-container {
+    @media only screen and (min-width: 1200px) {
+        height: 540px;
+    }
+    @media only screen and (max-width: 1199px) {
+        height: 540px;
+    }
+}*/
+
+.top-image {
+    display: inline-block;
+    width: 100%;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    @media only screen and (min-width: 1200px) {
+        background-image: url("/static/images/asset-Desktop-Cover-Photo-fs8.png");
+    }
+    @media only screen and (max-width: 1199px) {
+        background-image: url("/static/images/asset-mobile-cover-photo-fs8.png");
+    }
+}
+
+.top-image-inner {
+    display: block;
+    height: 0;
+    @media only screen and (min-width: 1200px) {
+        padding-top: 37.5%;
+    }
+    @media only screen and (max-width: 1199px) {
+        padding-top: 75%;
+    }
+}
+
+.title-container {
+    padding-top: 2em;
+    padding-left: 2em;
+}
+
+.title-text {
+    color: rgba(255,255,255,0.84);
+}
+
+.title-text-1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: serif;
+}
+
+.title-text-2 {
+    font-size: 3.5em;
+    font-weight: bold;
 }
 
 .logo {
