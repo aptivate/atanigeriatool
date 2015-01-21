@@ -34,7 +34,7 @@ class EmbedChartSettings(object):
         self.html_class = kwargs.get("html_class", "insight-tile")
         self.width = kwargs.get("width", "600")
         self.height = kwargs.get("height", "600")
-        self.background = kwargs.get("background", "false")
+        self.background = kwargs.get("background", "true")
         self.colors = kwargs.get("colors", DEFAULT_COLORS)
 
         self.enable_filtering = kwargs.get("enable_filtering", "true")
@@ -54,8 +54,8 @@ class EmbedChartSettings(object):
         self.description = kwargs.get("description", DEFAULT_DESCRIPTION)
 
         self.show_dataset = kwargs.get("show_dataset", "false")
-        self.data_labels = kwargs.get("data_labels", "false")
-        self.legend = kwargs.get("legend", "false")
+        self.data_labels = kwargs.get("data_labels", "true")
+        self.legend = kwargs.get("legend", "true")
         self.grid_lines = kwargs.get("grid_lines", "false")
         self.precision = kwargs.get("precision", 0)
 

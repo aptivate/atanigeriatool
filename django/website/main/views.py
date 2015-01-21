@@ -36,8 +36,6 @@ class HomeView(TemplateView):
             'dataset': DATASETS[chart_type],
             'dataset_id': DATASET_IDS[chart_type],
             'domain': DOMAIN,
-            'legend': "true",
-            'data_labels': "true",
         }
 
     def get_nutrition_args(self, state, valuechain):
