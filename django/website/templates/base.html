@@ -69,12 +69,12 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						{% block header_nav_brand %}<a class="navbar-brand" href="#">ATA Progress Dashboard</a>{% endblock %}
+						{% block header_nav_brand %}{% endblock %}
 					</div><!-- navbar-header -->
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="main-navbar-collapse-1">
-						<ul class="{% block header_nav_ul_classes %}nav navbar-nav{% endblock %}">
+						<ul class="{% block header_nav_ul_classes %}nav navbar-nav navbar-right internal-links{% endblock %}">
 							{% block header_nav_menu %}
 								<li><a href="#main-productivity">Productivity</a></li>
 								<li><a href="#main-technology">Technology Adoption</a></li>
