@@ -52,7 +52,7 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings()
         self.assertEqual(
             'http://ata.livestories.com/guest/chart?variables=Crop'
-            '&colors=1d976b&colors=7a7654&colors=00a65d&colors=72bf44'
+            '&colors=7a7654&colors=1d976b&colors=00a65d&colors=72bf44'
             '&colors=fff200&colors=faa61a&colors=f58220&colors=ef413d'
             '&colors=ed1c24&colors=a3238e&colors=5c2d91&colors=214009'
             '&dashboard=&title=Crop&indicators=__entry&chartType=pie'
