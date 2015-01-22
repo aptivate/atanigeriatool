@@ -1,5 +1,6 @@
 from __future__ import unicode_literals, absolute_import
 
+from django.template.loader import render_to_string
 from django.test.testcases import TestCase
 
 from lscharts.embed import EmbedChartSettings
@@ -56,6 +57,17 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings(category_order='alphabetical')
         self.assertIn('categoryOrder', ecs._get_query_params())
 
+    def test_not_available_message_not_set_unless_provided_in_params(self):
+        self.assertEqual(None, EmbedChartSettings().not_available_message)
+
+    def test_not_available_message_set_when_provided_in_params(self):
+        self.assertEqual(
+            "not available",
+            EmbedChartSettings(
+                not_available_message="not available"
+            ).not_available_message
+        )
+
     def test_explore_url_produces_correct_url(self):
         ecs = EmbedChartSettings()
         self.assertEqual(
@@ -77,3 +89,14 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings(filters=filters)
         filter_url_part = ecs.filters_for_embed_link()
         self.assertIn(filter_url_part, ecs.explore_url())
+
+
+class EmbeddedChartTemplateTests(TestCase):
+
+    def test_not_available_message_replaces_chart_in_template(self):
+       chart_section = render_to_string(
+           'lscharts/embedded_chart.html',
+           { 'chart': EmbedChartSettings(not_available_message="not available") }
+       )
+       self.assertIn("not available", chart_section)
+       self.assertNotIn("data-dataset", chart_section)

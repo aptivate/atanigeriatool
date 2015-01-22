@@ -58,18 +58,7 @@
         <h2 id="main-productivity">Productivity</h2>
     </div>
 </div>
-{% if valuechain != 'cassava' %}
 {% include "main/chart_section.html" with chart=charts.productivity %}
-{% else %}
-<div class="row chart-section">
-	<div class="col-md-6 col-md-offset-1">
-		There is no data for cassava productivity, so we cannot show a chart.
-	</div>
-	<div class="col-md-4">
-		<p>{{ chart.description }}</p>
-	</div>
-</div>
-{% endif %}
 {% include "main/chart_section.html" with chart=charts.productivity2 description_left="true" %}
 {% endblock %}
 

@@ -111,10 +111,10 @@ class HomeView(TemplateView):
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " in " + state.capitalize()
-        # we ignore valuechain - we only have data for rice currently
-        # so for rice we just show the full chart, while for cassava we
-        # will show a message saying there is no data instead of a chart, but
-        # the logic for that is in the template
+        if valuechain:
+            if valuechain == 'cassava':
+                args['not_available_message'] = \
+                    "These data are available for Rice only"
         return args
 
     def get_productivity2_args(self, state, valuechain):

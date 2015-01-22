@@ -31,6 +31,10 @@ class EmbedChartSettings(object):
 
     def __init__(self, **kwargs):
         # TODO: could split into chart types with relevant bits in each type
+        self.not_available_message = kwargs.get(
+            "not_available_message",
+            None
+        )
         self.html_class = kwargs.get("html_class", "insight-tile")
         self.width = kwargs.get("width", "600")
         self.height = kwargs.get("height", "600")

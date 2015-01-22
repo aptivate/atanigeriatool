@@ -1,3 +1,6 @@
+{% if chart.not_available_message %}
+<p>{{ chart.not_available_message }}</p>
+{% else %}
 <a
 	class="{{ chart.html_class }}"
 	data-width="{{ chart.width }}"
@@ -23,3 +26,4 @@
 	href="//{{ chart.domain }}/chart/embed" target="_blank">
 	{{ chart.title }}
 	</a>
+{% endif %}
