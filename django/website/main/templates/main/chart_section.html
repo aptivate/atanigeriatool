@@ -1,19 +1,17 @@
 <div class="row chart-section">
-	{% if description_left %}
-	<div class="col-md-4 col-md-offset-1">
-		<p>{{ chart.description }}</p>
-		<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" >Explore</a>
-	</div>
-	{% endif %}
-
-	<div class="col-md-6 {% if description_left %}chart-right{% else %}chart-left col-md-offset-1{% endif %}">
+	<div class="col-md-6 {% if description_left %}col-md-push-5 chart-right{% else %}chart-left col-md-offset-1{% endif %}">
 		{% include "lscharts/embedded_chart.html" %}
 	</div>
 
-	{% if not description_left %}
-	<div class="col-md-4">
-		<p>{{ chart.description }}</p>
-		<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" >Explore</a>
+	<div class="chart-meta col-md-4 {% if description_left %}col-md-pull-5{% endif %}">
+		<div class="chart-title-container">
+			<h2 class="chart-title">{{ chart.title }}</h2>
+		</div>
+		<div class="chart-description-container">
+			<p class="chart-description">{{ chart.description|safe }}</p>
+		</div>
+		<div class="explore-button-container">
+			<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" >Explore</a>
+		</div>
 	</div>
-	{% endif %}
 </div>
