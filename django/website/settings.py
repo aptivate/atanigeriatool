@@ -338,6 +338,7 @@ if DEBUG is False:
     #ALLOWED_HOSTS = ["*"]
     ALLOWED_HOSTS = [
         '.atanigeriatool.aptivate.org',
+        '.ata.aptivate.org',
         'www.atanigeriatool.aptivate.org',
         'lin-atanigeriatool.aptivate.org',
         'fen-vz-atanigeriatool-stage.fen.aptivate.org',
