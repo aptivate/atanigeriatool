@@ -59,11 +59,11 @@ class HomeView(TemplateView):
             'indicators': ["Value"],
             'operation': "avg",
             'chart_type': "column",
-            'title': "Percentage of households who consume each food type, in 2010 and 2012",
+            'title': "Food consumed by a household on a typical week",
         })
         if state:
             args['filters'] = [('state', state)]
-            args['title'] += " in " + state.capitalize()
+            args['title'] += " ({0} only)".format(state.capitalize())
         if valuechain:
             if valuechain == 'rice':
                 args['filters'] = [
@@ -77,7 +77,7 @@ class HomeView(TemplateView):
                     ('Commodity', 'Gari - white'),
                     ('Commodity', 'Gari - yellow')
                 ]
-            args['title'] += " ({0} value chain)".format(valuechain)
+            args['title'] += " ({0} groups only)".format(valuechain.capitalize())
         return args
 
     def get_technology_args(self, state, valuechain):
@@ -87,14 +87,14 @@ class HomeView(TemplateView):
             'indicators': ["Value"],
             'operation': "avg",
             'chart_type': "column",
-            'title': "Percentage of households using technologies in 2010 and 2012",
+            'title': "Technology adoption by farmers",
         })
         if state:
             args['filters'] = [('state', state)]
-            args['title'] += " in " + state.capitalize()
+            args['title'] += " ({0} only)".format(state.capitalize())
         if valuechain:
             args['filters'] = [('crop', valuechain)]
-            args['title'] += " ({0} value chain)".format(valuechain)
+            args['title'] += " ({0} farmers only)".format(valuechain.capitalize())
         return args
 
     def get_productivity_args(self, state, valuechain):
@@ -109,15 +109,16 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
-            'title': "Total production and average of yield across season (rice only)",
+            'title': "Rice production and yield post ATA",
         })
         if state:
             args['filters'] = [('state', state)]
-            args['title'] += " in " + state.capitalize()
+            args['title'] += " ({0} only)".format(state.capitalize())
         if valuechain:
             if valuechain == 'cassava':
                 args['not_available_message'] = \
                     "These data are available for Rice only"
+                args['title'] = "Cassava production and yield post ATA"
         return args
 
     def get_productivity2_args(self, state, valuechain):
@@ -134,8 +135,7 @@ class HomeView(TemplateView):
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
-                'title': ("Total production and average of yield "
-                          "across crop for all states"),
+                'title': "{0} production and yield pre ATA".format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
             })
         else:
@@ -145,8 +145,7 @@ class HomeView(TemplateView):
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
-                'title': ("Total production and average of yield "
-                          "across crop for all states"),
+                'title': "Crop production and yield pre ATA",
             })
             args['filters'] = [('Year', 2009)]
         return args
