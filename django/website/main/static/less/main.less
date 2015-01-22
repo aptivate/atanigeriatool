@@ -113,6 +113,9 @@ nav.ata-header {
         height: 200px;
         vertical-align: middle;
     }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        margin-bottom: 3em;
+    }
 }
 .explore-button {
     border: solid 1px @explore-fg;
@@ -200,7 +203,7 @@ header > nav > div {
         font-size: 2em;
     }
     @media only screen and (max-width: @cover-image-break-width-lt) {
-        margin-top: 1.5em;
+        margin-top: 5em;
         margin-left: 1em;
         font-size: 1.2em;
     }
