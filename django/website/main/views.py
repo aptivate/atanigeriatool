@@ -122,23 +122,33 @@ class HomeView(TemplateView):
         productivity_colors[0] = '849E92'
         productivity_colors[1] = '949292'
         args = self.get_generic_args('productivity2')
-        args.update({
-            'colors': productivity_colors,
-            'variables': ["Crop"],
-            'indicators': ["Production","Yield Per Hectare"],
-            'operation': "sum",
-            'secondary_operation': "avg",
-            'chart_type': "column",
-            'title': "Total production and average of yield across crop for all states",
-        })
-        args['filters'] = [('Year', 2009)]
+        args['colors'] =  productivity_colors
         if state:
             args['not_available_message'] = \
                 "These data cannot be filtered by state"
-        # if valuechain:
-        # We get a quite different chart
-        # We ignore state because this dataset was aggregated to national level.
-        # so it will get hidden by logic in the template.
+        elif valuechain:  # chart for crop by year
+            args = self.get_generic_args('productivity2')
+            args.update({
+                'variables': ["Year"],
+                'indicators': ["Production","Yield Per Hectare"],
+                'operation': "sum",
+                'secondary_operation': "avg",
+                'chart_type': "column",
+                'title': ("Total production and average of yield "
+                          "across crop for all states"),
+                'filters': [('Crop', valuechain.capitalize())]
+            })
+        else:
+            args.update({
+                'variables': ["Crop"],
+                'indicators': ["Production","Yield Per Hectare"],
+                'operation': "sum",
+                'secondary_operation': "avg",
+                'chart_type': "column",
+                'title': ("Total production and average of yield "
+                          "across crop for all states"),
+            })
+            args['filters'] = [('Year', 2009)]
         return args
 
     def get_charts(self, state, valuechain):
