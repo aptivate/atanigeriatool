@@ -3,8 +3,9 @@
 		{% include "lscharts/embedded_chart.html" %}
 	</div>
 
-	<div class="col-md-4 {% if description_left %}col-md-pull-5{% endif %}">
-		<p>{{ chart.description }}</p>
+	<div class="chart-meta col-md-4 {% if description_left %}col-md-pull-5{% endif %}">
+		<h2 class="chart-title">{{ chart.title }}</h2>
+		<p class="chart-description">{{ chart.description|safe }}</p>
 		<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" >Explore</a>
 	</div>
 </div>
