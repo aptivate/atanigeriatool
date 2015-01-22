@@ -123,10 +123,7 @@ class HomeView(TemplateView):
         productivity_colors[1] = '949292'
         args = self.get_generic_args('productivity2')
         args['colors'] =  productivity_colors
-        if state:
-            args['not_available_message'] = \
-                "These data cannot be filtered by state"
-        elif valuechain:  # chart for crop by year
+        if valuechain:  # chart for crop by year
             args = self.get_generic_args('productivity2')
             args.update({
                 'variables': ["Year"],
