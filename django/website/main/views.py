@@ -123,7 +123,7 @@ class HomeView(TemplateView):
         productivity_colors[1] = '949292'
         args = self.get_generic_args('productivity2')
         args['colors'] =  productivity_colors
-        if valuechain:  # chart for crop by year
+        elif valuechain:  # chart for crop by year
             args = self.get_generic_args('productivity2')
             args.update({
                 'variables': ["Year"],
