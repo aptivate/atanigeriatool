@@ -2,6 +2,7 @@
 @filter-title-bg: #7a7654;
 @divider-bg: #8fbeb1;
 @divider-fg: #fff;
+@footer-bg: #2C9F7A;
 @header-bg: #2C9F7A;
 @explore-fg: #2C9F7A;
 @chart-description-fg: #515151;
@@ -341,7 +342,19 @@ footer {
     margin-top: 1em;
 }
 
+footer.ata-footer {
+    padding-left: 0;
+    padding-right: 0;
+}
 
+.ata-footer > div > .footer_nav.navbar {
+    margin-bottom: 0;
+    background-color: @footer-bg;
+}
+
+.footer_left.navbar-text > a {
+    font-weight: bold;
+}
 
 .footer_right .plugin_link:after {
 	content: " | ";
