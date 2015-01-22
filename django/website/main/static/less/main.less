@@ -21,6 +21,10 @@ body {
     padding-top: 60px;
 }
 
+header.ata-header {
+    margin-top: -60px;
+}
+
 nav.ata-header {
     background-color: @header-bg;
 }
@@ -129,6 +133,12 @@ nav.ata-header {
 .dropdown:hover > .dropdown-menu {
     display: inherit;
 }
+
+/********************
+ *
+ * HEADER AREA
+ *
+ ********************/
 
 header {
     position: relative;
@@ -258,6 +268,15 @@ footer {
 
 .footer_site > nav {
 	padding-right: 15px;
+}
+
+.ata-header.affix-top {
+    background-color: transparent;
+    position: absolute;
+    overflow: hidden;
+}
+
+.ata-header.affix {
 }
 
 .navbar-text > a {
