@@ -18,6 +18,31 @@ DATASET_IDS = {
     "productivity": "54be3923a750b3418651e0d9",
     "productivity2": "54bfa4b9a750b3418651e0fc",
 }
+DESCRIPTIONS = {
+    "nutrition":
+        "DATASOURCE<br />"
+        "Living Standard Measurement Study (LSMS)<br />"
+        "World Bank<br />"
+        "LSMS 2010 Household Post Planting Agriculture Survey (Section 7)<br />"
+        "LSMS 2012 Household Post Planting Agriculture Survey (Section 7)<br />"
+        "Processed tabular data powering this visualization",
+    "technology":
+        "DATASOURCE<br />"
+        "LSMS 2010<br />"
+        "Post Planting Agriculture Survey (Section 11c)<br />"
+        "LSMS 2012<br />"
+        "Post Planting Agriculture Survey (Section 11c)<br />"
+        "Processed tabular data powering this visualization",
+    "productivity":
+        "DATASOURCE<br />"
+        "ATA Briefing to the Honorable Minister of Agriculture<br />"
+        "Based on Cellulante data",
+    "productivity2":
+        "DATASOURCE<br />"
+        "Annual Abstract of Statistics, 2012<br />"
+        "National Bureau of Statistics<br />"
+        "Federal Republic of Nigeria",
+}
 
 COLOR_POST_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
@@ -47,9 +72,10 @@ class HomeView(TemplateView):
 
     def get_generic_args(self, chart_type):
         return {
+            'domain': DOMAIN,
             'dataset': DATASETS[chart_type],
             'dataset_id': DATASET_IDS[chart_type],
-            'domain': DOMAIN,
+            'description': DESCRIPTIONS[chart_type],
         }
 
     def get_nutrition_args(self, state, valuechain):
@@ -146,6 +172,8 @@ class HomeView(TemplateView):
                 'chart_type': "column",
                 'title': "Crop production and yield pre ATA",
             })
+            if state:
+                args['title'] += " (Data cannot be filtered by {0})".format(state.capitalize())
             args['filters'] = [('Year', 2009)]
         return args
 
