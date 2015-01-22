@@ -5,6 +5,12 @@
 @header-bg: #2C9F7A;
 @explore-fg: #2C9F7A;
 
+@cover-image-break-width-gt: 768px;
+@cover-image-break-width-lt: 767px;
+
+@chart-text-break-width-gt: 990px;
+@chart-text-break-width-lt: 989px;
+
 /* ----------------------*/
 
 body {
@@ -34,7 +40,7 @@ nav.ata-header {
 }
 
 .chart-meta {
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         height: 600px;
         display: table;
         overflow: hidden;
@@ -51,7 +57,7 @@ nav.ata-header {
 }
 
 .chart-title-container {
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
         height: 200px;
     }
@@ -61,24 +67,24 @@ nav.ata-header {
 }
 
 .chart-description-container {
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
         height: 200px;
     }
 }
 .chart-description {
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-cell;
         vertical-align: middle;
     }
-    @media only screen and (max-width: 989px) {
+    @media only screen and (max-width: @chart-text-break-width-lt) {
         margin-top: 2em;
         margin-bottom: 2em;
     }
 }
 
 .explore-button-container {
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
         height: 200px;
         vertical-align: middle;
@@ -87,7 +93,7 @@ nav.ata-header {
 .explore-button {
     border: solid 1px @explore-fg;
     color: @explore-fg;
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         position: absolute;
         bottom: 20px;
     }
@@ -125,10 +131,10 @@ header > nav > div {
     background-size: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @cover-image-break-width-gt) {
         background-image: url("/static/images/asset-Desktop-Cover-Photo-fs8.png");
     }
-    @media only screen and (max-width: 989px) {
+    @media only screen and (max-width: @cover-image-break-width-lt) {
         background-image: url("/static/images/asset-mobile-cover-photo-fs8.png");
     }
 }
@@ -136,10 +142,10 @@ header > nav > div {
 .top-image-inner {
     display: block;
     height: 0;
-    @media only screen and (min-width: 990px) {
+    @media only screen and (min-width: @cover-image-break-width-gt) {
         padding-top: 37.5%;
     }
-    @media only screen and (max-width: 989px) {
+    @media only screen and (max-width: @cover-image-break-width-lt) {
         padding-top: 75%;
     }
 }
