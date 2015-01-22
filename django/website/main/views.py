@@ -120,9 +120,13 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
-            'title': "Total production and average of yield across crop",
+            'title': "Total production and average of yield across crop for all states",
         })
-        print(args)
+        args['filters'] = [('Year', 2009)]
+        # if valuechain:
+        # We get a quite different chart
+        # We ignore state because this dataset was aggregated to national level.
+        # so it will get hidden by logic in the template.
         return args
 
     def get_charts(self, state, valuechain):
