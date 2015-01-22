@@ -147,6 +147,8 @@ class HomeView(TemplateView):
                 'chart_type': "column",
                 'title': "Crop production and yield pre ATA",
             })
+            if state:
+                args['title'] += " (Data cannot be filtered by {0})".format(state.capitalize())
             args['filters'] = [('Year', 2009)]
         return args
 
