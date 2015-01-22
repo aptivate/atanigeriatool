@@ -132,6 +132,9 @@ class HomeView(TemplateView):
             'title': "Total production and average of yield across crop for all states",
         })
         args['filters'] = [('Year', 2009)]
+        if state:
+            args['not_available_message'] = \
+                "These data cannot be filtered by state"
         # if valuechain:
         # We get a quite different chart
         # We ignore state because this dataset was aggregated to national level.
