@@ -33,6 +33,14 @@ nav.ata-header {
     font-weight: bold;
 }
 
+.chart-meta {
+    @media only screen and (min-width: 990px) {
+        height: 600px;
+        display: table;
+        overflow: hidden;
+    }
+}
+
 .chart-section {
     margin-top: 2em;
     margin-bottom: 2em;
@@ -42,9 +50,47 @@ nav.ata-header {
     float: right;
 }
 
+.chart-title-container {
+    @media only screen and (min-width: 990px) {
+        display: table-row;
+        height: 200px;
+    }
+}
+.chart-title {
+    margin-top: 2em;
+}
+
+.chart-description-container {
+    @media only screen and (min-width: 990px) {
+        display: table-row;
+        height: 200px;
+    }
+}
+.chart-description {
+    @media only screen and (min-width: 990px) {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    @media only screen and (max-width: 989px) {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+}
+
+.explore-button-container {
+    @media only screen and (min-width: 990px) {
+        display: table-row;
+        height: 200px;
+        vertical-align: middle;
+    }
+}
 .explore-button {
     border: solid 1px @explore-fg;
     color: @explore-fg;
+    @media only screen and (min-width: 990px) {
+        position: absolute;
+        bottom: 20px;
+    }
 }
 
 .btn.btn-default.explore-button:hover {
@@ -79,10 +125,10 @@ header > nav > div {
     background-size: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    @media only screen and (min-width: 750px) {
+    @media only screen and (min-width: 990px) {
         background-image: url("/static/images/asset-Desktop-Cover-Photo-fs8.png");
     }
-    @media only screen and (max-width: 749px) {
+    @media only screen and (max-width: 989px) {
         background-image: url("/static/images/asset-mobile-cover-photo-fs8.png");
     }
 }
@@ -90,10 +136,10 @@ header > nav > div {
 .top-image-inner {
     display: block;
     height: 0;
-    @media only screen and (min-width: 750px) {
+    @media only screen and (min-width: 990px) {
         padding-top: 37.5%;
     }
-    @media only screen and (max-width: 749px) {
+    @media only screen and (max-width: 989px) {
         padding-top: 75%;
     }
 }
