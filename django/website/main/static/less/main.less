@@ -21,6 +21,10 @@ body {
     padding-top: 60px;
 }
 
+header.ata-header {
+    margin-top: -60px;
+}
+
 nav.ata-header {
     background-color: @header-bg;
 }
@@ -126,6 +130,9 @@ nav.ata-header {
         height: 200px;
         vertical-align: middle;
     }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        margin-bottom: 3em;
+    }
 }
 .explore-button {
     border: solid 1px @explore-fg;
@@ -146,6 +153,12 @@ nav.ata-header {
 .dropdown:hover > .dropdown-menu {
     display: inherit;
 }
+
+/********************
+ *
+ * HEADER AREA
+ *
+ ********************/
 
 header {
     position: relative;
@@ -207,7 +220,7 @@ header > nav > div {
         font-size: 2em;
     }
     @media only screen and (max-width: @cover-image-break-width-lt) {
-        margin-top: 1.5em;
+        margin-top: 5em;
         margin-left: 1em;
         font-size: 1.2em;
     }
@@ -275,6 +288,15 @@ footer {
 
 .footer_site > nav {
 	padding-right: 15px;
+}
+
+.ata-header.affix-top {
+    background-color: transparent;
+    position: absolute;
+    overflow: hidden;
+}
+
+.ata-header.affix {
 }
 
 .navbar-text > a {
