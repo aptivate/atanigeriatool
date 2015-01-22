@@ -19,6 +19,9 @@ DATASET_IDS = {
     "productivity2": "54bfa4b9a750b3418651e0fc",
 }
 
+COLOR_POST_ATA = '1D976B'
+COLOR_PRE_ATA = '7A7654'
+COLOR_YIELD = '6B8079'
 
 # NOT included in main/urls.py - included directly in the root urls.py
 class HomeView(TemplateView):
@@ -96,8 +99,8 @@ class HomeView(TemplateView):
 
     def get_productivity_args(self, state, valuechain):
         productivity_colors = DEFAULT_COLORS[:]
-        productivity_colors[0] = '849E92'
-        productivity_colors[1] = '949292'
+        productivity_colors[0] = COLOR_POST_ATA
+        productivity_colors[1] = COLOR_YIELD
         args = self.get_generic_args('productivity')
         args.update({
             'colors': productivity_colors,
@@ -119,8 +122,8 @@ class HomeView(TemplateView):
 
     def get_productivity2_args(self, state, valuechain):
         productivity_colors = DEFAULT_COLORS[:]
-        productivity_colors[0] = '849E92'
-        productivity_colors[1] = '949292'
+        productivity_colors[0] = COLOR_PRE_ATA
+        productivity_colors[1] = COLOR_YIELD
         args = self.get_generic_args('productivity2')
         args['colors'] =  productivity_colors
         if valuechain:  # chart for crop by year
