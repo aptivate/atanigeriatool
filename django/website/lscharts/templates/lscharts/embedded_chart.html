@@ -1,5 +1,7 @@
 {% if chart.not_available_message %}
-<p>{{ chart.not_available_message }}</p>
+<div class="chart-placeholder">
+<h2>{{ chart.not_available_message }}</h2>
+</div>
 {% else %}
 <a
 	class="{{ chart.html_class }}"
