@@ -4,12 +4,16 @@
 @divider-fg: #fff;
 @header-bg: #2C9F7A;
 @explore-fg: #2C9F7A;
+@chart-description-fg: #515151;
 
 @cover-image-break-width-gt: 768px;
 @cover-image-break-width-lt: 767px;
 
 @chart-text-break-width-gt: 990px;
 @chart-text-break-width-lt: 989px;
+
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
 
 /* ----------------------*/
 
@@ -64,6 +68,7 @@ nav.ata-header {
 }
 .chart-title {
     margin-top: 2em;
+    font-family: @font-family-serif;
 }
 
 .chart-description-container {
@@ -81,6 +86,9 @@ nav.ata-header {
         margin-top: 2em;
         margin-bottom: 2em;
     }
+    font-size: 1.2em;
+    font-family: @font-family-serif;
+    color: @chart-description-fg;
 }
 
 .explore-button-container {
@@ -167,14 +175,14 @@ header > nav > div {
     margin-top: 1em;
     font-size: 2em;
     font-weight: bold;
-    font-family: serif;
+    font-family: @font-family-serif;
 }
 
 .title-text-2 {
     margin-top: 1em;
     font-size: 5em;
     font-weight: bold;
-    font-family: sans-serif;
+    font-family: @font-family-sans-serif;
 }
 
 .logo {
