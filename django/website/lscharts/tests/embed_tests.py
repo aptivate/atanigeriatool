@@ -48,6 +48,14 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings(secondary_operation='avg')
         self.assertIn('secondaryOperation', ecs._get_query_params())
 
+    def test_get_query_params_does_not_have_category_order_key_when_not_set(self):
+        ecs = EmbedChartSettings(category_order=None)
+        self.assertNotIn('categoryOrder', ecs._get_query_params())
+
+    def test_get_query_params_does_have_category_order_key_when_is_set(self):
+        ecs = EmbedChartSettings(category_order='alphabetical')
+        self.assertIn('categoryOrder', ecs._get_query_params())
+
     def test_explore_url_produces_correct_url(self):
         ecs = EmbedChartSettings()
         self.assertEqual(
@@ -56,7 +64,8 @@ class EmbedChartSettingsTests(TestCase):
             '&colors=fff200&colors=faa61a&colors=f58220&colors=ef413d'
             '&colors=ed1c24&colors=a3238e&colors=5c2d91&colors=214009'
             '&dashboard=&title=Crop&indicators=__entry&chartType=pie'
-            '&operation=count&dashId=&datasetId=54aff583a750b33915f0069c',
+            '&operation=count&dashId=&datasetId=54aff583a750b33915f0069c'
+            '&categoryOrder=alphabetical',
             ecs.explore_url())
 
     def test_explore_url_includes_filters(self):

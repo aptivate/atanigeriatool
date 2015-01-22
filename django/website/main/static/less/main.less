@@ -1,4 +1,5 @@
 /* local variables */
+@filter-title-bg: #7a7654;
 @divider-bg: #8fbeb1;
 @divider-fg: #fff;
 @header-bg: #2C9F7A;
@@ -16,9 +17,29 @@ nav.ata-header {
 
 .divider {
     background-color: @divider-bg;
+    padding: 1em;
+}
+
+.filter-title {
+    background-color: @filter-title-bg;
+    padding: 1.5em;
+}
+
+.filter-title > h2,
+.divider > h2 {
     color: @divider-fg;
     text-transform: uppercase;
     text-align: center;
+    font-weight: bold;
+}
+
+.chart-section {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.chart-right > iframe {
+    float: right;
 }
 
 .explore-button {

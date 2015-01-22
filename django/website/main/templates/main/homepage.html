@@ -23,6 +23,14 @@
 	</div>
 </div>
 
+{% if filter_title %}
+<div class="row">
+	<div class="col-xs-12 filter-title">
+		<h2 id="main-filter-title">{{ filter_title }}</h2>
+	</div>
+</div>
+{% endif %}
+
 <div class="row">
     <div class="col-xs-12 divider">
         <h2 id="main-nutrition">Nutrition</h2>
@@ -53,7 +61,7 @@
 {% if valuechain != 'cassava' %}
 {% include "main/chart_section.html" with chart=charts.productivity %}
 {% else %}
-<div class="row">
+<div class="row chart-section">
 	<div class="col-md-6 col-md-offset-1">
 		There is no data for cassava productivity, so we cannot show a chart.
 	</div>
@@ -62,7 +70,7 @@
 	</div>
 </div>
 {% endif %}
-{% include "main/chart_section.html" with chart=charts.productivity2 %}
+{% include "main/chart_section.html" with chart=charts.productivity2 description_left="true" %}
 {% endblock %}
 
 {% block modals %}
