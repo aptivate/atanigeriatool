@@ -43,17 +43,24 @@ nav.ata-header {
     font-weight: bold;
 }
 
+.chart-section {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+}
+
+.chart-section > .chart-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .chart-meta {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         height: 600px;
         display: table;
         overflow: hidden;
     }
-}
-
-.chart-section {
-    margin-top: 2em;
-    margin-bottom: 2em;
 }
 
 .chart-right > iframe {
@@ -67,7 +74,12 @@ nav.ata-header {
     }
 }
 .chart-title {
-    margin-top: 2em;
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        margin-top: 2em;
+    }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        margin-top: 0.4em;
+    }
     font-family: @font-family-serif;
 }
 
