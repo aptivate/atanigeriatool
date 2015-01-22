@@ -21,7 +21,7 @@ DATASET_IDS = {
 
 COLOR_POST_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
-COLOR_YIELD = '6B8079'
+COLOR_YIELD = '000'
 
 # NOT included in main/urls.py - included directly in the root urls.py
 class HomeView(TemplateView):
@@ -128,7 +128,6 @@ class HomeView(TemplateView):
         args = self.get_generic_args('productivity2')
         args['colors'] =  productivity_colors
         if valuechain:  # chart for crop by year
-            args = self.get_generic_args('productivity2')
             args.update({
                 'variables': ["Year"],
                 'indicators': ["Production","Yield Per Hectare"],
