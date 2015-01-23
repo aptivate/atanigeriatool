@@ -86,6 +86,8 @@ class HomeView(TemplateView):
             'indicators': ["Value"],
             'operation': "avg",
             'chart_type': "column",
+            'y0_label': "Percentage of Households",
+            'x_label': "Food, year",
             'title': "Food consumed by a household on a typical week",
         })
         if state:
@@ -114,6 +116,8 @@ class HomeView(TemplateView):
             'indicators': ["Value"],
             'operation': "avg",
             'chart_type': "column",
+            'y0_label': "Percentage of farmers",
+            'x_label': "Technology, year",
             'title': "Technology adoption by farmers",
         })
         if state:
@@ -136,6 +140,9 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
+            'y0_label': "Total production (metric tonnes)",
+            'y1_label': "Average yield (metric tonnes/hectare)",
+            'x_label': "Season and year",
             'title': "Rice production and yield post ATA",
         })
         if state:
@@ -161,6 +168,9 @@ class HomeView(TemplateView):
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
+                'y0_label': "Total production (metric tonnes)",
+                'y1_label': "Average yield (metric tonnes/hectare)",
+                'x_label': "Year",
                 'title': "{0} production and yield pre ATA".format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
             })
@@ -171,6 +181,9 @@ class HomeView(TemplateView):
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
+                'y0_label': "Total production (metric tonnes)",
+                'y1_label': "Average yield (metric tonnes/hectare)",
+                'x_label': "Crop",
                 'title': "Crop production and yield pre ATA",
             })
             if state:
