@@ -21,6 +21,9 @@
 	data-show-dataset="{{ chart.show_dataset }}"
 	data-show-title="{{ chart.show_title }}"
 	data-data-labels="{{ chart.data_labels }}"
+	{% if chart.x_label %}data-x-label="{{ chart.x_label }}"{% endif %}
+	{% if chart.y0_label %}data-y0-label="{{ chart.y0_label }}"{% endif %}
+	{% if chart.y1_label %}data-y1-label="{{ chart.y1_label }}"{% endif %}
 	data-grid-lines="{{ chart.grid_lines }}"
 	data-precision="{{ chart.precision }}"
 	data-legend="{{ chart.legend }}"

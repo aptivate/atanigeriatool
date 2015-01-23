@@ -61,6 +61,9 @@ class EmbedChartSettings(object):
 
         self.show_dataset = kwargs.get("show_dataset", "false")
         self.data_labels = kwargs.get("data_labels", "true")
+        self.x_label = kwargs.get("x_label", None)
+        self.y0_label = kwargs.get("y0_label", None)
+        self.y1_label = kwargs.get("y1_label", None)
         self.legend = kwargs.get("legend", "true")
         self.grid_lines = kwargs.get("grid_lines", "true")
         self.precision = kwargs.get("precision", 1)
