@@ -88,7 +88,7 @@ class HomeView(TemplateView):
             'chart_type': "column",
             'y0_label': "Percentage of Households",
             'x_label': "Food, year",
-            'title': "Food consumed by a household on a typical week",
+            'title': "Percentage of households who consume food types in a typical week",
         })
         if state:
             args['filters'] = [('state', state)]
@@ -118,7 +118,7 @@ class HomeView(TemplateView):
             'chart_type': "column",
             'y0_label': "Percentage of farmers",
             'x_label': "Technology, year",
-            'title': "Technology adoption by farmers",
+            'title': "Percentage of farmers who use technologies",
         })
         if state:
             args['filters'] = [('state', state)]
