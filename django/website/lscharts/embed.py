@@ -2,7 +2,7 @@ from __future__ import unicode_literals, absolute_import
 
 from urllib import urlencode
 
-from django.utils.html import escape, mark_safe
+from django.utils.html import conditional_escape, mark_safe
 
 DEFAULT_DESCRIPTION = \
     "Scotch ale lambic, hoppy ester double bock/dopplebock. brewpub " \
@@ -73,7 +73,7 @@ class EmbedChartSettings(object):
             return ''
         # this is an unsafe string that django will do html escaping on
         formatted = '&'.join(['filters.%s=%s' % (term[0], term[1]) for term in self.filters])
-        formatted = escape(formatted)
+        formatted = conditional_escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
 
     def _iterable_comma(self, iterable):
@@ -131,4 +131,4 @@ class EmbedChartSettings(object):
         filter_part = self.filters_for_embed_link()
         if filter_part:
             link += '&' + filter_part
-        return mark_safe(link)
+        return mark_safe(conditional_escape(link))
