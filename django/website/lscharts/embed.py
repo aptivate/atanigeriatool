@@ -63,7 +63,7 @@ class EmbedChartSettings(object):
         self.data_labels = kwargs.get("data_labels", "true")
         self.legend = kwargs.get("legend", "true")
         self.grid_lines = kwargs.get("grid_lines", "true")
-        self.precision = kwargs.get("precision", 0)
+        self.precision = kwargs.get("precision", 1)
 
     def filters_for_embed_link(self):
         if self.filters is None:
