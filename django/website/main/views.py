@@ -136,7 +136,6 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
-            'precision': 1,
             'title': "Rice production and yield post ATA",
         })
         if state:
@@ -162,7 +161,6 @@ class HomeView(TemplateView):
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
-                'precision': 1,
                 'title': "{0} production and yield pre ATA".format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
             })
@@ -173,7 +171,6 @@ class HomeView(TemplateView):
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
-                'precision': 1,
                 'title': "Crop production and yield pre ATA",
             })
             if state:
