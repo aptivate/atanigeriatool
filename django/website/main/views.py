@@ -9,7 +9,7 @@ COLOR_PRE_ATA = '7A7654'
 COLOR_YIELD = '000'
 
 
-def get_colors_with_overrides(**colors):
+def get_colors_with_overrides(*colors):
     new_colors = DEFAULT_COLORS[:]
     for i, color in enumerate(colors):
         new_colors[i] = color

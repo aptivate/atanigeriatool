@@ -4,7 +4,26 @@ from django.test.testcases import TestCase
 
 from django_harness.fast_dispatch import FastDispatchMixin
 
-from main.views import HomeView
+from lscharts.embed import DEFAULT_COLORS
+from main.views import HomeView, get_colors_with_overrides
+
+
+class GetColorsWithOverridesTests(TestCase):
+    def test_get_colors_with_overrides_returns_default_colors_if_no_args(self):
+        colors = get_colors_with_overrides()
+        self.assertSequenceEqual(DEFAULT_COLORS, colors)
+
+    def test_get_colors_with_overrides_changes_first_color_to_only_arg(self):
+        colors = get_colors_with_overrides("123456")
+        self.assertEqual("123456", colors[0])
+        self.assertEqual(DEFAULT_COLORS[1], colors[1])
+        self.assertEqual(DEFAULT_COLORS[2], colors[2])
+
+    def test_get_colors_with_overrides_changes_two_colors_if_two_args(self):
+        colors = get_colors_with_overrides("123456", "654321")
+        self.assertEqual("123456", colors[0])
+        self.assertEqual("654321", colors[1])
+        self.assertEqual(DEFAULT_COLORS[2], colors[2])
 
 
 class BasicViewTestsMixin(object):
