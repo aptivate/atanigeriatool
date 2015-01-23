@@ -168,6 +168,9 @@ nav.ata-header {
 
 .nav.internal-links {
     text-transform: uppercase;
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        background-color: @header-bg;
+    }
 }
 
 .ata-header > .container-fluid {
