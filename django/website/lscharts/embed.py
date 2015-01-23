@@ -36,7 +36,7 @@ class EmbedChartSettings(object):
             None
         )
         self.html_class = kwargs.get("html_class", "insight-tile")
-        self.width = kwargs.get("width", "600")
+        self.width = kwargs.get("width", "1000")
         self.height = kwargs.get("height", "600")
         self.background = kwargs.get("background", "true")
         self.colors = kwargs.get("colors", DEFAULT_COLORS)

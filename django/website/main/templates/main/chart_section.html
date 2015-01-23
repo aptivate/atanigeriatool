@@ -1,9 +1,9 @@
 <div class="row chart-section">
-	<div class="chart-container col-md-6 {% if description_left %}col-md-push-5 chart-right{% else %}chart-left col-md-offset-1{% endif %}">
+    <div class="chart-container {% if chart_wide %}col-md-7{% else %}col-md-6{% endif %} {% if description_left %}{% if chart_wide %}col-md-push-4{% else %}col-md-push-5{% endif %} chart-right{% else %}chart-left col-md-offset-1{% endif %}">
 		{% include "lscharts/embedded_chart.html" %}
 	</div>
 
-	<div class="chart-meta col-md-4 {% if description_left %}col-md-pull-5{% endif %}">
+    <div class="chart-meta {% if chart_wide %}col-md-3{% else %}col-md-4{% endif %} {% if description_left %}{% if chart_wide %}col-md-pull-6{% else %}col-md-pull-5{% endif %}{% endif %}">
 		<div class="chart-title-container">
 			<h2 class="chart-title">{{ chart.title }}</h2>
 		</div>
