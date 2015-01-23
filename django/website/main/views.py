@@ -9,14 +9,14 @@ DOMAIN = "ata.livestories.com"
 DATASETS = {
     "nutrition": "29277fe2981511e4bbe006909bee25eb",
     "technology": "9e3d0cd49d7e11e4a93606909bee25eb",
-    "productivity": "d4aa5ffaa09511e4a41406909bee25eb",
-    "productivity2": "8ba9c30ca16e11e4927006909bee25eb",
+    "productivity_post_ata": "d4aa5ffaa09511e4a41406909bee25eb",
+    "productivity_pre_ata": "8ba9c30ca16e11e4927006909bee25eb",
 }
 DATASET_IDS = {
     "nutrition": "54aff583a750b33915f0069c",
     "technology": "54b909c7a750b30f24f31db7",
-    "productivity": "54be3923a750b3418651e0d9",
-    "productivity2": "54bfa4b9a750b3418651e0fc",
+    "productivity_post_ata": "54be3923a750b3418651e0d9",
+    "productivity_pre_ata": "54bfa4b9a750b3418651e0fc",
 }
 DESCRIPTIONS = {
     "nutrition":
@@ -33,11 +33,11 @@ DESCRIPTIONS = {
         "LSMS 2012<br />"
         "Post Planting Agriculture Survey (Section 11c)<br />"
         "Processed tabular data powering this visualization",
-    "productivity":
+    "productivity_post_ata":
         "DATASOURCE<br />"
         "ATA Briefing to the Honorable Minister of Agriculture<br />"
         "Based on Cellulante data",
-    "productivity2":
+    "productivity_pre_ata":
         "DATASOURCE<br />"
         "Annual Abstract of Statistics, 2012<br />"
         "National Bureau of Statistics<br />"
@@ -128,11 +128,11 @@ class HomeView(TemplateView):
             args['title'] += " ({0} farmers only)".format(valuechain.capitalize())
         return args
 
-    def get_productivity_args(self, state, valuechain):
+    def get_productivity_post_ata_args(self, state, valuechain):
         productivity_colors = DEFAULT_COLORS[:]
         productivity_colors[0] = COLOR_POST_ATA
         productivity_colors[1] = COLOR_YIELD
-        args = self.get_generic_args('productivity')
+        args = self.get_generic_args('productivity_post_ata')
         args.update({
             'colors': productivity_colors,
             'variables': ["season"],
@@ -155,11 +155,11 @@ class HomeView(TemplateView):
                 args['title'] = "Cassava production and yield post ATA"
         return args
 
-    def get_productivity2_args(self, state, valuechain):
+    def get_productivity_pre_ata_args(self, state, valuechain):
         productivity_colors = DEFAULT_COLORS[:]
         productivity_colors[0] = COLOR_PRE_ATA
         productivity_colors[1] = COLOR_YIELD
-        args = self.get_generic_args('productivity2')
+        args = self.get_generic_args('productivity_pre_ata')
         args['colors'] = productivity_colors
         if valuechain:  # chart for crop by year
             args.update({
@@ -197,8 +197,8 @@ class HomeView(TemplateView):
                 EmbedChartSettings(**self.get_nutrition_args(state, valuechain)),
             'technology':
                 EmbedChartSettings(**self.get_technology_args(state, valuechain)),
-            'productivity':
-                EmbedChartSettings(**self.get_productivity_args(state, valuechain)),
-            'productivity2':
-                EmbedChartSettings(**self.get_productivity2_args(state, valuechain)),
+            'productivity_post_ata':
+                EmbedChartSettings(**self.get_productivity_post_ata_args(state, valuechain)),
+            'productivity_pre_ata':
+                EmbedChartSettings(**self.get_productivity_pre_ata_args(state, valuechain)),
         }
