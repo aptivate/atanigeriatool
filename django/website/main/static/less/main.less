@@ -54,6 +54,13 @@ nav.affix-top .navbar-brand {
     display: none;
 }
 
+nav.affix .navbar-brand {
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 nav.ata-header {
     background-color: @header-bg;
 }
@@ -201,11 +208,12 @@ nav.ata-header {
     border-color: rgba(255, 255, 255, 0.84);
     @media only screen and (min-width: @cover-image-break-width-gt) {
         margin-right: 30px;
+        margin-left: 30px;
     }
     @media only screen and (max-width: @cover-image-break-width-lt) {
         margin-right: 10px;
+        margin-left: 10px;
     }
-    margin-left: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 25px;
