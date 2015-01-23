@@ -6,42 +6,46 @@ from lscharts.embed import EmbedChartSettings, DEFAULT_COLORS
 
 # TODO: move to settings?
 DOMAIN = "ata.livestories.com"
-DATASETS = {
-    "nutrition": "29277fe2981511e4bbe006909bee25eb",
-    "technology": "9e3d0cd49d7e11e4a93606909bee25eb",
-    "productivity_post_ata": "d4aa5ffaa09511e4a41406909bee25eb",
-    "productivity_pre_ata": "8ba9c30ca16e11e4927006909bee25eb",
-}
-DATASET_IDS = {
-    "nutrition": "54aff583a750b33915f0069c",
-    "technology": "54b909c7a750b30f24f31db7",
-    "productivity_post_ata": "54be3923a750b3418651e0d9",
-    "productivity_pre_ata": "54bfa4b9a750b3418651e0fc",
-}
-DESCRIPTIONS = {
-    "nutrition":
-        "DATASOURCE<br />"
-        "Living Standard Measurement Study (LSMS)<br />"
-        "World Bank<br />"
-        "LSMS 2010 Household Post Planting Agriculture Survey (Section 7)<br />"
-        "LSMS 2012 Household Post Planting Agriculture Survey (Section 7)<br />"
-        "Processed tabular data powering this visualization",
-    "technology":
-        "DATASOURCE<br />"
-        "LSMS 2010<br />"
-        "Post Planting Agriculture Survey (Section 11c)<br />"
-        "LSMS 2012<br />"
-        "Post Planting Agriculture Survey (Section 11c)<br />"
-        "Processed tabular data powering this visualization",
-    "productivity_post_ata":
-        "DATASOURCE<br />"
-        "ATA Briefing to the Honorable Minister of Agriculture<br />"
-        "Based on Cellulante data",
-    "productivity_pre_ata":
-        "DATASOURCE<br />"
-        "Annual Abstract of Statistics, 2012<br />"
-        "National Bureau of Statistics<br />"
-        "Federal Republic of Nigeria",
+CHARTS = {
+    "nutrition": {
+        "dataset": "29277fe2981511e4bbe006909bee25eb",
+        "dataset_id": "54aff583a750b33915f0069c",
+        "description":
+            "DATASOURCE<br />"
+            "Living Standard Measurement Study (LSMS)<br />"
+            "World Bank<br />"
+            "LSMS 2010 Household Post Planting Agriculture Survey (Section 7)<br />"
+            "LSMS 2012 Household Post Planting Agriculture Survey (Section 7)<br />"
+            "Processed tabular data powering this visualization",
+    },
+    "technology": {
+        "dataset": "9e3d0cd49d7e11e4a93606909bee25eb",
+        "dataset_id": "54b909c7a750b30f24f31db7",
+        "description":
+            "DATASOURCE<br />"
+            "LSMS 2010<br />"
+            "Post Planting Agriculture Survey (Section 11c)<br />"
+            "LSMS 2012<br />"
+            "Post Planting Agriculture Survey (Section 11c)<br />"
+            "Processed tabular data powering this visualization",
+    },
+    "productivity_pre_ata": {
+        "dataset": "8ba9c30ca16e11e4927006909bee25eb",
+        "dataset_id": "54bfa4b9a750b3418651e0fc",
+        "description":
+            "DATASOURCE<br />"
+            "Annual Abstract of Statistics, 2012<br />"
+            "National Bureau of Statistics<br />"
+            "Federal Republic of Nigeria",
+    },
+    "productivity_post_ata": {
+        "dataset": "d4aa5ffaa09511e4a41406909bee25eb",
+        "dataset_id": "54be3923a750b3418651e0d9",
+        "description":
+            "DATASOURCE<br />"
+            "ATA Briefing to the Honorable Minister of Agriculture<br />"
+            "Based on Cellulante data",
+    },
 }
 
 COLOR_POST_ATA = '1D976B'
@@ -72,11 +76,12 @@ class HomeView(TemplateView):
             return None
 
     def get_generic_args(self, chart_type):
+        chart_info = CHARTS[chart_type]
         return {
             'domain': DOMAIN,
-            'dataset': DATASETS[chart_type],
-            'dataset_id': DATASET_IDS[chart_type],
-            'description': DESCRIPTIONS[chart_type],
+            'dataset': chart_info['dataset'],
+            'dataset_id': chart_info['dataset_id'],
+            'description': chart_info['description'],
         }
 
     def get_nutrition_args(self, state, valuechain):
