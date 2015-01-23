@@ -243,8 +243,13 @@ nav.ata-header {
     background-color: white;
     max-width: 1000px;
     width: 100%;
-    height: 600px;
     display: table;
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        height: 600px;
+    }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        height: 200px;
+    }
 }
 
 .chart-placeholder > h2 {
@@ -253,7 +258,15 @@ nav.ata-header {
     text-align: center;
     font-family: @font-family-serif;
     color: gray;
-    padding: 30%;
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        padding: 30%;
+    }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        padding-top: 10%;
+        padding-bottom: 10%;
+        padding-left: 30%;
+        padding-right: 30%;
+    }
 }
 
 .chart-section {
