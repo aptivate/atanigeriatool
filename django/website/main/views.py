@@ -4,6 +4,17 @@ from django.views.generic import TemplateView
 
 from lscharts.embed import EmbedChartSettings, DEFAULT_COLORS
 
+COLOR_POST_ATA = '1D976B'
+COLOR_PRE_ATA = '7A7654'
+COLOR_YIELD = '000'
+
+
+def get_colors_with_overrides(**colors):
+    new_colors = DEFAULT_COLORS[:]
+    for i, color in enumerate(colors):
+        new_colors[i] = color
+    return new_colors
+
 # TODO: move to settings?
 DOMAIN = "ata.livestories.com"
 CHARTS = {
@@ -53,6 +64,7 @@ CHARTS = {
         'y0_label': "Total production (metric tonnes)",
         'y1_label': "Average yield (metric tonnes/hectare)",
         'x_label': "Year",
+        'colors': get_colors_with_overrides(COLOR_PRE_ATA, COLOR_YIELD),
         "description":
             "DATASOURCE<br />"
             "Annual Abstract of Statistics, 2012<br />"
@@ -71,16 +83,13 @@ CHARTS = {
         'y1_label': "Average yield (metric tonnes/hectare)",
         'x_label': "Season and year",
         'title': "Rice production and yield post ATA",
+        'colors': get_colors_with_overrides(COLOR_POST_ATA, COLOR_YIELD),
         "description":
             "DATASOURCE<br />"
             "ATA Briefing to the Honorable Minister of Agriculture<br />"
             "Based on Cellulante data",
     },
 }
-
-COLOR_POST_ATA = '1D976B'
-COLOR_PRE_ATA = '7A7654'
-COLOR_YIELD = '000'
 
 
 # NOT included in main/urls.py - included directly in the root urls.py
@@ -142,11 +151,7 @@ class HomeView(TemplateView):
         return args
 
     def get_productivity_pre_ata_args(self, state, valuechain):
-        productivity_colors = DEFAULT_COLORS[:]
-        productivity_colors[0] = COLOR_PRE_ATA
-        productivity_colors[1] = COLOR_YIELD
         args = self.get_generic_args('productivity_pre_ata')
-        args['colors'] = productivity_colors
         if valuechain:  # chart for crop by year
             args.update({
                 'variables': ["Year"],
@@ -164,11 +169,7 @@ class HomeView(TemplateView):
         return args
 
     def get_productivity_post_ata_args(self, state, valuechain):
-        productivity_colors = DEFAULT_COLORS[:]
-        productivity_colors[0] = COLOR_POST_ATA
-        productivity_colors[1] = COLOR_YIELD
         args = self.get_generic_args('productivity_post_ata')
-        args['colors'] = productivity_colors
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
