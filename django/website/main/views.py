@@ -48,6 +48,7 @@ COLOR_POST_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
 COLOR_YIELD = '000'
 
+
 # NOT included in main/urls.py - included directly in the root urls.py
 class HomeView(TemplateView):
     template_name = 'main/homepage.html'
@@ -135,6 +136,7 @@ class HomeView(TemplateView):
             'operation': "sum",
             'secondary_operation': "avg",
             'chart_type': "column",
+            'precision': 1,
             'title': "Rice production and yield post ATA",
         })
         if state:
@@ -152,24 +154,26 @@ class HomeView(TemplateView):
         productivity_colors[0] = COLOR_PRE_ATA
         productivity_colors[1] = COLOR_YIELD
         args = self.get_generic_args('productivity2')
-        args['colors'] =  productivity_colors
+        args['colors'] = productivity_colors
         if valuechain:  # chart for crop by year
             args.update({
                 'variables': ["Year"],
-                'indicators': ["Production","Yield Per Hectare"],
+                'indicators': ["Production", "Yield Per Hectare"],
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
+                'precision': 1,
                 'title': "{0} production and yield pre ATA".format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
             })
         else:
             args.update({
                 'variables': ["Crop"],
-                'indicators': ["Production","Yield Per Hectare"],
+                'indicators': ["Production", "Yield Per Hectare"],
                 'operation': "sum",
                 'secondary_operation': "avg",
                 'chart_type': "column",
+                'precision': 1,
                 'title': "Crop production and yield pre ATA",
             })
             if state:
