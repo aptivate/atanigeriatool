@@ -10,6 +10,13 @@ CHARTS = {
     "nutrition": {
         "dataset": "29277fe2981511e4bbe006909bee25eb",
         "dataset_id": "54aff583a750b33915f0069c",
+        'variables': ["Commodity", "year"],
+        'indicators': ["Value"],
+        'operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Percentage of Households",
+        'x_label': "Food, year",
+        'title': "Percentage of households who consume food types in a typical week",
         "description":
             "DATASOURCE<br />"
             "Living Standard Measurement Study (LSMS)<br />"
@@ -21,6 +28,13 @@ CHARTS = {
     "technology": {
         "dataset": "9e3d0cd49d7e11e4a93606909bee25eb",
         "dataset_id": "54b909c7a750b30f24f31db7",
+        'variables': ["Technology", "year"],
+        'indicators': ["Value"],
+        'operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Percentage of farmers",
+        'x_label': "Technology, year",
+        'title': "Percentage of farmers who use technologies",
         "description":
             "DATASOURCE<br />"
             "LSMS 2010<br />"
@@ -32,6 +46,13 @@ CHARTS = {
     "productivity_pre_ata": {
         "dataset": "8ba9c30ca16e11e4927006909bee25eb",
         "dataset_id": "54bfa4b9a750b3418651e0fc",
+        'indicators': ["Production", "Yield Per Hectare"],
+        'operation': "sum",
+        'secondary_operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Total production (metric tonnes)",
+        'y1_label': "Average yield (metric tonnes/hectare)",
+        'x_label': "Year",
         "description":
             "DATASOURCE<br />"
             "Annual Abstract of Statistics, 2012<br />"
@@ -41,6 +62,15 @@ CHARTS = {
     "productivity_post_ata": {
         "dataset": "d4aa5ffaa09511e4a41406909bee25eb",
         "dataset_id": "54be3923a750b3418651e0d9",
+        'variables': ["season"],
+        'indicators': ["production", "yield"],
+        'operation': "sum",
+        'secondary_operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Total production (metric tonnes)",
+        'y1_label': "Average yield (metric tonnes/hectare)",
+        'x_label': "Season and year",
+        'title': "Rice production and yield post ATA",
         "description":
             "DATASOURCE<br />"
             "ATA Briefing to the Honorable Minister of Agriculture<br />"
@@ -76,25 +106,12 @@ class HomeView(TemplateView):
             return None
 
     def get_generic_args(self, chart_type):
-        chart_info = CHARTS[chart_type]
-        return {
-            'domain': DOMAIN,
-            'dataset': chart_info['dataset'],
-            'dataset_id': chart_info['dataset_id'],
-            'description': chart_info['description'],
-        }
+        chart_info = {'domain': DOMAIN}
+        chart_info.update(CHARTS[chart_type])
+        return chart_info
 
     def get_nutrition_args(self, state, valuechain):
         args = self.get_generic_args('nutrition')
-        args.update({
-            'variables': ["Commodity", "year"],
-            'indicators': ["Value"],
-            'operation': "avg",
-            'chart_type': "column",
-            'y0_label': "Percentage of Households",
-            'x_label': "Food, year",
-            'title': "Percentage of households who consume food types in a typical week",
-        })
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
@@ -116,48 +133,12 @@ class HomeView(TemplateView):
 
     def get_technology_args(self, state, valuechain):
         args = self.get_generic_args('technology')
-        args.update({
-            'variables': ["Technology", "year"],
-            'indicators': ["Value"],
-            'operation': "avg",
-            'chart_type': "column",
-            'y0_label': "Percentage of farmers",
-            'x_label': "Technology, year",
-            'title': "Percentage of farmers who use technologies",
-        })
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
         if valuechain:
             args['filters'] = [('crop', valuechain)]
             args['title'] += " ({0} farmers only)".format(valuechain.capitalize())
-        return args
-
-    def get_productivity_post_ata_args(self, state, valuechain):
-        productivity_colors = DEFAULT_COLORS[:]
-        productivity_colors[0] = COLOR_POST_ATA
-        productivity_colors[1] = COLOR_YIELD
-        args = self.get_generic_args('productivity_post_ata')
-        args.update({
-            'colors': productivity_colors,
-            'variables': ["season"],
-            'indicators': ["production", "yield"],
-            'operation': "sum",
-            'secondary_operation': "avg",
-            'chart_type': "column",
-            'y0_label': "Total production (metric tonnes)",
-            'y1_label': "Average yield (metric tonnes/hectare)",
-            'x_label': "Season and year",
-            'title': "Rice production and yield post ATA",
-        })
-        if state:
-            args['filters'] = [('state', state)]
-            args['title'] += " ({0} only)".format(state.capitalize())
-        if valuechain:
-            if valuechain == 'cassava':
-                args['not_available_message'] = \
-                    "These data are available for Rice only"
-                args['title'] = "Cassava production and yield post ATA"
         return args
 
     def get_productivity_pre_ata_args(self, state, valuechain):
@@ -169,31 +150,33 @@ class HomeView(TemplateView):
         if valuechain:  # chart for crop by year
             args.update({
                 'variables': ["Year"],
-                'indicators': ["Production", "Yield Per Hectare"],
-                'operation': "sum",
-                'secondary_operation': "avg",
-                'chart_type': "column",
-                'y0_label': "Total production (metric tonnes)",
-                'y1_label': "Average yield (metric tonnes/hectare)",
-                'x_label': "Year",
                 'title': "{0} production and yield pre ATA".format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
             })
         else:
             args.update({
                 'variables': ["Crop"],
-                'indicators': ["Production", "Yield Per Hectare"],
-                'operation': "sum",
-                'secondary_operation': "avg",
-                'chart_type': "column",
-                'y0_label': "Total production (metric tonnes)",
-                'y1_label': "Average yield (metric tonnes/hectare)",
-                'x_label': "Crop",
                 'title': "Crop production and yield pre ATA",
             })
             if state:
                 args['title'] += " (Data cannot be filtered by {0})".format(state.capitalize())
             args['filters'] = [('Year', 2009)]
+        return args
+
+    def get_productivity_post_ata_args(self, state, valuechain):
+        productivity_colors = DEFAULT_COLORS[:]
+        productivity_colors[0] = COLOR_POST_ATA
+        productivity_colors[1] = COLOR_YIELD
+        args = self.get_generic_args('productivity_post_ata')
+        args['colors'] = productivity_colors
+        if state:
+            args['filters'] = [('state', state)]
+            args['title'] += " ({0} only)".format(state.capitalize())
+        if valuechain:
+            if valuechain == 'cassava':
+                args['not_available_message'] = \
+                    "These data are available for Rice only"
+                args['title'] = "Cassava production and yield post ATA"
         return args
 
     def get_charts(self, state, valuechain):
