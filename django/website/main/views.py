@@ -186,8 +186,8 @@ class HomeView(TemplateView):
                 EmbedChartSettings(**self.get_nutrition_args(state, valuechain)),
             'technology':
                 EmbedChartSettings(**self.get_technology_args(state, valuechain)),
-            'productivity_post_ata':
-                EmbedChartSettings(**self.get_productivity_post_ata_args(state, valuechain)),
             'productivity_pre_ata':
                 EmbedChartSettings(**self.get_productivity_pre_ata_args(state, valuechain)),
+            'productivity_post_ata':
+                EmbedChartSettings(**self.get_productivity_post_ata_args(state, valuechain)),
         }
