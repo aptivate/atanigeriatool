@@ -12,7 +12,10 @@
 	{% block media %}
 		{% block standard_css %}
 			{% assets "main.common_css" %}
-					<link rel="stylesheet" href="{{ ASSET_URL }}" />
+				<link rel="stylesheet" href="{{ ASSET_URL }}" />
+			{% endassets %}
+			{% assets "main.print_css" %}
+				<link rel="stylesheet" href="{{ ASSET_URL }}" media="print" />
 			{% endassets %}
 		{% endblock standard_css %}
 
