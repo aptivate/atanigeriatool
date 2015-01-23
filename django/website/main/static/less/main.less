@@ -23,7 +23,13 @@ body {
 }
 
 .print-page-break {
-    display: none;
+    @media all {
+        display: none;
+    }
+    @media print {
+        display: block;
+        page-break-after: always;
+    }
 }
 
 /********************
