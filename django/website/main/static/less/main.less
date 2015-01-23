@@ -170,14 +170,25 @@ nav.ata-header {
     text-transform: uppercase;
 }
 
+.ata-header > .container-fluid {
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        padding-right: 0;
+    }
+}
+
 .main-navbar-filter-button {
     float: right;
     background-color: transparent;
     border-style: solid;
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.84);
+    @media only screen and (min-width: @cover-image-break-width-gt) {
+        margin-right: 30px;
+    }
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        margin-right: 10px;
+    }
     margin-left: 30px;
-    margin-right: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 25px;
