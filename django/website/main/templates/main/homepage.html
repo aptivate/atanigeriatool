@@ -41,6 +41,7 @@
     </div>
 </div>
 {% include "main/chart_section.html" with chart=charts.nutrition %}
+<div class="print-page-break"></div>
 
 <div class="row">
     <div class="col-xs-12 divider">
@@ -48,6 +49,7 @@
     </div>
 </div>
 {% include "main/chart_section.html" with chart=charts.technology %}
+<div class="print-page-break"></div>
 
 {% comment %}
 <div class="row">
@@ -63,6 +65,7 @@
     </div>
 </div>
 {% include "main/chart_section.html" with chart=charts.productivity_pre_ata chart_wide="true" %}
+<div class="print-page-break"></div>
 {% include "main/chart_section.html" with chart=charts.productivity_post_ata description_left="true" chart_wide="true" %}
 {% endblock %}
 
