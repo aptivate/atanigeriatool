@@ -5,14 +5,17 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>atanigeriatool</title>
+	<title>{% block head_title %}ATA Progress Dashboard{% endblock %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="atanigeriatool - M&E tool for ATA Nigeria with LiveStories backend">
 	<meta name="author" content="Hamish Downer">
 	{% block media %}
 		{% block standard_css %}
 			{% assets "main.common_css" %}
-					<link rel="stylesheet" href="{{ ASSET_URL }}" />
+				<link rel="stylesheet" href="{{ ASSET_URL }}" />
+			{% endassets %}
+			{% assets "main.print_css" %}
+				<link rel="stylesheet" href="{{ ASSET_URL }}" media="print" />
 			{% endassets %}
 		{% endblock standard_css %}
 
@@ -104,23 +107,34 @@
 	{% endblock main %}
 
 	{% block footer %}
-	{% comment %}
-		<footer class="{% block footer_classes %}bootstrap_footer container-fluid{% endblock %}" role="contentinfo">
+		<footer class="{% block footer_classes %}ata-footer container-fluid{% endblock %}" role="contentinfo">
 			<div class="footer_nav_wrapper">
 				<nav class="{% block footer_nav_classes %}footer_nav navbar navbar-default{% endblock %}" role="navigation">
 					<div class="footer_left navbar-left navbar-text">
-						{% block footer_left %}{% endblock %}
+						{% block footer_left %}
+						This is a knowledge and data management prototype tool to help the
+						<a href="http://www.fmard.gov.ng/">Federal Ministry of Agriculture and Rural Development Nigeria</a>
+						keep accurate track of the performance of its Agricultural Transformation Agenda. This project
+						is made in collaboration with
+						<a href="http://www.firetail.co.uk/">Firetail</a>,
+						<a href="http://www.livestories.com/">LivesStories</a> and
+						<a href="http://www.aptivate.org/">Aptivate</a>,
+						on behalf of the 
+						<a href="http://www.gatesfoundation.org/">Bill and Melinda Gates Foundation</a>
+						and at the request of the Honourable Minister of Agriculture.
+						{% endblock %}
 					</div>
+					{% comment %}
 					<div class="footer_right navbar-right navbar-text">
 						{% block footer_right %}{% endblock %}
 						{% block credits %}
 						Site by <a href="http://www.aptivate.org">Aptivate</a>
 						{% endblock %}
 					</div>
+					{% endcomment %}
 				</nav>
 			</div><!-- footer_nav_wrapper -->
 		</footer>
-	{% endcomment %}
 	{% endblock footer %}
 
 	{% block modals %}

@@ -11,6 +11,13 @@ common_css = Bundle(
 )
 register('main.common_css', common_css)
 
+print_css = Bundle(
+    'less/print.less',
+    filters='less,cssmin',
+    output='css/main/print.min.css',
+)
+register('main.print_css', print_css)
+
 common_js = Bundle(
     # 'bootstrap/ie_version.js',
     'bower_components/jquery/dist/jquery.js',
