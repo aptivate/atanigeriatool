@@ -25,8 +25,8 @@ class EmbedChartSettingsTests(TestCase):
             ('food', 'cassava')
         ]
         actual_output = EmbedChartSettings(filters=filters).filters_for_embed_link()
-        expected_output = "filters.Term=ivory%20pieces&amp;filters.Term=ivory" \
-            "%20scraps&amp;filters.food=cassava"
+        expected_output = "filters.Term=ivory%20pieces&filters.Term=ivory" \
+            "%20scraps&filters.food=cassava"
         self.assertEqual(expected_output, actual_output)
 
     def test_variables_comma_returns_comma_separated_list(self):
@@ -72,12 +72,12 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings()
         self.assertEqual(
             'http://ata.livestories.com/guest/chart?variables=Crop'
-            '&colors=7a7654&colors=1d976b&colors=00a65d&colors=72bf44'
-            '&colors=fff200&colors=faa61a&colors=f58220&colors=ef413d'
-            '&colors=ed1c24&colors=a3238e&colors=5c2d91&colors=214009'
-            '&dashboard=&title=Crop&indicators=__entry&chartType=pie'
-            '&operation=count&dashId=&datasetId=54aff583a750b33915f0069c'
-            '&categoryOrder=alphabetical',
+            '&amp;colors=7a7654&amp;colors=1d976b&amp;colors=00a65d&amp;colors=72bf44'
+            '&amp;colors=fff200&amp;colors=faa61a&amp;colors=f58220&amp;colors=ef413d'
+            '&amp;colors=ed1c24&amp;colors=a3238e&amp;colors=5c2d91&amp;colors=214009'
+            '&amp;dashboard=&amp;title=Crop&amp;indicators=__entry&amp;chartType=pie'
+            '&amp;operation=count&amp;dashId=&amp;datasetId=54aff583a750b33915f0069c'
+            '&amp;categoryOrder=alphabetical',
             ecs.explore_url())
 
     def test_explore_url_includes_filters(self):
@@ -87,16 +87,16 @@ class EmbedChartSettingsTests(TestCase):
             ('food', 'cassava')
         ]
         ecs = EmbedChartSettings(filters=filters)
-        filter_url_part = ecs.filters_for_embed_link()
+        filter_url_part = ecs.filters_for_embed_link().replace('&', '&amp;')
         self.assertIn(filter_url_part, ecs.explore_url())
 
 
 class EmbeddedChartTemplateTests(TestCase):
 
     def test_not_available_message_replaces_chart_in_template(self):
-       chart_section = render_to_string(
-           'lscharts/embedded_chart.html',
-           { 'chart': EmbedChartSettings(not_available_message="not available") }
-       )
-       self.assertIn("not available", chart_section)
-       self.assertNotIn("data-dataset", chart_section)
+        chart_section = render_to_string(
+            'lscharts/embedded_chart.html',
+            {'chart': EmbedChartSettings(not_available_message="not available")}
+        )
+        self.assertIn("not available", chart_section)
+        self.assertNotIn("data-dataset", chart_section)

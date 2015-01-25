@@ -68,13 +68,15 @@ class EmbedChartSettings(object):
         self.grid_lines = kwargs.get("grid_lines", "true")
         self.precision = kwargs.get("precision", 1)
 
-    def filters_for_embed_link(self):
+    def _filter_query_string(self):
         if self.filters is None:
             return ''
-        # this is an unsafe string that django will do html escaping on
         formatted = '&'.join(['filters.%s=%s' % (term[0], term[1]) for term in self.filters])
-        formatted = conditional_escape(formatted)
         return mark_safe(formatted.replace(' ', '%20'))
+
+    def filters_for_embed_link(self):
+        formatted = conditional_escape(self._filter_query_string())
+        return mark_safe(formatted)
 
     def _iterable_comma(self, iterable):
         return ','.join(iterable)
