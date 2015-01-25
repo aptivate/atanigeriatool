@@ -1,39 +1,7 @@
 {% if chart.not_available_message %}
 <div class="chart-placeholder">
-<h2>{{ chart.not_available_message }}</h2>
+	<h2>{{ chart.not_available_message }}</h2>
 </div>
 {% else %}
-
-{% if chart.use_iframe %}
 	{{ chart.iframe_element }}
-	{% else %}
-<a
-	class="{{ chart.html_class }}"
-	data-width="{{ chart.width }}"
-	data-height="{{ chart.height }}"
-	data-background="{{ chart.background }}"
-	data-colors="{{ chart.colors_comma }}"
-	data-enable-filtering="{{ chart.enable_filtering }}"
-	data-enable-interaction="{{ chart.enable_interaction }}"
-	data-dataset="{{ chart.dataset }}"
-	data-variables="{{ chart.variables_comma }}"
-	data-indicators="{{ chart.indicators_comma }}"
-	data-operation="{{ chart.operation }}"
-	{% if chart.secondary_operation %}data-secondary-operation="{{ chart.secondary_operation }}"{% endif %}
-	{% if chart.category_order %}data-category-order="{{ chart.category_order }}"{% endif %}
-	data-chart-type="{{ chart.chart_type }}"
-	data-show-dataset="{{ chart.show_dataset }}"
-	data-show-title="{{ chart.show_title }}"
-	data-data-labels="{{ chart.data_labels }}"
-	{% if chart.x_label %}data-x-label="{{ chart.x_label }}"{% endif %}
-	{% if chart.y0_label %}data-y0-label="{{ chart.y0_label }}"{% endif %}
-	{% if chart.y1_label %}data-y1-label="{{ chart.y1_label }}"{% endif %}
-	data-grid-lines="{{ chart.grid_lines }}"
-	data-precision="{{ chart.precision }}"
-	data-legend="{{ chart.legend }}"
-	{% if chart.filters %}data-filters="{{ chart.filters_for_embed_link }}"{% endif %}
-	href="//{{ chart.domain }}/chart/embed" target="_blank">
-	{{ chart.title }}
-	</a>
-{% endif %}
 {% endif %}

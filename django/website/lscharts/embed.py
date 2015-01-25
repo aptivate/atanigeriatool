@@ -1,5 +1,6 @@
 from __future__ import unicode_literals, absolute_import
 
+from random import randint
 from urllib import urlencode
 
 from django.utils.html import conditional_escape, mark_safe
@@ -30,13 +31,13 @@ DEFAULT_COLORS = [
 class EmbedChartSettings(object):
 
     def __init__(self, **kwargs):
-        self.use_iframe = True
         # TODO: could split into chart types with relevant bits in each type
         self.not_available_message = kwargs.get(
             "not_available_message",
             None
         )
         self.html_class = kwargs.get("html_class", "insight-tile")
+        self.html_id = kwargs.get("html_id", "insight-tile-{}".format(randint(1, 100)))
         self.width = kwargs.get("width", "1000")
         self.height = kwargs.get("height", "600")
         self.background = kwargs.get("background", "true")
@@ -111,12 +112,14 @@ class EmbedChartSettings(object):
             'show-data-labels': self._bool_str_to_num('data_labels'),
             'show-dataset': self._bool_str_to_num('show_dataset'),
             'show-grid-lines': self._bool_str_to_num('grid_lines'),
+            'show-legend': self._bool_str_to_num('legend'),
+            'show-title': self._bool_str_to_num('show_title'),
             'enable-filtering': self._bool_str_to_num('enable_filtering'),
             'enable-interaction': self._bool_str_to_num('enable_interaction'),
         }
         for attr, param_name in [
-            ('secondaryOperation', 'secondary_operation'),
-            ('categoryOrder', 'category_order'),
+            ('secondary_operation', 'secondaryOperation'),
+            ('category_order', 'categoryOrder'),
             ('x_label', 'xLabel'),
             ('y0_label', 'y0Label'),
             ('y1_label', 'y1Label'),
@@ -189,7 +192,7 @@ class EmbedChartSettings(object):
             'style="width: 100%; max-width: {}px;"'.format(self.width),
             'frameborder="0"',
             'height="{}"'.format(self.height),
-            'width="1000">'.format(self.width),
+            'width="{}">'.format(self.width),
             '</iframe>',
         ])
         return mark_safe(element)
