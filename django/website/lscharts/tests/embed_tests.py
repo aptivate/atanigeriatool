@@ -102,6 +102,14 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings(data_labels="False")
         self.assertEqual(0, ecs._bool_str_to_num("data_labels"))
 
+    def test_get_iframe_query_params_does_not_have_secondary_operations_key_when_not_set(self):
+        ecs = EmbedChartSettings()
+        self.assertNotIn('secondaryOperation', ecs._get_iframe_query_params())
+
+    def test_get_iframe_query_params_does_have_secondary_operations_key_when_is_set(self):
+        ecs = EmbedChartSettings(secondary_operation='avg')
+        self.assertIn('secondaryOperation', ecs._get_iframe_query_params())
+
 
 class EmbeddedChartTemplateTests(TestCase):
 

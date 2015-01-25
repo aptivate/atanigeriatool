@@ -171,6 +171,8 @@ class EmbedChartSettings(object):
         if filter_part:
             url += '&' + filter_part
         url = conditional_escape(url)
+        # the site does appear to work properly with double escaping!
+        # and indeed that is what the embed.js script produces
         return mark_safe(conditional_escape(url))
 
     def iframe_element(self):
