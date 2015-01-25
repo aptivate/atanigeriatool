@@ -21,9 +21,13 @@ register('main.print_css', print_css)
 common_js = Bundle(
     # 'bootstrap/ie_version.js',
     'bower_components/jquery/dist/jquery.js',
-    'bower_components/bootstrap/dist/js/bootstrap.js',
+    # 'bower_components/bootstrap/dist/js/bootstrap.js',
+    'bower_components/bootstrap/js/affix.js',
+    'bower_components/bootstrap/js/collapse.js',
+    'bower_components/bootstrap/js/modal.js',
+    'bower_components/bootstrap/js/transition.js',
     # 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-    'bower_components/bootstrap-material-design/dist/js/material.js',
+    'bower_components/bootstrap-material-design/scripts/material.js',
     filters='rjsmin',
     output='js/main/common.min.js'
 )
