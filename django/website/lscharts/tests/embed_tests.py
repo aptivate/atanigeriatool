@@ -90,6 +90,18 @@ class EmbedChartSettingsTests(TestCase):
         filter_url_part = ecs.filters_for_embed_link().replace('&', '&amp;')
         self.assertIn(filter_url_part, ecs.explore_url())
 
+    def test_bool_str_to_num_returns_1_for_true(self):
+        ecs = EmbedChartSettings(data_labels="true")
+        self.assertEqual(1, ecs._bool_str_to_num("data_labels"))
+        ecs = EmbedChartSettings(data_labels="True")
+        self.assertEqual(1, ecs._bool_str_to_num("data_labels"))
+
+    def test_bool_str_to_num_returns_0_for_false(self):
+        ecs = EmbedChartSettings(data_labels="false")
+        self.assertEqual(0, ecs._bool_str_to_num("data_labels"))
+        ecs = EmbedChartSettings(data_labels="False")
+        self.assertEqual(0, ecs._bool_str_to_num("data_labels"))
+
 
 class EmbeddedChartTemplateTests(TestCase):
 
