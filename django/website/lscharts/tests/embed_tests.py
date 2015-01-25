@@ -41,21 +41,21 @@ class EmbedChartSettingsTests(TestCase):
         ecs = EmbedChartSettings(colors=['123456', '789ABC'])
         self.assertEqual('#123456,#789ABC', ecs.colors_comma())
 
-    def test_get_query_params_does_not_have_secondary_operations_key_when_not_set(self):
+    def test_get_explore_query_params_does_not_have_secondary_operations_key_when_not_set(self):
         ecs = EmbedChartSettings()
-        self.assertNotIn('secondaryOperation', ecs._get_query_params())
+        self.assertNotIn('secondaryOperation', ecs._get_explore_query_params())
 
-    def test_get_query_params_does_have_secondary_operations_key_when_is_set(self):
+    def test_get_explore_query_params_does_have_secondary_operations_key_when_is_set(self):
         ecs = EmbedChartSettings(secondary_operation='avg')
-        self.assertIn('secondaryOperation', ecs._get_query_params())
+        self.assertIn('secondaryOperation', ecs._get_explore_query_params())
 
-    def test_get_query_params_does_not_have_category_order_key_when_not_set(self):
+    def test_get_explore_query_params_does_not_have_category_order_key_when_not_set(self):
         ecs = EmbedChartSettings(category_order=None)
-        self.assertNotIn('categoryOrder', ecs._get_query_params())
+        self.assertNotIn('categoryOrder', ecs._get_explore_query_params())
 
-    def test_get_query_params_does_have_category_order_key_when_is_set(self):
+    def test_get_explore_query_params_does_have_category_order_key_when_is_set(self):
         ecs = EmbedChartSettings(category_order='alphabetical')
-        self.assertIn('categoryOrder', ecs._get_query_params())
+        self.assertIn('categoryOrder', ecs._get_explore_query_params())
 
     def test_not_available_message_not_set_unless_provided_in_params(self):
         self.assertEqual(None, EmbedChartSettings().not_available_message)

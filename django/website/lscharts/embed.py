@@ -30,6 +30,7 @@ DEFAULT_COLORS = [
 class EmbedChartSettings(object):
 
     def __init__(self, **kwargs):
+        self.use_iframe = True
         # TODO: could split into chart types with relevant bits in each type
         self.not_available_message = kwargs.get(
             "not_available_message",
@@ -90,7 +91,110 @@ class EmbedChartSettings(object):
     def colors_comma(self):
         return self._iterable_comma(['#' + c for c in self.colors])
 
-    def _get_query_params(self):
+    def _bool_str_to_num(self, attr):
+        if getattr(self, attr).lower() == "true":
+            return 1
+        else:
+            return 0
+
+    def _get_iframe_query_params(self):
+        query_params = {
+            'dataset': self.dataset,
+            'chartType': self.chart_type,
+            'operation': self.operation,
+            'title': self.title,
+            'variables': self.variables,
+            'indicators': self.indicators,
+            'colors': self.colors,
+            'precision': self.precision,
+            'height': self.height,
+            'show-data-labels': self._bool_str_to_num('data_labels'),
+            'show-dataset': self._bool_str_to_num('show_dataset'),
+            'show-grid-lines': self._bool_str_to_num('grid_lines'),
+            'enable-filtering': self._bool_str_to_num('enable_filtering'),
+            'enable-interaction': self._bool_str_to_num('enable_interaction'),
+        }
+        for attr, param_name in [
+            ('secondaryOperation', 'secondary_operation'),
+            ('categoryOrder', 'category_order'),
+            ('x_label', 'xLabel'),
+            ('y0_label', 'y0Label'),
+            ('y1_label', 'y1Label'),
+        ]:
+            if hasattr(self, attr) and getattr(self, attr):
+                query_params[param_name] = getattr(self, attr)
+        return query_params
+
+    def iframe_url(self):
+        """should return something like
+
+        <iframe
+        id="inspire-tile-8"
+        src="
+            //ata.livestories.com/chart/embed?
+            dataset=9e3d0cd49d7e11e4a93606909bee25eb
+            &amp;amp; variables=Technology
+            &amp;amp; variables=year
+            &amp;amp; indicators=Value
+            &amp;amp; colors=7a7654
+            &amp;amp; colors=1d976b
+            ...
+            &amp;amp; colors=214009
+            &amp;amp; operation=avg
+            &amp;amp; chartType=column
+            &amp;amp; categoryOrder=alphabetical
+            &amp;amp; precision=1
+            &amp;amp; xLabel=Technology, year
+            &amp;amp; y0Label=Percentage of farmers
+            &amp;amp; height=600
+            &amp;amp; show-data-labels=1
+            &amp;amp; show-title=0
+            &amp;amp; show-legend=1
+            &amp;amp; show-dataset=0
+            &amp;amp; enable-filtering=1
+            &amp;amp; title=
+
+        Percentage of farmers who use technologies
+        "
+        style="width: 100%; max-width: 1000px;"
+        frameborder="0"
+        height="600"
+        width="1000">
+        </iframe>
+        """
+        url = '//{}/chart/embed?'.format(self.domain)
+        url += urlencode(self._get_iframe_query_params(), doseq=True)
+        filter_part = self.filters_for_embed_link()
+        if filter_part:
+            url += '&' + filter_part
+        url = conditional_escape(url)
+        return mark_safe(conditional_escape(url))
+
+    def iframe_element(self):
+        """should return something like
+
+        <iframe
+        id="inspire-tile-8"
+        src="<IFRAME URL>"
+        style="width: 100%; max-width: 1000px;"
+        frameborder="0"
+        height="600"
+        width="1000">
+        </iframe>
+        """
+        element = ' '.join([
+            '<iframe',
+            'id="inspire-tile"',
+            'src="{}"'.format(self.iframe_url()),
+            'style="width: 100%; max-width: {}px;"'.format(self.width),
+            'frameborder="0"',
+            'height="{}"'.format(self.height),
+            'width="1000">'.format(self.width),
+            '</iframe>',
+        ])
+        return mark_safe(element)
+
+    def _get_explore_query_params(self):
         query_params = {
             'datasetId': self.dataset_id,
             'dashId': '',
@@ -129,7 +233,7 @@ class EmbedChartSettings(object):
         (without the whitespace)
         """
         link = "http://ata.livestories.com/guest/chart?"
-        link += urlencode(self._get_query_params(), doseq=True)
+        link += urlencode(self._get_explore_query_params(), doseq=True)
         filter_part = self.filters_for_embed_link()
         if filter_part:
             link += '&' + filter_part

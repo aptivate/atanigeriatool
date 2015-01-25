@@ -3,6 +3,10 @@
 <h2>{{ chart.not_available_message }}</h2>
 </div>
 {% else %}
+
+{% if chart.use_iframe %}
+	{{ chart.iframe_element }}
+	{% else %}
 <a
 	class="{{ chart.html_class }}"
 	data-width="{{ chart.width }}"
@@ -31,4 +35,5 @@
 	href="//{{ chart.domain }}/chart/embed" target="_blank">
 	{{ chart.title }}
 	</a>
+{% endif %}
 {% endif %}
