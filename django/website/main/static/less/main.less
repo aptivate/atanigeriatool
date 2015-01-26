@@ -412,6 +412,7 @@ nav.ata-header {
     border-width: 1px;
     font-size: 2em;
     height: 5em;
+    vertical-align: middle;
 }
 
 .state-filters > .filter-button,
@@ -426,6 +427,14 @@ nav.ata-header {
 .filter-button > a {
     color: @light-fg;
     text-transfrom: uppercase;
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 2em
+}
+
+.filter-button > a:hover {
+    text-decoration: none;
 }
 
 /********************
