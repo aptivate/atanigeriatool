@@ -63,7 +63,6 @@ CHARTS = {
         'chart_type': "column",
         'y0_label': "Total production (metric tonnes)",
         'y1_label': "Average yield (metric tonnes/hectare)",
-        'x_label': "Year",
         'colors': get_colors_with_overrides(COLOR_PRE_ATA, COLOR_YIELD),
         "description":
             "DATASOURCE<br />"
@@ -159,6 +158,7 @@ class HomeView(TemplateView):
         if valuechain:  # chart for crop by year
             args.update({
                 'variables': ["Year"],
+                'x_label': "Year",
                 'title': "{0} production and yield pre ATA (nationwide)".
                          format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
@@ -167,6 +167,7 @@ class HomeView(TemplateView):
             args.update({
                 'variables': ["Crop"],
                 'title': "Crop production and yield pre ATA",
+                'x_label': "Crop",
             })
             if state:
                 args['title'] += " (Data cannot be filtered by {0})".format(state.capitalize())
