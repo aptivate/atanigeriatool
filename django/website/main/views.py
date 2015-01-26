@@ -124,7 +124,7 @@ class HomeView(TemplateView):
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
-        if valuechain:
+        elif valuechain:
             if valuechain == 'rice':
                 args['filters'] = [
                     ('Commodity', 'Rice - imported'),
@@ -137,7 +137,9 @@ class HomeView(TemplateView):
                     ('Commodity', 'Gari - white'),
                     ('Commodity', 'Gari - yellow')
                 ]
-            args['title'] += " ({0} groups only)".format(valuechain.capitalize())
+            args['title'] += " ({0} groups only, nationwide)".format(valuechain.capitalize())
+        else:
+            args['title'] += " (nationwide)"
         return args
 
     def get_technology_args(self, state, valuechain):
@@ -145,9 +147,11 @@ class HomeView(TemplateView):
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
-        if valuechain:
+        elif valuechain:
             args['filters'] = [('crop', valuechain)]
-            args['title'] += " ({0} farmers only)".format(valuechain.capitalize())
+            args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+        else:
+            args['title'] += " (nationwide)"
         return args
 
     def get_productivity_pre_ata_args(self, state, valuechain):
@@ -155,7 +159,8 @@ class HomeView(TemplateView):
         if valuechain:  # chart for crop by year
             args.update({
                 'variables': ["Year"],
-                'title': "{0} production and yield pre ATA".format(valuechain.capitalize()),
+                'title': "{0} production and yield pre ATA (nationwide)".
+                         format(valuechain.capitalize()),
                 'filters': [('Crop', valuechain.capitalize())]
             })
         else:
@@ -165,6 +170,8 @@ class HomeView(TemplateView):
             })
             if state:
                 args['title'] += " (Data cannot be filtered by {0})".format(state.capitalize())
+            else:
+                args['title'] += " (nationwide)"
             args['filters'] = [('Year', 2009)]
         return args
 
@@ -173,11 +180,13 @@ class HomeView(TemplateView):
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
-        if valuechain:
+        elif valuechain:
             if valuechain == 'cassava':
                 args['not_available_message'] = \
                     "These data are available for Rice only"
-                args['title'] = "Cassava production and yield during ATA"
+                args['title'] = "Cassava production and yield during ATA (nationwide)"
+        else:
+            args['title'] += " (nationwide)"
         return args
 
     def get_charts(self, state, valuechain):
