@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from lscharts.embed import EmbedChartSettings, DEFAULT_COLORS
 
-COLOR_POST_ATA = '1D976B'
+COLOR_DURING_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
 COLOR_YIELD = '000'
 
@@ -71,7 +71,7 @@ CHARTS = {
             "National Bureau of Statistics<br />"
             "Federal Republic of Nigeria",
     },
-    "productivity_post_ata": {
+    "productivity_during_ata": {
         "dataset": "d4aa5ffaa09511e4a41406909bee25eb",
         "dataset_id": "54be3923a750b3418651e0d9",
         'variables': ["season"],
@@ -82,8 +82,8 @@ CHARTS = {
         'y0_label': "Total production (metric tonnes)",
         'y1_label': "Average yield (metric tonnes/hectare)",
         'x_label': "Season and year",
-        'title': "Rice production and yield post ATA",
-        'colors': get_colors_with_overrides(COLOR_POST_ATA, COLOR_YIELD),
+        'title': "Rice production and yield during ATA",
+        'colors': get_colors_with_overrides(COLOR_DURING_ATA, COLOR_YIELD),
         "description":
             "DATASOURCE<br />"
             "ATA Briefing to the Honorable Minister of Agriculture<br />"
@@ -168,8 +168,8 @@ class HomeView(TemplateView):
             args['filters'] = [('Year', 2009)]
         return args
 
-    def get_productivity_post_ata_args(self, state, valuechain):
-        args = self.get_generic_args('productivity_post_ata')
+    def get_productivity_during_ata_args(self, state, valuechain):
+        args = self.get_generic_args('productivity_during_ata')
         if state:
             args['filters'] = [('state', state)]
             args['title'] += " ({0} only)".format(state.capitalize())
@@ -177,7 +177,7 @@ class HomeView(TemplateView):
             if valuechain == 'cassava':
                 args['not_available_message'] = \
                     "These data are available for Rice only"
-                args['title'] = "Cassava production and yield post ATA"
+                args['title'] = "Cassava production and yield during ATA"
         return args
 
     def get_charts(self, state, valuechain):
@@ -188,6 +188,6 @@ class HomeView(TemplateView):
                 EmbedChartSettings(**self.get_technology_args(state, valuechain)),
             'productivity_pre_ata':
                 EmbedChartSettings(**self.get_productivity_pre_ata_args(state, valuechain)),
-            'productivity_post_ata':
-                EmbedChartSettings(**self.get_productivity_post_ata_args(state, valuechain)),
+            'productivity_during_ata':
+                EmbedChartSettings(**self.get_productivity_during_ata_args(state, valuechain)),
         }
