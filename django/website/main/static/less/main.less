@@ -6,6 +6,7 @@
 @header-bg: #2C9F7A;
 @explore-fg: #2C9F7A;
 @chart-description-fg: #515151;
+@light-fg: rgba(255, 255, 255, 0.84);
 
 @cover-image-break-width-gt: 768px;
 @cover-image-break-width-lt: 767px;
@@ -107,7 +108,7 @@ nav.ata-header {
 }
 
 .title-text {
-    color: rgba(255,255,255,0.84);
+    color: @light-fg;
 }
 
 .title-text-1 {
@@ -205,7 +206,7 @@ nav.ata-header {
     background-color: transparent;
     border-style: solid;
     border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.84);
+    border-color: @light-fg;
     @media only screen and (min-width: @cover-image-break-width-gt) {
         margin-right: 30px;
         margin-left: 30px;
@@ -217,13 +218,13 @@ nav.ata-header {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 25px;
-    color: rgba(255, 255, 255, 0.84);
+    color: @light-fg;
     text-transform: uppercase;
     line-height: 1.42857;
 }
 
 .main-navbar-filter-button > .glyphicon {
-    color: rgba(255, 255, 255, 0.84);
+    color: @light-fg;
 }
 
 /*******************
