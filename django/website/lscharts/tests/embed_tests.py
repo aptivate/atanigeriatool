@@ -94,9 +94,9 @@ class EmbedChartSettingsTests(TestCase):
 class EmbeddedChartTemplateTests(TestCase):
 
     def test_not_available_message_replaces_chart_in_template(self):
-       chart_section = render_to_string(
-           'lscharts/embedded_chart.html',
-           { 'chart': EmbedChartSettings(not_available_message="not available") }
-       )
-       self.assertIn("not available", chart_section)
-       self.assertNotIn("data-dataset", chart_section)
+        chart_section = render_to_string(
+            'lscharts/embedded_chart.html',
+            {'chart': EmbedChartSettings(not_available_message="not available")}
+        )
+        self.assertIn("not available", chart_section)
+        self.assertNotIn("data-dataset", chart_section)
