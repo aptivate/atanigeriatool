@@ -39,10 +39,15 @@
 
 <div class="row">
     <div class="col-xs-12 divider">
-        <h2 id="main-nutrition">Nutrition</h2>
+        <h2 id="main-productivity">Productivity</h2>
     </div>
 </div>
-{% include "main/chart_section.html" with chart=charts.nutrition %}
+{% include "main/chart_section.html" with chart=charts.productivity_pre_ata chart_wide="true" %}
+
+<div class="print-page-break"></div>
+
+{% include "main/chart_section.html" with chart=charts.productivity_during_ata chart_wide="true" description_left="true" %}
+
 <div class="print-page-break"></div>
 
 <div class="row">
@@ -51,7 +56,15 @@
     </div>
 </div>
 {% include "main/chart_section.html" with chart=charts.technology %}
+
 <div class="print-page-break"></div>
+
+<div class="row">
+    <div class="col-xs-12 divider">
+        <h2 id="main-nutrition">Nutrition</h2>
+    </div>
+</div>
+{% include "main/chart_section.html" with chart=charts.nutrition %}
 
 {% comment %}
 <div class="row">
@@ -60,15 +73,6 @@
     </div>
 </div>
 {% endcomment %}
-
-<div class="row">
-    <div class="col-xs-12 divider">
-        <h2 id="main-productivity">Productivity</h2>
-    </div>
-</div>
-{% include "main/chart_section.html" with chart=charts.productivity_pre_ata chart_wide="true" %}
-<div class="print-page-break"></div>
-{% include "main/chart_section.html" with chart=charts.productivity_during_ata chart_wide="true" description_left="true" %}
 {% endblock %}
 
 {% block modals %}
