@@ -75,18 +75,34 @@
 <div class="modal fade" id="main-modal-filter" tabindex="-1" role="dialog" aria-labelledby="main-modal-filter" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header filter-modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Filters</h4>
 			</div>
-			<div class="modal-body">
-				<ul>
-					<li><a href="{% url "home" %}">No Filters</a></li>
-					<li><a href="{% url "valuechain_filter" "cassava" %}">Cassava</a></li>
-					<li><a href="{% url "valuechain_filter" "rice" %}">Rice</a></li>
-					<li><a href="{% url "state_filter" "benue" %}">Benue</a></li>
-					<li><a href="{% url "state_filter" "kogi" %}">Kogi</a></li>
-				</ul>
+			<div class="modal-body filter-modal-body">
+				<div class="filter-section">
+					<div class="filter-subsection value-chain-filters">
+						<button type="button" class="filter-button">
+							<a href="{% url "valuechain_filter" "cassava" %}">Cassava</a>
+						</button>
+						<button type="button" class="filter-button">
+							<a href="{% url "valuechain_filter" "rice" %}">Rice</a>
+						</button>
+					</div>
+					<div class="filter-subsection state-filters">
+						<button type="button" class="filter-button">
+							<a href="{% url "state_filter" "benue" %}">Benue</a>
+						</button>
+						<button type="button" class="filter-button">
+							<a href="{% url "state_filter" "kogi" %}">Kogi</a>
+						</button>
+					</div>
+					<div class="filter-subsection no-filters">
+						<button type="button" class="filter-button">
+							<a href="{% url "home" %}">No Filters</a>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

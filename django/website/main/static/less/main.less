@@ -384,6 +384,52 @@ nav.ata-header {
 
 /********************
  *
+ * FILTER SECTION
+ *
+ ********************/
+.modal-header.filter-modal-header {
+    padding: 24px;
+}
+
+.modal-body.filter-modal-body {
+    padding: 0;
+}
+
+.filter-section {
+    display: table;
+    width: 100%;
+}
+
+.filter-subsection {
+    display: table-row;
+    width: 100%;
+}
+
+.filter-button {
+    display: table-cell;
+    background-color: @header-bg;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 2em;
+    height: 5em;
+}
+
+.state-filters > .filter-button,
+.value-chain-filters > .filter-button {
+    width: 50%;
+}
+
+.no-filters > .filter-button {
+    width: 100%;
+}
+
+.filter-button > a {
+    color: @light-fg;
+    text-transfrom: uppercase;
+}
+
+/********************
+ *
  * FOOTER AREA
  *
  ********************/
