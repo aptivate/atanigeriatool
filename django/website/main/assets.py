@@ -20,6 +20,7 @@ register('main.print_css', print_css)
 
 common_js = Bundle(
     # 'bootstrap/ie_version.js',
+    # TODO: use the livestories copy of jquery - only fetch it once
     'bower_components/jquery/dist/jquery.js',
     # 'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/bootstrap/js/affix.js',
