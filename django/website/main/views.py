@@ -103,6 +103,7 @@ class HomeView(TemplateView):
         context['filter_title'] = self.get_filter_title(state, valuechain)
         context['state'] = state
         context['valuechain'] = valuechain
+        context['current_filter'] = self.get_current_filter(state, valuechain)
         return context
 
     def get_filter_title(self, state, valuechain):
@@ -112,6 +113,14 @@ class HomeView(TemplateView):
             return "%s Value Chain" % valuechain
         else:
             return None
+
+    def get_current_filter(self, state, valuechain):
+        if state:
+            return state
+        elif valuechain:
+            return valuechain
+        else:
+            return 'all'
 
     def get_generic_args(self, chart_type):
         chart_info = {'domain': DOMAIN}

@@ -6,6 +6,8 @@
 @header-bg: #2C9F7A;
 @explore-fg: #2C9F7A;
 @chart-description-fg: #515151;
+@unselected-filter-fg: #515151;
+@unselected-filter-border: #7a7654;
 @light-fg: rgba(255, 255, 255, 0.84);
 
 @cover-image-break-width-gt: 768px;
@@ -407,13 +409,19 @@ nav.ata-header {
 
 .filter-button {
     display: table-cell;
-    background-color: @header-bg;
     border-style: solid;
     border-width: 1px;
+    border-color: @unselected-filter-border;
     font-size: 2em;
     height: 5em;
     vertical-align: middle;
 }
+
+.filter-button.selected-filter,
+.filter-button:hover {
+    background-color: @header-bg;
+}
+
 
 .state-filters > .filter-button,
 .value-chain-filters > .filter-button {
@@ -425,12 +433,17 @@ nav.ata-header {
 }
 
 .filter-button > a {
-    color: @light-fg;
+    color: @unselected-filter-fg;
     text-transfrom: uppercase;
     display: block;
     height: 100%;
     width: 100%;
     padding-top: 2em
+}
+
+.filter-button.selected-filter > a,
+.filter-button > a:hover {
+    color: @light-fg;
 }
 
 .filter-button > a:hover {

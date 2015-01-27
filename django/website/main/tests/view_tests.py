@@ -52,6 +52,13 @@ class HomeViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         filter_title = view.get_filter_title(state=None, valuechain=None)
         self.assertIsNone(filter_title)
 
+    def test_get_current_filter_returns_all_for_no_filter(self):
+        view = HomeView()
+        self.assertEqual(
+            'all',
+            view.get_current_filter(state=None, valuechain=None)
+        )
+
 
 class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
     url_name = 'state_filter'
@@ -76,6 +83,13 @@ class StateFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
         view = HomeView()
         filter_title = view.get_filter_title(state='kogi', valuechain=None)
         self.assertEqual('kogi', filter_title)
+
+    def test_get_current_filter_returns_state_name_for_state_filter(self):
+        view = HomeView()
+        self.assertEqual(
+            'kogi',
+            view.get_current_filter(state='kogi', valuechain=None)
+        )
 
 
 class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase):
@@ -113,3 +127,10 @@ class ValuechainFilterViewTests(FastDispatchMixin, BasicViewTestsMixin, TestCase
         view = HomeView()
         filter_title = view.get_filter_title(state=None, valuechain='cassava')
         self.assertIn('cassava', filter_title.lower())
+
+    def test_get_current_filter_returns_valuechain_name_for_valuechain_filter(self):
+        view = HomeView()
+        self.assertEqual(
+            'rice',
+            view.get_current_filter(state=None, valuechain='rice')
+        )
