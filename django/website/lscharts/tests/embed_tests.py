@@ -87,7 +87,7 @@ class EmbedChartSettingsTests(TestCase):
             ('food', 'cassava')
         ]
         ecs = EmbedChartSettings(filters=filters)
-        filter_url_part = ecs.filters_for_embed_link()
+        filter_url_part = ecs.filters_for_embed_link().replace('&amp;', '&amp;amp;')
         self.assertIn(filter_url_part, ecs.explore_url())
 
 
