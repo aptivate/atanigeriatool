@@ -407,24 +407,25 @@ nav.ata-header {
     width: 100%;
 }
 
-.filter-button {
+.btn.filter-button {
     display: table-cell;
     border-style: solid;
     border-width: 1px;
     border-color: @unselected-filter-border;
+    border-radius: 0;
     font-size: 2em;
     height: 5em;
     vertical-align: middle;
 }
 
-.filter-button.selected-filter,
-.filter-button:hover {
+.btn.filter-button.selected-filter,
+.btn.filter-button:hover {
     background-color: @header-bg;
 }
 
 
-.state-filters > .filter-button,
-.value-chain-filters > .filter-button {
+.state-filters > .btn.filter-button,
+.value-chain-filters > .btn.filter-button {
     width: 50%;
 }
 
@@ -435,7 +436,6 @@ nav.ata-header {
 .filter-button > a {
     color: @unselected-filter-fg;
     text-transfrom: uppercase;
-    display: block;
     height: 100%;
     width: 100%;
     padding-top: 2em

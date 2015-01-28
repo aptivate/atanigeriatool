@@ -82,25 +82,27 @@
 			<div class="modal-body filter-modal-body">
 				<div class="filter-section">
 					<div class="filter-subsection value-chain-filters">
-						<button type="button" class="filter-button {% if current_filter == 'cassava' %}selected-filter{% endif %}">
+						<div class="btn btn-default filter-button {% if current_filter == 'cassava' %}selected-filter{% endif %}">
 							<a href="{% url "valuechain_filter" "cassava" %}">Cassava</a>
-						</button>
-						<button type="button" class="filter-button {% if current_filter == 'rice' %}selected-filter{% endif %}">
+						</div>
+						<div class="btn btn-default filter-button {% if current_filter == 'rice' %}selected-filter{% endif %}">
 							<a href="{% url "valuechain_filter" "rice" %}">Rice</a>
-						</button>
+						</div>
 					</div>
 					<div class="filter-subsection state-filters">
-						<button type="button" class="filter-button {% if current_filter == 'benue' %}selected-filter{% endif %}">
+						<div type="button" class="btn btn-default filter-button {% if current_filter == 'benue' %}selected-filter{% endif %}">
 							<a href="{% url "state_filter" "benue" %}">Benue</a>
-						</button>
-						<button type="button" class="filter-button {% if current_filter == 'kogi' %}selected-filter{% endif %}">
+						</div>
+						<div type="button" class="btn btn-default filter-button {% if current_filter == 'kogi' %}selected-filter{% endif %}">
 							<a href="{% url "state_filter" "kogi" %}">Kogi</a>
-						</button>
+						</div>
 					</div>
+				</div>
+				<div class="filter-section">
 					<div class="filter-subsection no-filters">
-						<button type="button" class="filter-button {% if current_filter == 'all' %}selected-filter{% endif %}">
+						<div type="button" class="btn btn-default filter-button {% if current_filter == 'all' %}selected-filter{% endif %}">
 							<a href="{% url "home" %}">See All</a>
-						</button>
+						</div>
 					</div>
 				</div>
 			</div>
