@@ -183,10 +183,10 @@ class ProductivityDuringATAChart(Chart):
                             valuechain.capitalize())
 
 
-def get_charts(self, state, valuechain):
+def get_all_charts(state, valuechain):
     return {
-        'nutrition': NutritionChart().get_chart(),
-        'technology': TechnologyChart().get_chart(),
-        'productivity_pre_ata': ProductivityPreATAChart().get_chart(),
-        'productivity_during_ata': ProductivityDuringATAChart().get_chart(),
+        'nutrition': NutritionChart().get_chart(state, valuechain),
+        'technology': TechnologyChart().get_chart(state, valuechain),
+        'productivity_pre_ata': ProductivityPreATAChart().get_chart(state, valuechain),
+        'productivity_during_ata': ProductivityDuringATAChart().get_chart(state, valuechain),
     }
