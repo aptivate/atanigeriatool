@@ -4,8 +4,13 @@ from django.test.testcases import TestCase
 
 from lscharts.embed import DEFAULT_COLORS
 from main.charts import (
-    Chart, NutritionChart, TechnologyChart,
-    get_colors_with_overrides)
+    Chart,
+    NutritionChart,
+    TechnologyChart,
+    ProductivityPreATAChart,
+    ProductivityDuringATAChart,
+    get_colors_with_overrides
+)
 
 
 class GetColorsWithOverridesTests(TestCase):
@@ -26,20 +31,37 @@ class GetColorsWithOverridesTests(TestCase):
         self.assertEqual(DEFAULT_COLORS[2], colors[2])
 
 
-class ChartTestMixin(object):
-    chart_class = Chart
-
+class ChartSeeAllTestMixin(object):
     def test_filter_not_set_when_no_state_or_valuechain(self):
         chart = self.chart_class()
         args = chart.get_args(state=None, valuechain=None)
         self.assertNotIn('filters', args)
 
 
-class ChartTests(ChartTestMixin, TestCase):
+class ChartStateTestMixin(object):
+    def test_get_args_for_state_has_state_filter(self):
+        chart = self.chart_class()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
+
+
+class ChartValueChainTestMixin(object):
+    def test_get_args_for_valuechain_has_crop_filter(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
+
+
+class ChartTestMixin(ChartSeeAllTestMixin, ChartStateTestMixin,
+                     ChartValueChainTestMixin):
     pass
 
 
-class NutritionChartTests(ChartTestMixin, TestCase):
+class ChartTests(ChartTestMixin, TestCase):
+    chart_class = Chart
+
+
+class NutritionChartTests(ChartSeeAllTestMixin, ChartStateTestMixin, TestCase):
     chart_class = NutritionChart
 
     def test_get_args_for_state_has_state_filter(self):
@@ -68,12 +90,11 @@ class NutritionChartTests(ChartTestMixin, TestCase):
 class TechnologyChartTests(ChartTestMixin, TestCase):
     chart_class = TechnologyChart
 
-    def test_get_technology_args_for_state_has_state_filter(self):
-        chart = self.chart_class()
-        args = chart.get_args(state='kogi', valuechain=None)
-        self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
 
-    def test_get_args_for_valuechain_has_crop_filter(self):
-        chart = self.chart_class()
-        args = chart.get_args(state=None, valuechain='rice')
-        self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
+class ProductivityPreATAChartTests(TestCase):
+    chart_class = ProductivityPreATAChart
+
+
+class ProductivityDuringATAChartTests(ChartSeeAllTestMixin,
+                                      ChartStateTestMixin, TestCase):
+    chart_class = ProductivityDuringATAChart
