@@ -13,87 +13,16 @@ COLOR_DURING_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
 COLOR_YIELD = '000'
 
+TIME_SERIES_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_DURING_ATA)
 PRE_ATA_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_YIELD)
 DURING_ATA_COLORS = get_colors_with_overrides(COLOR_DURING_ATA, COLOR_YIELD)
 
 # TODO: move to settings?
 DOMAIN = "ata.livestories.com"
-CHARTS = {
-    "nutrition": {
-        "dataset": "29277fe2981511e4bbe006909bee25eb",
-        "dataset_id": "54aff583a750b33915f0069c",
-        'variables': ["Commodity", "year"],
-        'indicators': ["Value"],
-        'operation': "avg",
-        'chart_type': "column",
-        'y0_label': "Percentage of Households",
-        'x_label': "Food, year",
-        'title': "Percentage of households who consume food types in a typical week",
-        "description":
-            "DATASOURCE<br />"
-            "Living Standard Measurement Study (LSMS)<br />"
-            "World Bank<br />"
-            "LSMS 2010 Household Post Planting Agriculture Survey (Section 7)<br />"
-            "LSMS 2012 Household Post Planting Agriculture Survey (Section 7)<br />"
-            "Processed tabular data powering this visualization",
-    },
-    "technology": {
-        "dataset": "9e3d0cd49d7e11e4a93606909bee25eb",
-        "dataset_id": "54b909c7a750b30f24f31db7",
-        'variables': ["Technology", "year"],
-        'indicators': ["Value"],
-        'operation': "avg",
-        'chart_type': "column",
-        'y0_label': "Percentage of farmers",
-        'x_label': "Technology, year",
-        'title': "Percentage of farmers who use technologies",
-        "description":
-            "DATASOURCE<br />"
-            "LSMS 2010<br />"
-            "Post Planting Agriculture Survey (Section 11c)<br />"
-            "LSMS 2012<br />"
-            "Post Planting Agriculture Survey (Section 11c)<br />"
-            "Processed tabular data powering this visualization",
-    },
-    "productivity_pre_ata": {
-        "dataset": "8ba9c30ca16e11e4927006909bee25eb",
-        "dataset_id": "54bfa4b9a750b3418651e0fc",
-        'indicators': ["Production", "Yield Per Hectare"],
-        'operation': "sum",
-        'secondary_operation': "avg",
-        'chart_type': "column",
-        'y0_label': "Total production (metric tonnes)",
-        'y1_label': "Average yield (metric tonnes/hectare)",
-        'colors': PRE_ATA_COLORS,
-        "description":
-            "DATASOURCE<br />"
-            "Annual Abstract of Statistics, 2012<br />"
-            "National Bureau of Statistics<br />"
-            "Federal Republic of Nigeria",
-    },
-    "productivity_during_ata": {
-        "dataset": "d4aa5ffaa09511e4a41406909bee25eb",
-        "dataset_id": "54be3923a750b3418651e0d9",
-        'variables': ["season"],
-        'indicators': ["production", "yield"],
-        'operation': "sum",
-        'secondary_operation': "avg",
-        'chart_type': "column",
-        'y0_label': "Total production (metric tonnes)",
-        'y1_label': "Average yield (metric tonnes/hectare)",
-        'x_label': "Season and year",
-        'title': "Rice production and yield during ATA",
-        'colors': DURING_ATA_COLORS,
-        "description":
-            "DATASOURCE<br />"
-            "ATA Briefing to the Honorable Minister of Agriculture<br />"
-            "Based on Cellulante data",
-    },
-}
 
 
 class Chart(object):
-    chart_type = 'generic'
+    static_args = {}
 
     def get_chart(self, state, valuechain):
         return EmbedChartSettings(**self.get_args(state, valuechain))
@@ -101,7 +30,7 @@ class Chart(object):
     def get_args(self, state, valuechain):
         args = {'domain': DOMAIN}
         # note that the update method *copies* the elements across
-        args.update(CHARTS[self.chart_type])
+        args.update(self.static_args)
         if state:
             args = self.update_args_for_state(args, state)
         elif valuechain:
@@ -123,8 +52,26 @@ class Chart(object):
 
 
 class NutritionChart(Chart):
-    chart_type = 'nutrition'
-    filter_values = {
+    static_args = {
+        "dataset": "29277fe2981511e4bbe006909bee25eb",
+        "dataset_id": "54aff583a750b33915f0069c",
+        'variables': ["Commodity", "year"],
+        'indicators': ["Value"],
+        'operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Percentage of Households",
+        'x_label': "Food, year",
+        'colors': TIME_SERIES_COLORS,
+        'title': "Percentage of households who consume food types in a typical week",
+        "description":
+            "DATASOURCE<br />"
+            "Living Standard Measurement Study (LSMS)<br />"
+            "World Bank<br />"
+            "LSMS 2010 Household Post Planting Agriculture Survey (Section 7)<br />"
+            "LSMS 2012 Household Post Planting Agriculture Survey (Section 7)<br />"
+            "Processed tabular data powering this visualization",
+    }
+    valuechain_filters = {
         'rice': [
             ('Commodity', 'Rice - imported'),
             ('Commodity', 'Rice - local')
@@ -138,16 +85,49 @@ class NutritionChart(Chart):
     }
 
     def update_args_for_valuechain(self, args, valuechain):
-        args['filter'] = self.filter_values[valuechain][:]
+        args['filter'] = self.valuechain_filters[valuechain][:]
         args['title'] += " ({0} groups only, nationwide)".format(valuechain.capitalize())
 
 
 class TechnologyChart(Chart):
-    chart_type = 'technology'
+    static_args = {
+        "dataset": "9e3d0cd49d7e11e4a93606909bee25eb",
+        "dataset_id": "54b909c7a750b30f24f31db7",
+        'variables': ["Technology", "year"],
+        'indicators': ["Value"],
+        'operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Percentage of farmers",
+        'x_label': "Technology, year",
+        'colors': TIME_SERIES_COLORS,
+        'title': "Percentage of farmers who use technologies",
+        "description":
+            "DATASOURCE<br />"
+            "LSMS 2010<br />"
+            "Post Planting Agriculture Survey (Section 11c)<br />"
+            "LSMS 2012<br />"
+            "Post Planting Agriculture Survey (Section 11c)<br />"
+            "Processed tabular data powering this visualization",
+    }
 
 
 class ProductivityPreATAChart(Chart):
-    chart_type = 'productivity_pre_ata'
+    static_args = {
+        "dataset": "8ba9c30ca16e11e4927006909bee25eb",
+        "dataset_id": "54bfa4b9a750b3418651e0fc",
+        'indicators': ["Production", "Yield Per Hectare"],
+        'operation': "sum",
+        'secondary_operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Total production (metric tonnes)",
+        'y1_label': "Average yield (metric tonnes/hectare)",
+        'colors': PRE_ATA_COLORS,
+        "description":
+            "DATASOURCE<br />"
+            "Annual Abstract of Statistics, 2012<br />"
+            "National Bureau of Statistics<br />"
+            "Federal Republic of Nigeria",
+    }
 
     def update_args_for_state(self, args, state):
         self.update_args_for_general_chart(args)
@@ -176,7 +156,24 @@ class ProductivityPreATAChart(Chart):
 
 
 class ProductivityDuringATAChart(Chart):
-    chart_type = 'productivity_during_ata'
+    static_args = {
+        "dataset": "d4aa5ffaa09511e4a41406909bee25eb",
+        "dataset_id": "54be3923a750b3418651e0d9",
+        'variables': ["season"],
+        'indicators': ["production", "yield"],
+        'operation': "sum",
+        'secondary_operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Total production (metric tonnes)",
+        'y1_label': "Average yield (metric tonnes/hectare)",
+        'x_label': "Season and year",
+        'title': "Rice production and yield during ATA",
+        'colors': DURING_ATA_COLORS,
+        "description":
+            "DATASOURCE<br />"
+            "ATA Briefing to the Honorable Minister of Agriculture<br />"
+            "Based on Cellulante data",
+    }
 
     def update_args_for_valuechain(self, args, valuechain):
         if valuechain != 'rice':
