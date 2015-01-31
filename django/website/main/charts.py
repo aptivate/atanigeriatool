@@ -32,11 +32,11 @@ class Chart(object):
         # note that the update method *copies* the elements across
         args.update(self.static_args)
         if state:
-            args = self.update_args_for_state(args, state)
+            self.update_args_for_state(args, state)
         elif valuechain:
-            args = self.update_args_for_valuechain(args, valuechain)
+            self.update_args_for_valuechain(args, valuechain)
         else:
-            args = self.update_args_for_see_all(args)
+            self.update_args_for_see_all(args)
         return args
 
     def update_args_for_state(self, args, state):
