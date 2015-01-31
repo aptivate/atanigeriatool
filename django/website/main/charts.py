@@ -22,7 +22,9 @@ DOMAIN = "ata.livestories.com"
 
 
 class Chart(object):
-    static_args = {}
+    static_args = {
+        'title': 'Dummy Title'
+    }
 
     def get_chart(self, state, valuechain):
         return EmbedChartSettings(**self.get_args(state, valuechain))
@@ -85,7 +87,7 @@ class NutritionChart(Chart):
     }
 
     def update_args_for_valuechain(self, args, valuechain):
-        args['filter'] = self.valuechain_filters[valuechain][:]
+        args['filters'] = self.valuechain_filters[valuechain][:]
         args['title'] += " ({0} groups only, nationwide)".format(valuechain.capitalize())
 
 
