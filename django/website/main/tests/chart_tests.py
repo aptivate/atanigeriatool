@@ -109,7 +109,20 @@ class TechnologyChartTests(ChartTestMixin, TestCase):
 class ProductivityPreATAChartTests(TestCase):
     chart_class = ProductivityPreATAChart
 
+    def test_special_behaviour(self):
+        self.fail("Write some tests here")
+
 
 class ProductivityDuringATAChartTests(ChartSeeAllTestMixin,
                                       ChartStateTestMixin, TestCase):
     chart_class = ProductivityDuringATAChart
+
+    def test_setting_rice_as_crop_does_not_add_filters(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertNotIn('filters', args)
+
+    def test_setting_cassava_as_crop_sets_not_available_message(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain='cassava')
+        self.assertIn('not_available_message', args)
