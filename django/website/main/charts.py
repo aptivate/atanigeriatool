@@ -182,11 +182,16 @@ class ProductivityDuringATAChart(Chart):
             args['title'] = "{0} production and yield during ATA (nationwide)".format(
                             valuechain.capitalize())
 
+ALL_CHARTS = {
+    'nutrition': NutritionChart,
+    'technology': TechnologyChart,
+    'productivity_pre_ata': ProductivityPreATAChart,
+    'productivity_during_ata': ProductivityDuringATAChart,
+}
+
 
 def get_all_charts(state, valuechain):
-    return {
-        'nutrition': NutritionChart().get_chart(state, valuechain),
-        'technology': TechnologyChart().get_chart(state, valuechain),
-        'productivity_pre_ata': ProductivityPreATAChart().get_chart(state, valuechain),
-        'productivity_during_ata': ProductivityDuringATAChart().get_chart(state, valuechain),
-    }
+    return dict(
+        [(key, chart().get_chart(state, valuechain))
+         for key, chart in ALL_CHARTS.iteritems()]
+    )
