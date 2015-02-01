@@ -147,3 +147,51 @@ class ProductivityDuringATAChartTests(ChartSeeAllTestMixin,
         chart = self.chart_class()
         args = chart.get_args(state=None, valuechain='cassava')
         self.assertIn('not_available_message', args)
+
+
+class DummyChart(Chart):
+    static_args = {
+        'rabbit': 'carrot'
+    }
+
+    def update_args_for_state(self, args, state):
+        args['cow'] = 'grass'
+
+    def update_args_for_valuechain(self, args, valuechain):
+        args['wolf'] = 'sheep'
+
+    def update_args_for_see_all(self, args):
+        args['omnivore'] = 'everything'
+
+
+class ChartInheritanceTests(TestCase):
+    """Here we are checking and documenting the expected methods to override
+    in Chart so that future users can have confidence"""
+    chart_class = DummyChart
+
+    def test_static_args_are_copied_into_args(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertEqual(args['rabbit'], 'carrot')
+
+    def test_static_args_are_copied_into_args_and_are_not_references(self):
+        chart = self.chart_class()
+        args1 = chart.get_args(state=None, valuechain=None)
+        args2 = chart.get_args(state=None, valuechain=None)
+        args1['rabbit'] = 'grass'
+        self.assertEqual(args2['rabbit'], 'carrot')
+
+    def test_update_args_for_see_all_is_called_when_no_state_or_valuechain(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertEqual(args['omnivore'], 'everything')
+
+    def test_update_args_for_state_is_called_when_state_is_set(self):
+        chart = self.chart_class()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertEqual(args['cow'], 'grass')
+
+    def test_update_args_for_valuechain_is_called_when_valuechain_is_set(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertEqual(args['wolf'], 'sheep')
