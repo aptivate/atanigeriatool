@@ -109,8 +109,29 @@ class TechnologyChartTests(ChartTestMixin, TestCase):
 class ProductivityPreATAChartTests(TestCase):
     chart_class = ProductivityPreATAChart
 
-    def test_special_behaviour(self):
-        self.fail("Write some tests here")
+    def assert_crop_used(self, args):
+        self.assertSequenceEqual(['Crop'], args['variables'])
+        self.assertEqual('Crop', args['x_label'])
+        self.assertTrue(args['title'].startswith('Crop'))
+        self.assertEqual('Year', args['filters'][0][0])
+
+    def test_see_all_args_uses_crop_variable(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assert_crop_used(args)
+
+    def test_state_args_uses_crop_variable(self):
+        chart = self.chart_class()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assert_crop_used(args)
+
+    def test_valuechain_args_use_year_variable(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain='cassava')
+        self.assertSequenceEqual(['Year'], args['variables'])
+        self.assertEqual('Year', args['x_label'])
+        self.assertTrue(args['title'].startswith('Cassava'))
+        self.assertEqual('Crop', args['filters'][0][0])
 
 
 class ProductivityDuringATAChartTests(ChartSeeAllTestMixin,
