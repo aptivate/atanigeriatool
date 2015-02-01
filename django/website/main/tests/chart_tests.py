@@ -67,8 +67,16 @@ class ChartValueChainTestMixin(object):
         self.assertIn('Rice', args['title'])
 
 
+class GetChartTestMixin(object):
+    def test_get_chart_returns_object_with_title_attribute_set(self):
+        chart = self.chart_class()
+        args = chart.get_args(state=None, valuechain=None)
+        chart_object = chart.get_chart(state=None, valuechain=None)
+        self.assertEqual(args['title'], chart_object.title)
+
+
 class ChartTestMixin(ChartSeeAllTestMixin, ChartStateTestMixin,
-                     ChartValueChainTestMixin):
+                     ChartValueChainTestMixin, GetChartTestMixin):
     pass
 
 
@@ -76,7 +84,8 @@ class ChartTests(ChartTestMixin, TestCase):
     chart_class = Chart
 
 
-class NutritionChartTests(ChartSeeAllTestMixin, ChartStateTestMixin, TestCase):
+class NutritionChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
+                          GetChartTestMixin, TestCase):
     chart_class = NutritionChart
 
     def test_get_args_for_state_has_state_filter(self):
@@ -106,7 +115,7 @@ class TechnologyChartTests(ChartTestMixin, TestCase):
     chart_class = TechnologyChart
 
 
-class ProductivityPreATAChartTests(TestCase):
+class ProductivityPreATAChartTests(GetChartTestMixin, TestCase):
     chart_class = ProductivityPreATAChart
 
     def assert_crop_used(self, args):
@@ -134,8 +143,8 @@ class ProductivityPreATAChartTests(TestCase):
         self.assertEqual('Crop', args['filters'][0][0])
 
 
-class ProductivityDuringATAChartTests(ChartSeeAllTestMixin,
-                                      ChartStateTestMixin, TestCase):
+class ProductivityDuringATAChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
+                                      GetChartTestMixin, TestCase):
     chart_class = ProductivityDuringATAChart
 
     def test_setting_rice_as_crop_does_not_add_filters(self):
