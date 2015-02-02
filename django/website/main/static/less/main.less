@@ -6,6 +6,9 @@
 @header-bg: #2C9F7A;
 @explore-fg: #2C9F7A;
 @chart-description-fg: #515151;
+@unselected-filter-fg: #515151;
+@unselected-filter-border: #7a7654;
+@light-fg: rgba(255, 255, 255, 0.84);
 
 @cover-image-break-width-gt: 768px;
 @cover-image-break-width-lt: 767px;
@@ -107,7 +110,7 @@ nav.ata-header {
 }
 
 .title-text {
-    color: rgba(255,255,255,0.84);
+    color: @light-fg;
 }
 
 .title-text-1 {
@@ -205,7 +208,7 @@ nav.ata-header {
     background-color: transparent;
     border-style: solid;
     border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.84);
+    border-color: @light-fg;
     @media only screen and (min-width: @cover-image-break-width-gt) {
         margin-right: 30px;
         margin-left: 30px;
@@ -217,13 +220,13 @@ nav.ata-header {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 25px;
-    color: rgba(255, 255, 255, 0.84);
+    color: @light-fg;
     text-transform: uppercase;
     line-height: 1.42857;
 }
 
 .main-navbar-filter-button > .glyphicon {
-    color: rgba(255, 255, 255, 0.84);
+    color: @light-fg;
 }
 
 /*******************
@@ -379,6 +382,76 @@ nav.ata-header {
 
 .dropdown:hover > .dropdown-menu {
     display: inherit;
+}
+
+/********************
+ *
+ * FILTER SECTION
+ *
+ ********************/
+.modal-header.filter-modal-header {
+    padding: 24px;
+}
+
+.modal-body.filter-modal-body {
+    padding: 0;
+}
+
+.filter-section {
+    display: table;
+    width: 100%;
+}
+
+.filter-subsection {
+    display: table-row;
+    width: 100%;
+}
+
+.btn.filter-button {
+    display: table-cell;
+    border-style: solid;
+    border-width: 1px;
+    border-color: @unselected-filter-border;
+    border-radius: 0;
+    font-size: 2em;
+    height: 5em;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+}
+
+.btn.filter-button.selected-filter,
+.btn.filter-button:hover {
+    background-color: @header-bg;
+}
+
+
+.state-filters > .btn.filter-button,
+.value-chain-filters > .btn.filter-button {
+    width: 50%;
+}
+
+.no-filters > .filter-button {
+    width: 100%;
+}
+
+.filter-button > a {
+    color: @unselected-filter-fg;
+    text-transfrom: uppercase;
+    height: 5em;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    display: block;
+}
+
+.filter-button.selected-filter > a,
+.filter-button > a:hover {
+    color: @light-fg;
+}
+
+.filter-button > a:hover {
+    text-decoration: none;
 }
 
 /********************
