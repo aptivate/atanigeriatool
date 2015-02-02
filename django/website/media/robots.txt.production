@@ -1,4 +1,6 @@
 # https://projects.aptivate.org/issues/672
 User-agent: *
-Disallow: /admin/
-Disallow: /en/admin/
+# don't want this on google yet
+Disallow: /
+#Disallow: /admin/
+#Disallow: /en/admin/

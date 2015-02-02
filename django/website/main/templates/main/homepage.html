@@ -39,10 +39,15 @@
 
 <div class="row">
     <div class="col-xs-12 divider">
-        <h2 id="main-nutrition">Nutrition</h2>
+        <h2 id="main-productivity">Productivity</h2>
     </div>
 </div>
-{% include "main/chart_section.html" with chart=charts.nutrition %}
+{% include "main/chart_section.html" with chart=charts.productivity_pre_ata chart_wide="true" %}
+
+<div class="print-page-break"></div>
+
+{% include "main/chart_section.html" with chart=charts.productivity_during_ata chart_wide="true" description_left="true" %}
+
 <div class="print-page-break"></div>
 
 <div class="row">
@@ -51,7 +56,15 @@
     </div>
 </div>
 {% include "main/chart_section.html" with chart=charts.technology %}
+
 <div class="print-page-break"></div>
+
+<div class="row">
+    <div class="col-xs-12 divider">
+        <h2 id="main-nutrition">Nutrition</h2>
+    </div>
+</div>
+{% include "main/chart_section.html" with chart=charts.nutrition %}
 
 {% comment %}
 <div class="row">
@@ -60,33 +73,38 @@
     </div>
 </div>
 {% endcomment %}
-
-<div class="row">
-    <div class="col-xs-12 divider">
-        <h2 id="main-productivity">Productivity</h2>
-    </div>
-</div>
-{% include "main/chart_section.html" with chart=charts.productivity_pre_ata chart_wide="true" %}
-<div class="print-page-break"></div>
-{% include "main/chart_section.html" with chart=charts.productivity_post_ata chart_wide="true" description_left="true" %}
 {% endblock %}
 
 {% block modals %}
 <div class="modal fade" id="main-modal-filter" tabindex="-1" role="dialog" aria-labelledby="main-modal-filter" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Filters</h4>
-			</div>
-			<div class="modal-body">
-				<ul>
-					<li><a href="{% url "home" %}">No Filters</a></li>
-					<li><a href="{% url "valuechain_filter" "cassava" %}">Cassava</a></li>
-					<li><a href="{% url "valuechain_filter" "rice" %}">Rice</a></li>
-					<li><a href="{% url "state_filter" "benue" %}">Benue</a></li>
-					<li><a href="{% url "state_filter" "kogi" %}">Kogi</a></li>
-				</ul>
+			<div class="modal-body filter-modal-body">
+				<div class="filter-section">
+					<div class="filter-subsection value-chain-filters">
+						<div class="btn btn-default filter-button {% if current_filter == 'cassava' %}selected-filter{% endif %}">
+							<a href="{% url "valuechain_filter" "cassava" %}">Cassava</a>
+						</div>
+						<div class="btn btn-default filter-button {% if current_filter == 'rice' %}selected-filter{% endif %}">
+							<a href="{% url "valuechain_filter" "rice" %}">Rice</a>
+						</div>
+					</div>
+					<div class="filter-subsection state-filters">
+						<div type="button" class="btn btn-default filter-button {% if current_filter == 'benue' %}selected-filter{% endif %}">
+							<a href="{% url "state_filter" "benue" %}">Benue</a>
+						</div>
+						<div type="button" class="btn btn-default filter-button {% if current_filter == 'kogi' %}selected-filter{% endif %}">
+							<a href="{% url "state_filter" "kogi" %}">Kogi</a>
+						</div>
+					</div>
+				</div>
+				<div class="filter-section">
+					<div class="filter-subsection no-filters">
+						<div type="button" class="btn btn-default filter-button {% if current_filter == 'all' %}selected-filter{% endif %}">
+							<a href="{% url "home" %}">See All</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
