@@ -306,7 +306,7 @@ nav.ata-header {
     padding-right: 0;
 }
 
-.chart-meta {
+.chart-meta-sidebar.chart-meta {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         height: 600px;
         display: table;
@@ -318,29 +318,31 @@ nav.ata-header {
     float: right;
 }
 
-.chart-title-container {
+.chart-meta-sidebar > .chart-title-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
         height: 200px;
     }
 }
-.chart-title {
+.chart-meta-sidebar > .chart-title-container > .chart-title {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         margin-top: 2em;
     }
     @media only screen and (max-width: @chart-text-break-width-lt) {
         margin-top: 0.4em;
     }
+}
+.chart-title {
     font-family: @font-family-serif;
 }
 
-.chart-description-container {
+.chart-meta-sidebar > .chart-description-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
         height: 200px;
     }
 }
-.chart-description {
+.chart-meta-sidebar > .chart-description-container > .chart-description {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-cell;
         vertical-align: middle;
@@ -349,12 +351,14 @@ nav.ata-header {
         margin-top: 2em;
         margin-bottom: 2em;
     }
+}
+.chart-description {
     font-size: 1.2em;
     font-family: @font-family-serif;
     color: @chart-description-fg;
 }
 
-.explore-button-container {
+.chart-meta-sidebar > .explore-button-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
         height: 200px;

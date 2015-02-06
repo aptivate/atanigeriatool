@@ -219,6 +219,8 @@ class PercentSalesDonutChart(Chart):
         ]
         if self.year == "2010":
             args['colors'] = PRE_ATA_ONLY_COLORS
+            args['height'] = "400"
+            args['width'] = "400"
         else:
             args['colors'] = DURING_ATA_ONLY_COLORS
 
