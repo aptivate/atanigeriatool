@@ -242,8 +242,17 @@ class AverageHouseholdSalesChart(Chart):
         "operation": "avg",
         "indicators": ["total sales"],
         "variables": ["gender", "year"],
+        'y0_label': "Average sales per household (Naira)",
+        'x_label': "Gender and year",
         "title": "Average household sales across gender, year",
         'colors': TIME_SERIES_COLORS,
+        'description':
+            "DATASOURCE<br />"
+            "LSMS 2010<br />"
+            "Post Harvest Agriculture Survey (Section a3)<br />"
+            "LSMS 2012<br />"
+            "Post Harvest Agriculture Survey (Section a3)<br />"
+            "Processed tabular data powering this visualization",
     }
 
     def update_args_for_state(self, args, state):
