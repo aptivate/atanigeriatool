@@ -12,10 +12,13 @@ def get_colors_with_overrides(*colors):
 COLOR_DURING_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
 COLOR_YIELD = '000'
+COLOR_BACKGROUND = "DDDDDD"
 
 TIME_SERIES_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_DURING_ATA)
 PRE_ATA_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_YIELD)
 DURING_ATA_COLORS = get_colors_with_overrides(COLOR_DURING_ATA, COLOR_YIELD)
+PRE_ATA_ONLY_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_BACKGROUND)
+DURING_ATA_ONLY_COLORS = get_colors_with_overrides(COLOR_DURING_ATA, COLOR_BACKGROUND)
 
 # TODO: move to settings?
 DOMAIN = "ata.livestories.com"
@@ -184,16 +187,87 @@ class ProductivityDuringATAChart(Chart):
             args['title'] = "{0} production and yield during ATA (nationwide)".format(
                             valuechain.capitalize())
 
+
+class PercentSalesDonutChart(Chart):
+    static_args = {
+        "dataset": "23c646c0ad2611e48f3706909bee25eb",
+        "width": "400",
+        "height": "400",
+        "variables": ["percent%20sales"],
+        "indicators": ["percent%20sales"],
+        "operation": "avg",
+        "chart_type": "percentagedonut",
+        "title": "Percentage of crops sold",
+        'colors': PRE_ATA_ONLY_COLORS,
+    }
+
+    def __init__(self, year):
+        self.year = str(year)
+
+    def update_args_for_state(self, args, state):
+        args['filters'] = [
+            ('state', state),
+            ("year", self.year),
+            ("cropcode", "cassava%20old"),
+            ("cropcode", "rice"),
+        ]
+        args['title'] += " ({0} only)".format(state.capitalize())
+
+    def update_args_for_valuechain(self, args, valuechain):
+        VALUECHAIN_LOOKUP = {
+            'cassava': "cassava%20old",
+            'rice': 'rice',
+        }
+        args['filters'] = [
+            ("year", self.year),
+            ("cropcode", VALUECHAIN_LOOKUP[valuechain]),
+        ]
+        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+
+    def update_args_for_see_all(self, args):
+        args['filters'] = [
+            ("year", self.year),
+            ("cropcode", "cassava%20old"),
+            ("cropcode", "rice"),
+        ]
+        args['title'] += " (nationwide)"
+
+
+class AverageHouseholdSalesChart(Chart):
+    static_args = {
+        "dataset": "c9704b54adf611e4a54c06909bee25eb",
+        "chart_type": "column",
+        "operation": "avg",
+        "indicators": ["total sales"],
+        "variables": ["gender", "year"],
+        "title": "Average household sales across gender, year",
+        'colors': TIME_SERIES_COLORS,
+    }
+
+    def update_args_for_state(self, args, state):
+        args['filters'] = [('state', state)]
+        args['title'] += " ({0} only)".format(state.capitalize())
+
+    def update_args_for_valuechain(self, args, valuechain):
+        args['filters'] = [('Cropcode', valuechain)]
+        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+
+    def update_args_for_see_all(self, args):
+        args['title'] += " (nationwide)"
+
 ALL_CHARTS = {
-    'nutrition': NutritionChart,
-    'technology': TechnologyChart,
-    'productivity_pre_ata': ProductivityPreATAChart,
-    'productivity_during_ata': ProductivityDuringATAChart,
+    'nutrition': NutritionChart(),
+    'technology': TechnologyChart(),
+    'productivity_pre_ata': ProductivityPreATAChart(),
+    'productivity_during_ata': ProductivityDuringATAChart(),
+    'percent_sales_donut_2010': PercentSalesDonutChart(2010),
+    'percent_sales_donut_2012': PercentSalesDonutChart(2012),
+    'average_household_sales': AverageHouseholdSalesChart(),
 }
 
 
 def get_all_charts(state, valuechain):
     return dict(
-        [(key, chart().get_chart(state, valuechain))
+        [(key, chart.get_chart(state, valuechain))
          for key, chart in ALL_CHARTS.iteritems()]
     )

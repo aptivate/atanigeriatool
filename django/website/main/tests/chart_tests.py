@@ -9,6 +9,8 @@ from main.charts import (
     TechnologyChart,
     ProductivityPreATAChart,
     ProductivityDuringATAChart,
+    PercentSalesDonutChart,
+    AverageHouseholdSalesChart,
     get_colors_with_overrides
 )
 
@@ -33,50 +35,56 @@ class GetColorsWithOverridesTests(TestCase):
 
 class ChartSeeAllTestMixin(object):
     def test_filter_not_set_when_no_state_or_valuechain(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
         self.assertNotIn('filters', args)
 
     def test_nationwide_in_title_when_no_state_or_valuechain(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
         self.assertIn('nationwide', args['title'])
 
 
 class ChartStateTestMixin(object):
     def test_get_args_for_state_has_state_filter(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
         self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
 
     def test_get_args_for_state_has_state_name_in_title(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
         self.assertIn('Kogi', args['title'])
 
 
 class ChartValueChainTestMixin(object):
     def test_get_args_for_valuechain_has_crop_filter(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
         self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
 
     def test_get_args_for_valuechain_has_crop_name_in_title(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
         self.assertIn('Rice', args['title'])
 
 
 class GetChartTestMixin(object):
     def test_get_chart_returns_object_with_title_attribute_set(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
         chart_object = chart.get_chart(state=None, valuechain=None)
         self.assertEqual(args['title'], chart_object.title)
 
 
-class ChartTestMixin(ChartSeeAllTestMixin, ChartStateTestMixin,
-                     ChartValueChainTestMixin, GetChartTestMixin):
+class CreateChartTestMixin(object):
+    def create_chart(self):
+        return self.chart_class()
+
+
+class ChartTestMixin(CreateChartTestMixin, ChartSeeAllTestMixin,
+                     ChartStateTestMixin, ChartValueChainTestMixin,
+                     GetChartTestMixin):
     pass
 
 
@@ -85,16 +93,16 @@ class ChartTests(ChartTestMixin, TestCase):
 
 
 class NutritionChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
-                          GetChartTestMixin, TestCase):
+                          GetChartTestMixin, CreateChartTestMixin, TestCase):
     chart_class = NutritionChart
 
     def test_get_args_for_state_has_state_filter(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
         self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
 
     def test_get_args_for_rice_has_correct_filters(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
         filters = args['filters']
         for filter_detail in filters:
@@ -102,7 +110,7 @@ class NutritionChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
             self.assertTrue(filter_detail[1].startswith('Rice'))
 
     def test_get_args_for_cassava_has_correct_filters(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='cassava')
         filters = args['filters']
         for filter_detail in filters:
@@ -115,7 +123,7 @@ class TechnologyChartTests(ChartTestMixin, TestCase):
     chart_class = TechnologyChart
 
 
-class ProductivityPreATAChartTests(GetChartTestMixin, TestCase):
+class ProductivityPreATAChartTests(GetChartTestMixin, CreateChartTestMixin, TestCase):
     chart_class = ProductivityPreATAChart
 
     def assert_crop_used(self, args):
@@ -125,17 +133,17 @@ class ProductivityPreATAChartTests(GetChartTestMixin, TestCase):
         self.assertEqual('Year', args['filters'][0][0])
 
     def test_see_all_args_uses_crop_variable(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
         self.assert_crop_used(args)
 
     def test_state_args_uses_crop_variable(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
         self.assert_crop_used(args)
 
     def test_valuechain_args_use_year_variable(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='cassava')
         self.assertSequenceEqual(['Year'], args['variables'])
         self.assertEqual('Year', args['x_label'])
@@ -144,18 +152,46 @@ class ProductivityPreATAChartTests(GetChartTestMixin, TestCase):
 
 
 class ProductivityDuringATAChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
-                                      GetChartTestMixin, TestCase):
+                                      GetChartTestMixin, CreateChartTestMixin, TestCase):
     chart_class = ProductivityDuringATAChart
 
     def test_setting_rice_as_crop_does_not_add_filters(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
         self.assertNotIn('filters', args)
 
     def test_setting_cassava_as_crop_sets_not_available_message(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='cassava')
         self.assertIn('not_available_message', args)
+
+
+# commented out as we're not sure we want this chart
+# TODO: write tests properly if we keep this chart
+"""class PercentSalesDonutChartTests(CreateChartTestMixin,
+                                  ChartStateTestMixin, ChartValueChainTestMixin,
+                                  GetChartTestMixin, TestCase):
+    chart_class = PercentSalesDonutChart
+
+    def create_chart(self, year=2010):
+        return self.chart_class(year)
+
+    def test_see_all_has_correct_filters(self):
+        self.fail('test not written yet')
+
+    def test_nationwide_in_title_when_no_state_or_valuechain(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertIn('nationwide', args['title'])"""
+
+
+class AverageHouseholdSalesChartTests(ChartTestMixin, TestCase):
+    chart_class = AverageHouseholdSalesChart
+
+    def test_get_args_for_valuechain_has_crop_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertSequenceEqual(args['filters'], [('Cropcode', 'rice')])
 
 
 class DummyChart(Chart):
@@ -173,34 +209,34 @@ class DummyChart(Chart):
         args['omnivore'] = 'everything'
 
 
-class ChartInheritanceTests(TestCase):
+class ChartInheritanceTests(CreateChartTestMixin, TestCase):
     """Here we are checking and documenting the expected methods to override
     in Chart so that future users can have confidence"""
     chart_class = DummyChart
 
     def test_static_args_are_copied_into_args(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
         self.assertEqual(args['rabbit'], 'carrot')
 
     def test_static_args_are_copied_into_args_and_are_not_references(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args1 = chart.get_args(state=None, valuechain=None)
         args2 = chart.get_args(state=None, valuechain=None)
         args1['rabbit'] = 'grass'
         self.assertEqual(args2['rabbit'], 'carrot')
 
     def test_update_args_for_see_all_is_called_when_no_state_or_valuechain(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
         self.assertEqual(args['omnivore'], 'everything')
 
     def test_update_args_for_state_is_called_when_state_is_set(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
         self.assertEqual(args['cow'], 'grass')
 
     def test_update_args_for_valuechain_is_called_when_valuechain_is_set(self):
-        chart = self.chart_class()
+        chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
         self.assertEqual(args['wolf'], 'sheep')

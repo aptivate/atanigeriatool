@@ -52,6 +52,19 @@
 
 <div class="row">
     <div class="col-xs-12 divider">
+        <h2 id="main-income">Income</h2>
+    </div>
+</div>
+{% include "main/chart_section.html" with chart=charts.percent_sales_donut_2010 %}
+
+<div class="print-page-break"></div>
+
+{% include "main/chart_section.html" with chart=charts.average_household_sales description_left="true" %}
+
+<div class="print-page-break"></div>
+
+<div class="row">
+    <div class="col-xs-12 divider">
         <h2 id="main-technology">Technology Adoption</h2>
     </div>
 </div>
