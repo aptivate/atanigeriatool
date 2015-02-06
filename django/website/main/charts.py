@@ -260,8 +260,16 @@ class AverageHouseholdSalesChart(Chart):
         args['title'] += " ({0} only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
-        args['filters'] = [('Cropcode', valuechain)]
-        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+        VALUECHAIN_LOOKUP = {
+            'cassava': "cassava%20old",
+            'rice': 'rice',
+        }
+        args.update({
+            "dataset": "23c646c0ad2611e48f3706909bee25eb",
+            "dataset_id": "54d34d49a750b304561f6605",
+            'filters': [("cropcode", VALUECHAIN_LOOKUP[valuechain])],
+            'title': " ({0} farmers only, nationwide)".format(valuechain.capitalize()),
+        })
 
     def update_args_for_see_all(self, args):
         args['title'] += " (nationwide)"

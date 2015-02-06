@@ -9,7 +9,7 @@ from main.charts import (
     TechnologyChart,
     ProductivityPreATAChart,
     ProductivityDuringATAChart,
-    PercentSalesDonutChart,
+    # PercentSalesDonutChart,
     AverageHouseholdSalesChart,
     get_colors_with_overrides
 )
@@ -191,7 +191,23 @@ class AverageHouseholdSalesChartTests(ChartTestMixin, TestCase):
     def test_get_args_for_valuechain_has_crop_filter(self):
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
-        self.assertSequenceEqual(args['filters'], [('Cropcode', 'rice')])
+        self.assertSequenceEqual(args['filters'], [('cropcode', 'rice')])
+
+    def test_valuechain_args_has_different_dataset(self):
+        """ The valuechain uses a different dataset as for:
+        * valuechain - we get the value sold only for that crop and then we
+          average.  So we need one row for each household_id/crop pair
+        * others - we want the sum of all values sold by that household and
+          then we average.  So we need one row for each household_id
+
+        So we have prepared two different datasets and need to switch between
+        them as required.
+        """
+        chart = self.create_chart()
+        normal_args = chart.get_args(state=None, valuechain=None)
+        rice_args = chart.get_args(state=None, valuechain='rice')
+        self.assertNotEqual(normal_args['dataset'], rice_args['dataset'])
+        self.assertNotEqual(normal_args['dataset_id'], rice_args['dataset_id'])
 
 
 class DummyChart(Chart):
