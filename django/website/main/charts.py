@@ -192,45 +192,56 @@ class PercentSalesDonutChart(Chart):
     static_args = {
         "dataset": "23c646c0ad2611e48f3706909bee25eb",
         "dataset_id": "54d34d49a750b304561f6605",
-        "width": "400",
-        "height": "400",
         "variables": ["percent%20sales"],
         "indicators": ["percent%20sales"],
         "operation": "avg",
         "chart_type": "percentagedonut",
+        "legend": None,
+        "data_labels": None,
         "title": "Percentage of crops sold",
         'colors': PRE_ATA_ONLY_COLORS,
+        'description':
+            "DATASOURCE<br />"
+            "LSMS 2010<br />"
+            "Post Harvest Agriculture Survey (Section a3)<br />"
+            "LSMS 2012<br />"
+            "Post Harvest Agriculture Survey (Section a3)<br />"
+            "Processed tabular data powering this visualization",
     }
 
     def __init__(self, year):
         self.year = str(year)
 
-    def update_args_for_state(self, args, state):
+    def update_args_generic(self, args):
+        args['chart_title'] = self.year
         args['filters'] = [
-            ('state', state),
             ("year", self.year),
-            ("cropcode", "cassava%20old"),
-            ("cropcode", "rice"),
+        ]
+        if self.year == "2010":
+            args['colors'] = PRE_ATA_ONLY_COLORS
+        else:
+            args['colors'] = DURING_ATA_ONLY_COLORS
+
+    def update_args_for_state(self, args, state):
+        self.update_args_generic(args)
+        args['filters'] += [
+            ('state', state),
         ]
         args['title'] += " ({0} only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
+        self.update_args_generic(args)
         VALUECHAIN_LOOKUP = {
             'cassava': "cassava%20old",
             'rice': 'rice',
         }
-        args['filters'] = [
-            ("year", self.year),
+        args['filters'] += [
             ("cropcode", VALUECHAIN_LOOKUP[valuechain]),
         ]
         args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
 
     def update_args_for_see_all(self, args):
-        args['filters'] = [
-            ("year", self.year),
-            ("cropcode", "cassava%20old"),
-            ("cropcode", "rice"),
-        ]
+        self.update_args_generic(args)
         args['title'] += " (nationwide)"
 
 
