@@ -191,6 +191,7 @@ class ProductivityDuringATAChart(Chart):
 class PercentSalesDonutChart(Chart):
     static_args = {
         "dataset": "23c646c0ad2611e48f3706909bee25eb",
+        "dataset_id": "54d34d49a750b304561f6605",
         "width": "400",
         "height": "400",
         "variables": ["percent%20sales"],
@@ -236,6 +237,7 @@ class PercentSalesDonutChart(Chart):
 class AverageHouseholdSalesChart(Chart):
     static_args = {
         "dataset": "c9704b54adf611e4a54c06909bee25eb",
+        "dataset_id": "54d4ab51a750b36f06f10a9a",
         "chart_type": "column",
         "operation": "avg",
         "indicators": ["total sales"],
