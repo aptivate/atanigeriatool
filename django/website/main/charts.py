@@ -281,8 +281,8 @@ class AverageHouseholdSalesChart(Chart):
             "dataset": "23c646c0ad2611e48f3706909bee25eb",
             "dataset_id": "54d34d49a750b304561f6605",
             'filters': [("cropcode", VALUECHAIN_LOOKUP[valuechain])],
-            'title': " ({0} farmers only, nationwide)".format(valuechain.capitalize()),
         })
+        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
 
     def update_args_for_see_all(self, args):
         args['title'] += " (nationwide)"

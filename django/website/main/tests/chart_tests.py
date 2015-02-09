@@ -39,6 +39,11 @@ class ChartSeeAllTestMixin(object):
         args = chart.get_args(state=None, valuechain=None)
         self.assertNotIn('filters', args)
 
+    def test_main_title_text_still_in_title_when_no_state_or_valuechain(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertIn(chart.static_args['title'], args['title'])
+
     def test_nationwide_in_title_when_no_state_or_valuechain(self):
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
@@ -51,6 +56,11 @@ class ChartStateTestMixin(object):
         args = chart.get_args(state='kogi', valuechain=None)
         self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
 
+    def test_main_title_text_still_in_title_when_using_state_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertIn(chart.static_args['title'], args['title'])
+
     def test_get_args_for_state_has_state_name_in_title(self):
         chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
@@ -62,6 +72,11 @@ class ChartValueChainTestMixin(object):
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
         self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
+
+    def test_main_title_text_still_in_title_when_using_valuechain_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertIn(chart.static_args['title'], args['title'])
 
     def test_get_args_for_valuechain_has_crop_name_in_title(self):
         chart = self.create_chart()
