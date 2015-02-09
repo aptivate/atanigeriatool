@@ -301,9 +301,25 @@ nav.ata-header {
     }
 }
 
+.chart-section.two-chart-charts {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.chart-section.two-chart-meta {
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
 .chart-section > .chart-container {
     padding-left: 0;
     padding-right: 0;
+}
+
+.small-chart-beside {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        margin-top: 200px;
+    }
 }
 
 .chart-meta-sidebar.chart-meta {

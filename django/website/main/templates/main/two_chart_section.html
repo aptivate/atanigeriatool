@@ -1,13 +1,13 @@
-<div class="row chart-section">
+<div class="row chart-section two-chart-charts">
 	<div class="chart-container chart-left col-md-6 col-md-offset-1">
 		{% include "lscharts/embedded_chart.html" with chart=chart1 %}
 	</div>
-	<div class="chart-container chart-right col-md-4">
+	<div class="chart-container small-chart-beside chart-right col-md-4">
 		{% include "lscharts/embedded_chart.html" with chart=chart2 %}
 	</div>
 </div>
 
-<div class="row chart-section">
+<div class="row chart-section two-chart-meta">
 	<div class="chart-meta chart-meta-fullwidth col-md-10 col-md-offset-1">
 		<div class="chart-title-container">
 			<h2 class="chart-title">{{ chart1.title }}</h2>
