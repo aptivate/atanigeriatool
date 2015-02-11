@@ -203,6 +203,7 @@ class ProductivityMarketPricesChart(Chart):
         'operation': "sum",
         'secondary_operation': "avg",
         'chart_type': "line",
+        'data_labels': "false",
         'y0_label': "Market Value (Naira)",
         'x_label': "Month",
         'title': "Market prices in Kogi State",
