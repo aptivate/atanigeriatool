@@ -328,11 +328,13 @@ nav.ata-header {
     @media only screen and (max-width: @two-chart-break-width-lt) {
         height: 900px;
     }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        width: 100%;
+    }
 }
 
 .two-chart-container {
-    display: table-row;
-    @media only screen and (min-width: @two-chart-break-width-gt) {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
         max-width: 900px;
     }
 }
