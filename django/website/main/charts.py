@@ -13,12 +13,18 @@ COLOR_DURING_ATA = '1D976B'
 COLOR_PRE_ATA = '7A7654'
 COLOR_YIELD = '000'
 COLOR_BACKGROUND = "DDDDDD"
+COLOR_MARKET_PRICE1 = "57CF93"
+COLOR_MARKET_PRICE2 = "158232"
+COLOR_MARKET_PRICE3 = "55615C"
+COLOR_MARKET_PRICE4 = "A2AD9C"
 
 TIME_SERIES_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_DURING_ATA)
 PRE_ATA_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_YIELD)
 DURING_ATA_COLORS = get_colors_with_overrides(COLOR_DURING_ATA, COLOR_YIELD)
 PRE_ATA_ONLY_COLORS = get_colors_with_overrides(COLOR_PRE_ATA, COLOR_BACKGROUND)
 DURING_ATA_ONLY_COLORS = get_colors_with_overrides(COLOR_DURING_ATA, COLOR_BACKGROUND)
+MARKET_PRICE_COLORS = get_colors_with_overrides(
+    COLOR_MARKET_PRICE1, COLOR_MARKET_PRICE2, COLOR_MARKET_PRICE3, COLOR_MARKET_PRICE4)
 
 # TODO: move to settings?
 DOMAIN = "ata.livestories.com"
@@ -188,6 +194,49 @@ class ProductivityDuringATAChart(Chart):
                             valuechain.capitalize())
 
 
+class ProductivityMarketPricesChart(Chart):
+    static_args = {
+        "dataset": "cfe62ffcb0bd11e4a10c06909bee25eb",
+        "dataset_id": "54d9542aa750b33be02c1626",
+        'variables': ["Month", "Development"],
+        'indicators': ["Value"],
+        'operation': "sum",
+        'secondary_operation': "avg",
+        'chart_type': "line",
+        'y0_label': "Market Value (Naira)",
+        'x_label': "Month",
+        'title': "Market prices in Kogi State",
+        'colors': MARKET_PRICE_COLORS,
+        "description":
+            "DATASOURCE<br />"
+            "Market price data collected by ADP in Kogi"
+    }
+    valuechain_filters = {
+        'rice': [
+            ('Crop', 'Rice (milled)'),
+            ('Crop', 'Rice (paddy)'),
+        ],
+        'cassava': [
+            ('Crop', 'Cassava'),
+            ('Crop', 'Garri'),
+        ]
+    }
+
+    def update_args_for_see_all(self, args):
+        """ Don't add nationwide to title, as it is Kogi only """
+        pass
+
+    def update_args_for_state(self, args, state):
+        if state != 'kogi':
+            args['not_available_message'] = \
+                "These data are available for Kogi only"
+            args['title'] = "Market prices in {0} State".format(state.capitalize())
+
+    def update_args_for_valuechain(self, args, valuechain):
+        args['filters'] = self.valuechain_filters[valuechain][:]
+        args['title'] += " ({0} value chain)".format(valuechain.capitalize())
+
+
 class PercentSalesDonutChart(Chart):
     static_args = {
         "dataset": "23c646c0ad2611e48f3706909bee25eb",
@@ -292,6 +341,7 @@ ALL_CHARTS = {
     'technology': TechnologyChart(),
     'productivity_pre_ata': ProductivityPreATAChart(),
     'productivity_during_ata': ProductivityDuringATAChart(),
+    'productivity_market_price': ProductivityMarketPricesChart(),
     'percent_sales_donut_2010': PercentSalesDonutChart(2010),
     'percent_sales_donut_2012': PercentSalesDonutChart(2012),
     'average_household_sales': AverageHouseholdSalesChart(),

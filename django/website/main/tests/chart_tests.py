@@ -9,6 +9,7 @@ from main.charts import (
     TechnologyChart,
     ProductivityPreATAChart,
     ProductivityDuringATAChart,
+    ProductivityMarketPricesChart,
     # PercentSalesDonutChart,
     AverageHouseholdSalesChart,
     get_colors_with_overrides
@@ -179,6 +180,70 @@ class ProductivityDuringATAChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='cassava')
         self.assertIn('not_available_message', args)
+
+
+class ProductivityMarketPricesChartTests(CreateChartTestMixin,
+                                         GetChartTestMixin, TestCase):
+    chart_class = ProductivityMarketPricesChart
+
+    def test_filter_not_set_when_no_state_or_valuechain(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertNotIn('filters', args)
+
+    def test_main_title_text_still_in_title_when_no_state_or_valuechain(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertIn(chart.static_args['title'], args['title'])
+
+    def test_nationwide_not_in_title_when_no_state_or_valuechain(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertNotIn('nationwide', args['title'])
+
+    def test_setting_benue_as_state_sets_not_available_message(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='benue', valuechain=None)
+        self.assertIn('not_available_message', args)
+
+    def test_setting_kogi_as_state_does_not_add_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertNotIn('filters', args)
+
+    def test_main_title_text_still_in_title_when_using_state_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertIn(chart.static_args['title'], args['title'])
+
+    def test_get_args_for_state_has_state_name_in_title(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertIn('Kogi', args['title'])
+
+    def test_get_args_for_valuechain_has_crop_filter_for_rice(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertSequenceEqual(
+            args['filters'],
+            [('Crop', 'Rice (milled)'), ('Crop', 'Rice (paddy)')])
+
+    def test_get_args_for_valuechain_has_crop_filter_for_cassava(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='cassava')
+        self.assertSequenceEqual(
+            args['filters'],
+            [('Crop', 'Cassava'), ('Crop', 'Garri')])
+
+    def test_main_title_text_still_in_title_when_using_valuechain_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertIn(chart.static_args['title'], args['title'])
+
+    def test_get_args_for_valuechain_has_crop_name_in_title(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertIn('Rice', args['title'])
 
 
 # commented out as we're not sure we want this chart
