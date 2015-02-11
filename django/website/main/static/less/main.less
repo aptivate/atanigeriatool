@@ -331,6 +331,7 @@ nav.ata-header {
 
 .two-chart-container {
     width: 100%;
+    display: table-row;
     @media only screen and (min-width: @two-chart-break-width-gt) {
         max-width: 700px;
     }
@@ -338,9 +339,10 @@ nav.ata-header {
 
 .two-chart-container > .chart1 {
     @media only screen and (min-width: @two-chart-break-width-gt) {
-        max-width: 450px;
+        display: table-cell;
+        vertical-align: middle;
+        max-width: 400px;
         width: 60%;
-        float: left;
     }
     @media only screen and (max-width: @two-chart-break-width-lt) {
         width: 450px;
@@ -349,9 +351,9 @@ nav.ata-header {
 
 .two-chart-container > .chart2 {
     @media only screen and (min-width: @two-chart-break-width-gt) {
-        margin-top: 200px;
-        float: left;
-        max-width: 250px;
+        display: table-cell;
+        vertical-align: middle;
+        max-width: 200px;
         width: 40%;
     }
     @media only screen and (max-width: @two-chart-break-width-lt) {
