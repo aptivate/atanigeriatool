@@ -248,6 +248,7 @@ class PercentSalesDonutChart(Chart):
         "legend": None,
         "data_labels": None,
         "title": "Percentage of crops sold",
+        "show_explore_button": False,
         'colors': PRE_ATA_ONLY_COLORS,
         'description':
             "DATASOURCE<br />"
