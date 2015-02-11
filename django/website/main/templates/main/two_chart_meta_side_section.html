@@ -1,5 +1,5 @@
 <div class="row chart-section two-charts">
-		<div class="chart-container two-chart-container chart-background col-md-7 {% if description_left %}col-md-push-4 chart-right{% else %}chart-left col-md-offset-1{% endif %}">
+		<div class="chart-container two-chart-container chart-background col-md-6 {% if description_left %}col-md-push-4 chart-right{% else %}chart-left col-md-offset-1{% endif %}">
 			<div class="chart1">
 				{% include "lscharts/embedded_chart.html" with chart=chart1 %}
 			</div>
@@ -8,7 +8,7 @@
 			</div>
 	</div>
 
-	<div class="chart-meta two-chart-meta chart-meta-sidebar col-md-3 {% if description_left %}col-md-pull-6{% endif %}">
+	<div class="chart-meta two-chart-meta chart-meta-sidebar col-md-4 {% if description_left %}col-md-pull-6{% endif %}">
 		{% include "main/chart_meta.html" with chart=chart1 %}
 	</div>
 </div>
