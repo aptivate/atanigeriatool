@@ -9,11 +9,6 @@
 
 <div class="row chart-section two-chart-meta">
 	<div class="chart-meta chart-meta-fullwidth col-md-10 col-md-offset-1">
-		<div class="chart-title-container">
-			<h2 class="chart-title">{{ chart1.title }}</h2>
-		</div>
-		<div class="chart-description-container">
-			<p class="chart-description">{{ chart1.description|safe }}</p>
-		</div>
+		{% include "main/chart_meta.html" with chart=chart1 %}
 	</div>
 </div>
