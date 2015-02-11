@@ -268,11 +268,17 @@ class PercentSalesDonutChart(Chart):
             ("year", self.year),
         ]
         if self.year == "2010":
-            args['colors'] = PRE_ATA_ONLY_COLORS
-            args['height'] = "400"
-            args['width'] = "400"
+            args.update({
+                'colors': PRE_ATA_ONLY_COLORS,
+                'height': "250",
+                'width': "250",
+            })
         else:
-            args['colors'] = DURING_ATA_ONLY_COLORS
+            args.update({
+                'colors': DURING_ATA_ONLY_COLORS,
+                'height': "450",
+                'width': "450",
+            })
 
     def update_args_for_state(self, args, state):
         self.update_args_generic(args)

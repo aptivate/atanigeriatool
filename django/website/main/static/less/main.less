@@ -16,6 +16,9 @@
 @chart-text-break-width-gt: 990px;
 @chart-text-break-width-lt: 989px;
 
+@two-chart-break-width-gt: 700px;
+@two-chart-break-width-lt: 699px;
+
 @font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 
@@ -316,9 +319,55 @@ nav.ata-header {
     padding-right: 0;
 }
 
+.chart-container.chart-background {
+    background-color: #ffffff;
+    @media only screen and (min-width: @two-chart-break-width-gt) {
+        height: 450px;
+    }
+    @media only screen and (max-width: @two-chart-break-width-lt) {
+        height: 700px;
+    }
+}
+
+.two-chart-container {
+    width: 100%;
+    @media only screen and (min-width: @two-chart-break-width-gt) {
+        max-width: 700px;
+    }
+}
+
+.two-chart-container > .chart1 {
+    @media only screen and (min-width: @two-chart-break-width-gt) {
+        max-width: 450px;
+        width: 60%;
+        float: left;
+    }
+    @media only screen and (max-width: @two-chart-break-width-lt) {
+        width: 450px;
+    }
+}
+
+.two-chart-container > .chart2 {
+    @media only screen and (min-width: @two-chart-break-width-gt) {
+        margin-top: 200px;
+        float: left;
+        max-width: 250px;
+        width: 40%;
+    }
+    @media only screen and (max-width: @two-chart-break-width-lt) {
+        width: 250px;
+    }
+}
+
 .small-chart-beside {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         margin-top: 200px;
+    }
+}
+
+.chart-meta-sidebar.chart-meta.two-chart-meta {
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        height: 450px;
     }
 }
 
