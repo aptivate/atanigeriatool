@@ -77,10 +77,8 @@ class NutritionChart(Chart):
         "description":
             "DATASOURCE<br />"
             "Living Standard Measurement Study (LSMS)<br />"
-            "World Bank<br />"
-            "LSMS 2010 Household Post Planting Agriculture Survey (Section 7)<br />"
-            "LSMS 2012 Household Post Planting Agriculture Survey (Section 7)<br />"
-            "Processed tabular data powering this visualization",
+            "2010 Post Planting Household Survey (Section 7b)<br />"
+            "2012 Post Planting Household Survey (Section 7b)<br />",
     }
     valuechain_filters = {
         'rice': [
@@ -114,11 +112,9 @@ class TechnologyChart(Chart):
         'title': "Percentage of farmers who use technologies",
         "description":
             "DATASOURCE<br />"
-            "LSMS 2010<br />"
-            "Post Planting Agriculture Survey (Section 11c)<br />"
-            "LSMS 2012<br />"
-            "Post Planting Agriculture Survey (Section 11c)<br />"
-            "Processed tabular data powering this visualization",
+            "Living Standard Measurement Study (LSMS)<br />"
+            "2010 Post Planting Agriculture Survey (Section 11c)<br />"
+            "2012 Post Planting Agriculture Survey (Section 11c)<br />",
     }
 
 
@@ -253,11 +249,9 @@ class PercentSalesDonutChart(Chart):
         'colors': PRE_ATA_ONLY_COLORS,
         'description':
             "DATASOURCE<br />"
-            "LSMS 2010<br />"
-            "Post Harvest Agriculture Survey (Section a3)<br />"
-            "LSMS 2012<br />"
-            "Post Harvest Agriculture Survey (Section a3)<br />"
-            "Processed tabular data powering this visualization",
+            "Living Standard Measurement Study (LSMS)<br />"
+            "2010 Post Harvest Agriculture Survey (Section a3)<br />"
+            "2012 Post Harvest Agriculture Survey (Section a3)<br />",
     }
 
     def __init__(self, year):
@@ -318,11 +312,9 @@ class AverageHouseholdSalesChart(Chart):
         'colors': TIME_SERIES_COLORS,
         'description':
             "DATASOURCE<br />"
-            "LSMS 2010<br />"
-            "Post Harvest Agriculture Survey (Section a3)<br />"
-            "LSMS 2012<br />"
-            "Post Harvest Agriculture Survey (Section a3)<br />"
-            "Processed tabular data powering this visualization",
+            "Living Standard Measurement Study (LSMS)<br />"
+            "2010 Post Harvest Agriculture Survey (Section a3)<br />"
+            "2012 Post Harvest Agriculture Survey (Section a3)<br />",
     }
 
     def update_args_for_state(self, args, state):
