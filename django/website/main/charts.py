@@ -183,7 +183,7 @@ class ProductivityDuringATAChart(Chart):
         "description":
             "DATASOURCE<br />"
             "ATA Briefing to the Honorable Minister of Agriculture<br />"
-            "Based on Cellulante data",
+            "Based on Cellulant data from the GES",
     }
 
     def update_args_for_valuechain(self, args, valuechain):
