@@ -164,10 +164,10 @@ class ProductivityPreATAChart(Chart):
 
 class ProductivityDuringATAChart(Chart):
     static_args = {
-        "dataset": "d4aa5ffaa09511e4a41406909bee25eb",
-        "dataset_id": "54be3923a750b3418651e0d9",
-        'variables': ["season"],
-        'indicators': ["production", "yield"],
+        "dataset": "b7b71862b6b511e4882906909bee25eb",
+        "dataset_id": "54e35790a750b363fa31fb40",
+        'variables': ["Season"],
+        'indicators': ["Production", "Yield"],
         'operation': "sum",
         'secondary_operation': "avg",
         'chart_type': "column",
