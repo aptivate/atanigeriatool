@@ -271,7 +271,7 @@ class AverageHouseholdSalesChartTests(ChartTestMixin, TestCase):
     def test_get_args_for_valuechain_has_crop_filter(self):
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain='rice')
-        self.assertSequenceEqual(args['filters'], [('cropcode', 'rice')])
+        self.assertSequenceEqual(args['filters'], [('Crop', 'Rice')])
 
     def test_valuechain_args_has_different_dataset(self):
         """ The valuechain uses a different dataset as for:

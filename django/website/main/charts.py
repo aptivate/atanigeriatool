@@ -238,8 +238,8 @@ class PercentSalesDonutChart(Chart):
     static_args = {
         "dataset": "23c646c0ad2611e48f3706909bee25eb",
         "dataset_id": "54d34d49a750b304561f6605",
-        "variables": ["percent%20sales"],
-        "indicators": ["percent%20sales"],
+        "variables": ["Percent%20Sales"],
+        "indicators": ["Percent%20Sales"],
         "operation": "avg",
         "chart_type": "percentagedonut",
         "legend": None,
@@ -278,18 +278,18 @@ class PercentSalesDonutChart(Chart):
     def update_args_for_state(self, args, state):
         self.update_args_generic(args)
         args['filters'] += [
-            ('state', state),
+            ('State', state.capitalize()),
         ]
         args['title'] += " ({0} Only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
         self.update_args_generic(args)
         VALUECHAIN_LOOKUP = {
-            'cassava': "cassava%20old",
-            'rice': 'rice',
+            'cassava': "Cassava%20Old",
+            'rice': 'Rice',
         }
         args['filters'] += [
-            ("cropcode", VALUECHAIN_LOOKUP[valuechain]),
+            ("Crop", VALUECHAIN_LOOKUP[valuechain]),
         ]
         args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
@@ -304,8 +304,8 @@ class AverageHouseholdSalesChart(Chart):
         "dataset_id": "54d4ab51a750b36f06f10a9a",
         "chart_type": "column",
         "operation": "avg",
-        "indicators": ["total sales"],
-        "variables": ["gender", "year"],
+        "indicators": ["Total Sales"],
+        "variables": ["Gender", "Year"],
         'y0_label': "Average Sales per Household (Naira)",
         'x_label': "Gender and Year",
         "title": "Average Household Sales Across Gender and Year",
@@ -323,13 +323,13 @@ class AverageHouseholdSalesChart(Chart):
 
     def update_args_for_valuechain(self, args, valuechain):
         VALUECHAIN_LOOKUP = {
-            'cassava': "cassava%20old",
-            'rice': 'rice',
+            'cassava': "Cassava%20Old",
+            'rice': 'Rice',
         }
         args.update({
             "dataset": "23c646c0ad2611e48f3706909bee25eb",
             "dataset_id": "54d34d49a750b304561f6605",
-            'filters': [("cropcode", VALUECHAIN_LOOKUP[valuechain])],
+            'filters': [("Crop", VALUECHAIN_LOOKUP[valuechain])],
         })
         args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
