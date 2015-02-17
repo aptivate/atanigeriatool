@@ -87,7 +87,7 @@ class NutritionChart(Chart):
         ],
         'cassava': [
             ('Commodity', 'Cassava - roots'),
-            ('Commodity', 'Cassava flour'),
+            ('Commodity', 'Cassava - flour'),
             ('Commodity', 'Gari - white'),
             ('Commodity', 'Gari - yellow')
         ]
