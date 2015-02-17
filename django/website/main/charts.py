@@ -52,14 +52,14 @@ class Chart(object):
 
     def update_args_for_state(self, args, state):
         args['filters'] = [('state', state)]
-        args['title'] += " ({0} only)".format(state.capitalize())
+        args['title'] += " ({0} Only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
         args['filters'] = [('crop', valuechain)]
-        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+        args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
     def update_args_for_see_all(self, args):
-        args['title'] += " (nationwide)"
+        args['title'] += " (Nationwide)"
 
 
 class NutritionChart(Chart):
@@ -73,7 +73,7 @@ class NutritionChart(Chart):
         'y0_label': "Percentage of Households",
         'x_label': "Food and Year",
         'colors': TIME_SERIES_COLORS,
-        'title': "Percentage of households who consume food types in a typical week",
+        'title': "Percentage of Households Who Consume Food Types in a Typical Week",
         "description":
             "DATASOURCE<br />"
             "Living Standard Measurement Study (LSMS)<br />"
@@ -95,7 +95,7 @@ class NutritionChart(Chart):
 
     def update_args_for_valuechain(self, args, valuechain):
         args['filters'] = self.valuechain_filters[valuechain][:]
-        args['title'] += " ({0} groups only, nationwide)".format(valuechain.capitalize())
+        args['title'] += " ({0} Groups Only, Nationwide)".format(valuechain.capitalize())
 
 
 class TechnologyChart(Chart):
@@ -106,10 +106,10 @@ class TechnologyChart(Chart):
         'indicators': ["Value"],
         'operation': "avg",
         'chart_type': "column",
-        'y0_label': "Percentage of farmers",
+        'y0_label': "Percentage of Farmers",
         'x_label': "Technology and Year",
         'colors': TIME_SERIES_COLORS,
-        'title': "Percentage of farmers who use technologies",
+        'title': "Percentage of Farmers Who Use Technologies",
         "description":
             "DATASOURCE<br />"
             "Living Standard Measurement Study (LSMS)<br />"
@@ -144,19 +144,19 @@ class ProductivityPreATAChart(Chart):
         args.update({
             'variables': ["Year"],
             'x_label': "Year",
-            'title': "{0} production and yield pre ATA (nationwide)".
+            'title': "{0} Production and Yield Pre ATA (Nationwide)".
                      format(valuechain.capitalize()),
             'filters': [('Crop', valuechain.capitalize())]
         })
 
     def update_args_for_see_all(self, args):
         self.update_args_for_general_chart(args)
-        args['title'] += " (nationwide)"
+        args['title'] += " (Nationwide)"
 
     def update_args_for_general_chart(self, args):
         args.update({
             'variables': ["Crop"],
-            'title': "Crop production and yield pre ATA",
+            'title': "Crop Production and Yield Pre ATA",
             'x_label': "Crop",
             'filters': [('Year', 2009)],
         })
@@ -174,7 +174,7 @@ class ProductivityDuringATAChart(Chart):
         'y0_label': "Total Production (metric tonnes)",
         'y1_label': "Average Yield (metric tonnes/hectare)",
         'x_label': "Season and Year",
-        'title': "Rice production and yield during ATA",
+        'title': "Rice Production and Yield During ATA",
         'colors': DURING_ATA_COLORS,
         "description":
             "DATASOURCE<br />"
@@ -186,7 +186,7 @@ class ProductivityDuringATAChart(Chart):
         if valuechain != 'rice':
             args['not_available_message'] = \
                 "These data are available for Rice only"
-            args['title'] = "{0} production and yield during ATA (nationwide)".format(
+            args['title'] = "{0} Production and Yield During ATA (Nationwide)".format(
                             valuechain.capitalize())
 
 
@@ -202,7 +202,7 @@ class ProductivityMarketPricesChart(Chart):
         'data_labels': "false",
         'y0_label': "Market Value (Naira)",
         'x_label': "Month",
-        'title': "Market prices in Kogi state",
+        'title': "Market Prices in Kogi State",
         'colors': MARKET_PRICE_COLORS,
         "description":
             "DATASOURCE<br />"
@@ -227,11 +227,11 @@ class ProductivityMarketPricesChart(Chart):
         if state != 'kogi':
             args['not_available_message'] = \
                 "These data are available for Kogi only"
-            args['title'] = "Market prices in {0} State".format(state.capitalize())
+            args['title'] = "Market Prices in {0} State".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
         args['filters'] = self.valuechain_filters[valuechain][:]
-        args['title'] += " ({0} value chain)".format(valuechain.capitalize())
+        args['title'] += " ({0} Value Chain)".format(valuechain.capitalize())
 
 
 class PercentSalesDonutChart(Chart):
@@ -244,7 +244,7 @@ class PercentSalesDonutChart(Chart):
         "chart_type": "percentagedonut",
         "legend": None,
         "data_labels": None,
-        "title": "Percentage of crops sold",
+        "title": "Percentage of Crops Sold",
         "show_explore_button": False,
         'colors': PRE_ATA_ONLY_COLORS,
         'description':
@@ -280,7 +280,7 @@ class PercentSalesDonutChart(Chart):
         args['filters'] += [
             ('state', state),
         ]
-        args['title'] += " ({0} only)".format(state.capitalize())
+        args['title'] += " ({0} Only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
         self.update_args_generic(args)
@@ -291,11 +291,11 @@ class PercentSalesDonutChart(Chart):
         args['filters'] += [
             ("cropcode", VALUECHAIN_LOOKUP[valuechain]),
         ]
-        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+        args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
     def update_args_for_see_all(self, args):
         self.update_args_generic(args)
-        args['title'] += " (nationwide)"
+        args['title'] += " (Nationwide)"
 
 
 class AverageHouseholdSalesChart(Chart):
@@ -308,7 +308,7 @@ class AverageHouseholdSalesChart(Chart):
         "variables": ["gender", "year"],
         'y0_label': "Average Sales per Household (Naira)",
         'x_label': "Gender and Year",
-        "title": "Average household sales across gender and year",
+        "title": "Average Household Sales Across Gender and Year",
         'colors': TIME_SERIES_COLORS,
         'description':
             "DATASOURCE<br />"
@@ -319,7 +319,7 @@ class AverageHouseholdSalesChart(Chart):
 
     def update_args_for_state(self, args, state):
         args['filters'] = [('state', state)]
-        args['title'] += " ({0} only)".format(state.capitalize())
+        args['title'] += " ({0} Only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
         VALUECHAIN_LOOKUP = {
@@ -331,10 +331,10 @@ class AverageHouseholdSalesChart(Chart):
             "dataset_id": "54d34d49a750b304561f6605",
             'filters': [("cropcode", VALUECHAIN_LOOKUP[valuechain])],
         })
-        args['title'] += " ({0} farmers only, nationwide)".format(valuechain.capitalize())
+        args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
     def update_args_for_see_all(self, args):
-        args['title'] += " (nationwide)"
+        args['title'] += " (Nationwide)"
 
 ALL_CHARTS = {
     'nutrition': NutritionChart(),

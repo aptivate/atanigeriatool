@@ -48,7 +48,7 @@ class ChartSeeAllTestMixin(object):
     def test_nationwide_in_title_when_no_state_or_valuechain(self):
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
-        self.assertIn('nationwide', args['title'])
+        self.assertIn('Nationwide', args['title'])
 
 
 class ChartStateTestMixin(object):
