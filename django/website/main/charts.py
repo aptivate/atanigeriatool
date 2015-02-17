@@ -82,14 +82,14 @@ class NutritionChart(Chart):
     }
     valuechain_filters = {
         'rice': [
-            ('Commodity', 'Rice - imported'),
-            ('Commodity', 'Rice - local')
+            ('Commodity', 'Rice - Imported'),
+            ('Commodity', 'Rice - Local')
         ],
         'cassava': [
-            ('Commodity', 'Cassava - roots'),
-            ('Commodity', 'Cassava - flour'),
-            ('Commodity', 'Gari - white'),
-            ('Commodity', 'Gari - yellow')
+            ('Commodity', 'Cassava - Roots'),
+            ('Commodity', 'Cassava - Flour'),
+            ('Commodity', 'Gari - White'),
+            ('Commodity', 'Gari - Yellow')
         ]
     }
 
