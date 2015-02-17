@@ -71,7 +71,7 @@ class NutritionChart(Chart):
         'operation': "avg",
         'chart_type': "column",
         'y0_label': "Percentage of Households",
-        'x_label': "Food, year",
+        'x_label': "Food and Year",
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of households who consume food types in a typical week",
         "description":
@@ -107,7 +107,7 @@ class TechnologyChart(Chart):
         'operation': "avg",
         'chart_type': "column",
         'y0_label': "Percentage of farmers",
-        'x_label': "Technology, year",
+        'x_label': "Technology and Year",
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of farmers who use technologies",
         "description":
@@ -126,8 +126,8 @@ class ProductivityPreATAChart(Chart):
         'operation': "sum",
         'secondary_operation': "avg",
         'chart_type': "column",
-        'y0_label': "Total production (metric tonnes)",
-        'y1_label': "Average yield (metric tonnes/hectare)",
+        'y0_label': "Total Production (metric tonnes)",
+        'y1_label': "Average Yield (metric tonnes/hectare)",
         'colors': PRE_ATA_COLORS,
         "description":
             "DATASOURCE<br />"
@@ -171,9 +171,9 @@ class ProductivityDuringATAChart(Chart):
         'operation': "sum",
         'secondary_operation': "avg",
         'chart_type': "column",
-        'y0_label': "Total production (metric tonnes)",
-        'y1_label': "Average yield (metric tonnes/hectare)",
-        'x_label': "Season and year",
+        'y0_label': "Total Production (metric tonnes)",
+        'y1_label': "Average Yield (metric tonnes/hectare)",
+        'x_label': "Season and Year",
         'title': "Rice production and yield during ATA",
         'colors': DURING_ATA_COLORS,
         "description":
@@ -202,7 +202,7 @@ class ProductivityMarketPricesChart(Chart):
         'data_labels': "false",
         'y0_label': "Market Value (Naira)",
         'x_label': "Month",
-        'title': "Market prices in Kogi State",
+        'title': "Market prices in Kogi state",
         'colors': MARKET_PRICE_COLORS,
         "description":
             "DATASOURCE<br />"
@@ -306,9 +306,9 @@ class AverageHouseholdSalesChart(Chart):
         "operation": "avg",
         "indicators": ["total sales"],
         "variables": ["gender", "year"],
-        'y0_label': "Average sales per household (Naira)",
-        'x_label': "Gender and year",
-        "title": "Average household sales across gender, year",
+        'y0_label': "Average Sales per Household (Naira)",
+        'x_label': "Gender and Year",
+        "title": "Average household sales across gender and year",
         'colors': TIME_SERIES_COLORS,
         'description':
             "DATASOURCE<br />"
