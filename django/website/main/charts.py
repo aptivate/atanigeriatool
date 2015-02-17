@@ -51,11 +51,11 @@ class Chart(object):
         return args
 
     def update_args_for_state(self, args, state):
-        args['filters'] = [('state', state)]
+        args['filters'] = [('State', state.capitalize())]
         args['title'] += " ({0} Only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):
-        args['filters'] = [('crop', valuechain)]
+        args['filters'] = [('Crop', valuechain.capitalize())]
         args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
     def update_args_for_see_all(self, args):
@@ -102,7 +102,7 @@ class TechnologyChart(Chart):
     static_args = {
         "dataset": "9e3d0cd49d7e11e4a93606909bee25eb",
         "dataset_id": "54b909c7a750b30f24f31db7",
-        'variables': ["Technology", "year"],
+        'variables': ["Technology", "Year"],
         'indicators': ["Value"],
         'operation': "avg",
         'chart_type': "column",
@@ -318,7 +318,7 @@ class AverageHouseholdSalesChart(Chart):
     }
 
     def update_args_for_state(self, args, state):
-        args['filters'] = [('state', state)]
+        args['filters'] = [('State', state.capitalize())]
         args['title'] += " ({0} Only)".format(state.capitalize())
 
     def update_args_for_valuechain(self, args, valuechain):

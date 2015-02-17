@@ -55,7 +55,7 @@ class ChartStateTestMixin(object):
     def test_get_args_for_state_has_state_filter(self):
         chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
-        self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
+        self.assertSequenceEqual(args['filters'], [('State', 'Kogi')])
 
     def test_main_title_text_still_in_title_when_using_state_filter(self):
         chart = self.create_chart()
@@ -71,8 +71,8 @@ class ChartStateTestMixin(object):
 class ChartValueChainTestMixin(object):
     def test_get_args_for_valuechain_has_crop_filter(self):
         chart = self.create_chart()
-        args = chart.get_args(state=None, valuechain='rice')
-        self.assertSequenceEqual(args['filters'], [('crop', 'rice')])
+        args = chart.get_args(state=None, valuechain='Rice')
+        self.assertSequenceEqual(args['filters'], [('Crop', 'Rice')])
 
     def test_main_title_text_still_in_title_when_using_valuechain_filter(self):
         chart = self.create_chart()
@@ -115,7 +115,7 @@ class NutritionChartTests(ChartSeeAllTestMixin, ChartStateTestMixin,
     def test_get_args_for_state_has_state_filter(self):
         chart = self.create_chart()
         args = chart.get_args(state='kogi', valuechain=None)
-        self.assertSequenceEqual(args['filters'], [('state', 'kogi')])
+        self.assertSequenceEqual(args['filters'], [('State', 'Kogi')])
 
     def test_get_args_for_rice_has_correct_filters(self):
         chart = self.create_chart()
