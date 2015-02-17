@@ -73,7 +73,7 @@ class NutritionChart(Chart):
         'y0_label': "Percentage of Households",
         'x_label': "Food and Year",
         'colors': TIME_SERIES_COLORS,
-        'title': "Percentage of Households Who Consume Food Types in a Typical Week",
+        'title': "Percentage of Households that Consume Food Types in a Typical Week",
         "description":
             "DATASOURCE<br />"
             "Living Standard Measurement Study (LSMS)<br />"
