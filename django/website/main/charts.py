@@ -66,7 +66,7 @@ class NutritionChart(Chart):
     static_args = {
         "dataset": "29277fe2981511e4bbe006909bee25eb",
         "dataset_id": "54aff583a750b33915f0069c",
-        'variables': ["Commodity", "year"],
+        'variables': ["Commodity", "Year"],
         'indicators': ["Value"],
         'operation': "avg",
         'chart_type': "column",
