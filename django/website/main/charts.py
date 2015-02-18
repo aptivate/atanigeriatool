@@ -238,8 +238,8 @@ class PercentSalesDonutChart(Chart):
     static_args = {
         "dataset": "23c646c0ad2611e48f3706909bee25eb",
         "dataset_id": "54d34d49a750b304561f6605",
-        "variables": ["Percent%20Sales"],
-        "indicators": ["Percent%20Sales"],
+        "variables": ["Percent Sales"],
+        "indicators": ["Percent Sales"],
         "operation": "avg",
         "chart_type": "percentagedonut",
         "legend": None,
@@ -260,7 +260,7 @@ class PercentSalesDonutChart(Chart):
     def update_args_generic(self, args):
         args['chart_title'] = self.year
         args['filters'] = [
-            ("year", self.year),
+            ("Year", self.year),
         ]
         if self.year == "2010":
             args.update({
