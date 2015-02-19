@@ -118,6 +118,26 @@ class TechnologyChart(Chart):
     }
 
 
+class SeedAcquisitionChart(Chart):
+    static_args = {
+        "dataset": "34711b02b84e11e49da206909bee25eb",
+        "dataset_id": "54e60265a750b363fa3337a8",
+        'variables': ["Year"],
+        'indicators': ["Seed Reuse, Seed Purchased, Free Seed"],
+        'operation': "avg",
+        'chart_type': "column",
+        'y0_label': "Seed Reuse,Seed Purchased,Free Seed",
+        'x_label': "Year",
+        'colors': TIME_SERIES_COLORS,
+        'title': "Percentage of Farmers using Purchased, Reused or Free Seed",
+        "description":
+            "DATASOURCE<br />"
+            "Living Standard Measurement Study (LSMS)<br />"
+            "2010 Post Planting Agriculture Survey (Section 11e)<br />"
+            "2012 Post Planting Agriculture Survey (Section 11e)<br />",
+    }
+
+
 class ProductivityPreATAChart(Chart):
     static_args = {
         "dataset": "8ba9c30ca16e11e4927006909bee25eb",
@@ -339,6 +359,7 @@ class AverageHouseholdSalesChart(Chart):
 ALL_CHARTS = {
     'nutrition': NutritionChart(),
     'technology': TechnologyChart(),
+    'seed_acquisition': SeedAcquisitionChart(),
     'productivity_pre_ata': ProductivityPreATAChart(),
     'productivity_during_ata': ProductivityDuringATAChart(),
     'productivity_market_price': ProductivityMarketPricesChart(),
