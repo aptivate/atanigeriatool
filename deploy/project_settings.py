@@ -17,12 +17,10 @@ project_name = "atanigeriatool"
 django_apps = ['project_app1', 'project_app2']
 
 # repository type can be "cvs", "svn" or "git"
-#repo_type = "svn"
-#repository = 'https://svn.aptivate.org/svn/' + project_name + '/dev'
 
 repo_type = "git"
-repository = 'git@git.aptivate.org:' + project_name + '.git'
-#repository = 'git@github.com:aptivate/' + project_name + '.git'
+# repository = 'git@git.aptivate.org:' + project_name + '.git'
+repository = 'git://github.com/aptivate/' + project_name + '.git'
 
 ##################################################################
 # THESE SETTINGS MAY WELL BE CORRECT FOR A STANDARD DJANGO PROJECT
@@ -49,11 +47,9 @@ local_deploy_dir = path.dirname(__file__)
 local_vcs_root = path.abspath(path.join(local_deploy_dir, os.pardir))
 
 # the path from the VCS root to the django root dir
-#relative_django_dir = path.join('django', project_name)
 relative_django_dir = path.join('django', 'website')
 
 # the directory the settings live in, relative to the vcs root
-#relative_django_settings_dir = path.join(relative_django_dir, project_name)
 relative_django_settings_dir = relative_django_dir
 
 # the path from the VCS root to the virtualenv dir
@@ -72,7 +68,6 @@ local_requirements_file = path.join(local_deploy_dir, 'pip_packages.txt')
 test_cmd = ' manage.py test -v0 ' + ' '.join(django_apps)
 
 # django jenkins version - latest might require a too new version of django
-#django_jenkins_version = '0.14.0'  # compatible with Django 1.5
 
 # servers, for use by fabric
 
@@ -107,12 +102,3 @@ import socket
 
 if socket.getfqdn().endswith('.fen.aptivate.org'):
     pypi_cache_url = 'http://fen-vz-pypicache.fen.aptivate.org/simple'
-
-###################################################
-# OPTIONAL SETTINGS FOR FABRIC - will be put in env
-###################################################
-
-# if you have an ssh key and particular user you need to use
-# then uncomment the next 2 lines
-#user = "root"
-#key_filename = ["/home/shared/keypair.rsa"]
