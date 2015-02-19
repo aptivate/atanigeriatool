@@ -121,10 +121,11 @@ class TechnologyChart(Chart):
 class SeedAcquisitionChart(Chart):
     static_args = {
         "dataset": "34711b02b84e11e49da206909bee25eb",
-        "dataset_id": "54e60265a750b363fa3337a8",
+        "dataset_id": "54e604f2a750b363fa334e6e",
         'variables': ["Year"],
-        'indicators': ["Seed Reuse, Seed Purchased, Free Seed"],
+        'indicators': ["Seed Reuse", "Seed Purchased", "Free Seed"],
         'operation': "avg",
+        'secondary_operation': "avg",
         'chart_type': "column",
         'y0_label': "Seed Reuse,Seed Purchased,Free Seed",
         'x_label': "Year",
