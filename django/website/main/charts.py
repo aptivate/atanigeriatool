@@ -75,10 +75,11 @@ class NutritionChart(Chart):
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of Households that Consume Food Types in a Typical Week",
         "description":
-            "DATASOURCE<br />"
-            "Living Standard Measurement Study (LSMS)<br />"
-            "2010 Post Planting Household Survey (Section 7b)<br />"
-            "2012 Post Planting Household Survey (Section 7b)<br />",
+            "Datasource:<br />"
+            "LSMS Post Planting Household Survey Section "
+            "7b, year 2012 and 2010<br />"
+            "Primary Data<br />"
+            "5000 Households<br />",
     }
     valuechain_filters = {
         'rice': [
@@ -111,10 +112,11 @@ class TechnologyChart(Chart):
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of Farmers Who Use Technologies",
         "description":
-            "DATASOURCE<br />"
-            "Living Standard Measurement Study (LSMS)<br />"
-            "2010 Post Planting Agriculture Survey (Section 11c)<br />"
-            "2012 Post Planting Agriculture Survey (Section 11c)<br />",
+            "Datasource:<br />"
+            "LSMS Post Planting Agriculture Survey Section "
+            "11c, year 2012 and 2010<br />"
+            "Primary Data<br />"
+            "5000 Households<br />",
     }
 
 
@@ -130,10 +132,11 @@ class ProductivityPreATAChart(Chart):
         'y1_label': "Average Yield (metric tonnes/hectare)",
         'colors': PRE_ATA_COLORS,
         "description":
-            "DATASOURCE<br />"
+            "Datasource<br />"
             "Annual Abstract of Statistics, 2012<br />"
             "National Bureau of Statistics<br />"
-            "Federal Republic of Nigeria",
+            "Primary Data<br />"
+            "300,000 Data Points",
     }
 
     def update_args_for_state(self, args, state):
@@ -177,9 +180,11 @@ class ProductivityDuringATAChart(Chart):
         'title': "Rice Production and Yield During ATA",
         'colors': DURING_ATA_COLORS,
         "description":
-            "DATASOURCE<br />"
+            "Datasource<br />"
             "ATA Briefing to the Honorable Minister of Agriculture<br />"
-            "Based on Cellulant data from the GES",
+            "Based on Cellulant data from the GES<br />"
+            "Secondary Data<br />"
+            "1.5M to 8M Farmer Data on Input Redemption",
     }
 
     def update_args_for_valuechain(self, args, valuechain):
@@ -205,8 +210,10 @@ class ProductivityMarketPricesChart(Chart):
         'title': "Market Prices in Kogi State",
         'colors': MARKET_PRICE_COLORS,
         "description":
-            "DATASOURCE<br />"
-            "Market price data collected by ADP in Kogi"
+            "Datasource<br />"
+            "Kogi State ADP<br />"
+            "Primary Data<br />"
+            "Unknown Number of Data Points",
     }
     valuechain_filters = {
         'rice': [
@@ -248,10 +255,11 @@ class PercentSalesDonutChart(Chart):
         "show_explore_button": False,
         'colors': PRE_ATA_ONLY_COLORS,
         'description':
-            "DATASOURCE<br />"
-            "Living Standard Measurement Study (LSMS)<br />"
-            "2010 Post Harvest Agriculture Survey (Section a3)<br />"
-            "2012 Post Harvest Agriculture Survey (Section a3)<br />",
+            "Datasource:<br />"
+            "LSMS Post Harvest Agriculture Survey Section "
+            "a3, year 2012 and 2010<br />"
+            "Primary Data<br />"
+            "5000 Households<br />",
     }
 
     def __init__(self, year):
@@ -311,10 +319,11 @@ class AverageHouseholdSalesChart(Chart):
         "title": "Average Household Sales Across Gender and Year",
         'colors': TIME_SERIES_COLORS,
         'description':
-            "DATASOURCE<br />"
-            "Living Standard Measurement Study (LSMS)<br />"
-            "2010 Post Harvest Agriculture Survey (Section a3)<br />"
-            "2012 Post Harvest Agriculture Survey (Section a3)<br />",
+            "Datasource:<br />"
+            "LSMS Post Harvest Agriculture Survey Section "
+            "a3, year 2012 and 2010<br />"
+            "Primary Data<br />"
+            "5000 Households<br />",
     }
 
     def update_args_for_state(self, args, state):
