@@ -20,7 +20,7 @@ django_apps = ['project_app1', 'project_app2']
 
 repo_type = "git"
 # repository = 'git@git.aptivate.org:' + project_name + '.git'
-repository = 'git@github.com:aptivate/' + project_name + '.git'
+repository = 'git://github.com/aptivate/' + project_name + '.git'
 
 ##################################################################
 # THESE SETTINGS MAY WELL BE CORRECT FOR A STANDARD DJANGO PROJECT
