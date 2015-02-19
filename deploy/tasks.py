@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# a script to set up the virtualenv so we can use fabric and tasks
 from __future__ import unicode_literals, absolute_import
+# a script to set up the virtualenv so we can use fabric and tasks
 
 import os
 from os import path
@@ -26,6 +26,13 @@ if not os.path.exists(ve_dir):
 updater = UpdateVE(ve_dir=ve_dir)
 if updater.virtualenv_needs_update():
     print "VirtualEnv needs to be updated"
+    print 'Run deploy/bootstrap.py'
+    sys.exit(1)
+
+# if the virtualenv python version is not correct then the virtualenv
+# needs updating
+if updater.check_virtualenv_python_version():
+    print "VirtualEnv has wrong python version"
     print 'Run deploy/bootstrap.py'
     sys.exit(1)
 
