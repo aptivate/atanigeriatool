@@ -7,6 +7,9 @@
 @explore-fg: #2C9F7A;
 @chart-description-fg: #515151;
 @unselected-filter-fg: #515151;
+@confidence-low: #c23824;
+@confidence-medium: #e87e11;
+@confidence-high: #1baf5d;
 @unselected-filter-border: #7a7654;
 @light-fg: rgba(255, 255, 255, 0.84);
 
@@ -437,6 +440,33 @@ nav.ata-header {
         margin-bottom: 3em;
     }
 }
+
+.chart-confidence-traffic-light {
+    font-size: 1.2em;
+    font-family: @font-family-serif;
+    color: @chart-description-fg;
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    line-height: 2em;
+    text-align: center;
+    .chart-confidence-description {
+        position: absolute;
+        margin-left: 2em;
+    }
+}
+
+.chart-confidence-traffic-light.Low {
+    background-color: @confidence-low;
+}
+
+.chart-confidence-traffic-light.Medium {
+    background-color: @confidence-medium;
+}
+.chart-confidence-traffic-light.High {
+    background-color: @confidence-high;
+}
+
 .explore-button {
     border: solid 1px @explore-fg;
     color: @explore-fg;

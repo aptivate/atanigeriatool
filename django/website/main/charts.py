@@ -32,7 +32,7 @@ DOMAIN = "ata.livestories.com"
 
 class Chart(object):
     static_args = {
-        'title': 'Dummy Title'
+        'title': 'Dummy Title',
     }
 
     def get_chart(self, state, valuechain):
@@ -74,6 +74,7 @@ class NutritionChart(Chart):
         'x_label': "Food and Year",
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of Households that Consume Food Types in a Typical Week",
+        'confidence': 'High',
         "description":
             "Datasource:<br />"
             "LSMS Post Planting Household Survey Section "
@@ -111,6 +112,7 @@ class TechnologyChart(Chart):
         'x_label': "Technology and Year",
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of Farmers Who Use Technologies",
+        'confidence': 'High',
         "description":
             "Datasource:<br />"
             "LSMS Post Planting Agriculture Survey Section "
@@ -131,6 +133,7 @@ class ProductivityPreATAChart(Chart):
         'y0_label': "Total Production (metric tonnes)",
         'y1_label': "Average Yield (metric tonnes/hectare)",
         'colors': PRE_ATA_COLORS,
+        'confidence': 'Medium',
         "description":
             "Datasource<br />"
             "Annual Abstract of Statistics, 2012<br />"
@@ -179,6 +182,7 @@ class ProductivityDuringATAChart(Chart):
         'x_label': "Season and Year",
         'title': "Rice Production and Yield During ATA",
         'colors': DURING_ATA_COLORS,
+        'confidence': 'Low',
         "description":
             "Datasource<br />"
             "ATA Briefing to the Honorable Minister of Agriculture<br />"
@@ -209,6 +213,7 @@ class ProductivityMarketPricesChart(Chart):
         'x_label': "Month",
         'title': "Market Prices in Kogi State",
         'colors': MARKET_PRICE_COLORS,
+        'confidence': 'Medium',
         "description":
             "Datasource<br />"
             "Kogi State ADP<br />"
@@ -254,9 +259,11 @@ class PercentSalesDonutChart(Chart):
         "title": "Percentage of Crops Sold",
         "show_explore_button": False,
         'colors': PRE_ATA_ONLY_COLORS,
+        'confidence': 'High',
         'description':
             "Datasource:<br />"
-            "LSMS Post Harvest Agriculture Survey Section "
+            "Living Standards Measurement Study: "
+            "Post Harvest Agriculture Survey Section "
             "a3, year 2012 and 2010<br />"
             "Primary Data<br />"
             "5000 Households<br />",
@@ -318,6 +325,7 @@ class AverageHouseholdSalesChart(Chart):
         'x_label': "Gender and Year",
         "title": "Average Household Sales Across Gender and Year",
         'colors': TIME_SERIES_COLORS,
+        'confidence': 'High',
         'description':
             "Datasource:<br />"
             "LSMS Post Harvest Agriculture Survey Section "

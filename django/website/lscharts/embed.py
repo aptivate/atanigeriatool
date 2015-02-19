@@ -59,6 +59,7 @@ class EmbedChartSettings(object):
         self.chart_title = kwargs.get("chart_title", self.title)
         self.show_title = kwargs.get("show_title", "false")
         self.description = kwargs.get("description", DEFAULT_DESCRIPTION)
+        self.confidence = kwargs.get("confidence", "Low")
         self.show_explore_button = kwargs.get("show_explore_button", True)
 
         self.show_dataset = kwargs.get("show_dataset", "false")
