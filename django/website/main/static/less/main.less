@@ -210,20 +210,12 @@ nav.ata-header {
     }
 }
 
-.main-navbar-filter-button {
+.main-navbar-button {
     float: right;
     background-color: transparent;
     border-style: solid;
     border-width: 1px;
     border-color: @light-fg;
-    @media only screen and (min-width: @cover-image-break-width-gt) {
-        margin-right: 30px;
-        margin-left: 30px;
-    }
-    @media only screen and (max-width: @cover-image-break-width-lt) {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 25px;
@@ -232,8 +224,37 @@ nav.ata-header {
     line-height: 1.42857;
 }
 
-.main-navbar-filter-button > .glyphicon {
+.main-navbar-filter-button {
+    @media only screen and (min-width: @cover-image-break-width-gt) {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+.main-navbar-print-button {
+    @media only screen and (min-width: @cover-image-break-width-gt) {
+        margin-right: 30px;
+    }
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        margin-right: 10px;
+    }
+}
+
+.main-navbar-button > a,
+.main-navbar-button > .glyphicon {
     color: @light-fg;
+}
+
+.main-navbar-button > a {
+    width: 100%;
+}
+
+.main-navbar-button > a:hover {
+    text-decoration: none;
 }
 
 /*******************
