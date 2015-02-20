@@ -7,12 +7,16 @@
 @explore-fg: #2C9F7A;
 @chart-description-fg: #515151;
 @unselected-filter-fg: #515151;
+@confidence-low: #c23824;
+@confidence-medium: #e87e11;
+@confidence-high: #1baf5d;
 @unselected-filter-border: #7a7654;
 @light-fg: rgba(255, 255, 255, 0.84);
 
 @cover-image-break-width-gt: 768px;
 @cover-image-break-width-lt: 767px;
 
+/* Width for single column layout */
 @chart-text-break-width-gt: 990px;
 @chart-text-break-width-lt: 989px;
 
@@ -206,20 +210,12 @@ nav.ata-header {
     }
 }
 
-.main-navbar-filter-button {
+.main-navbar-button {
     float: right;
     background-color: transparent;
     border-style: solid;
     border-width: 1px;
     border-color: @light-fg;
-    @media only screen and (min-width: @cover-image-break-width-gt) {
-        margin-right: 30px;
-        margin-left: 30px;
-    }
-    @media only screen and (max-width: @cover-image-break-width-lt) {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 25px;
@@ -228,7 +224,35 @@ nav.ata-header {
     line-height: 1.42857;
 }
 
-.main-navbar-filter-button > .glyphicon {
+.main-navbar-filter-button {
+    @media only screen and (min-width: @cover-image-break-width-gt) {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+.main-navbar-print-button {
+    @media only screen and (min-width: @cover-image-break-width-gt) {
+        margin-right: 30px;
+    }
+    @media only screen and (max-width: @cover-image-break-width-lt) {
+        margin-right: 10px;
+    }
+}
+
+.main-navbar-button > .glyphicon {
+    color: @light-fg;
+}
+
+a.main-navbar-button:hover,
+a.main-navbar-button:focus,
+a.main-navbar-button:active,
+a.main-navbar-button:visited {
+    text-decoration: none;
     color: @light-fg;
 }
 
@@ -390,12 +414,12 @@ nav.ata-header {
 .chart-meta-sidebar > .chart-title-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
-        height: 200px;
+        height: 150px;
     }
 }
 .chart-meta-sidebar > .chart-title-container > .chart-title {
     @media only screen and (min-width: @chart-text-break-width-gt) {
-        margin-top: 2em;
+        margin-top: 0.5em;
     }
     @media only screen and (max-width: @chart-text-break-width-lt) {
         margin-top: 0.4em;
@@ -408,7 +432,7 @@ nav.ata-header {
 .chart-meta-sidebar > .chart-description-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
-        height: 200px;
+        height: 150px;
     }
 }
 .chart-meta-sidebar > .chart-description-container > .chart-description {
@@ -417,8 +441,8 @@ nav.ata-header {
         vertical-align: middle;
     }
     @media only screen and (max-width: @chart-text-break-width-lt) {
-        margin-top: 2em;
-        margin-bottom: 2em;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 }
 .chart-description {
@@ -427,22 +451,46 @@ nav.ata-header {
     color: @chart-description-fg;
 }
 
-.chart-meta-sidebar > .explore-button-container {
-    @media only screen and (min-width: @chart-text-break-width-gt) {
-        display: table-row;
-        height: 200px;
-        vertical-align: middle;
+.chart-confidence-traffic-light {
+    font-size: 1.2em;
+    font-family: @font-family-serif;
+    color: @chart-description-fg;
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    line-height: 2em;
+    .chart-confidence-description {
+        position: absolute;
+        margin-left: 2.5em;
     }
     @media only screen and (max-width: @chart-text-break-width-lt) {
-        margin-bottom: 3em;
+        margin-bottom: 1em;
+    }
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        margin-top: 1em;
     }
 }
+
+.chart-confidence-traffic-light.Low {
+    background-color: @confidence-low;
+}
+
+.chart-confidence-traffic-light.Medium {
+    background-color: @confidence-medium;
+}
+.chart-confidence-traffic-light.High {
+    background-color: @confidence-high;
+}
+
 .explore-button {
     border: solid 1px @explore-fg;
     color: @explore-fg;
     @media only screen and (min-width: @chart-text-break-width-gt) {
         position: absolute;
-        bottom: 80px;
+        bottom: 15px;
+    }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        margin-bottom: 3em;
     }
 }
 

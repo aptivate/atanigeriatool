@@ -4,8 +4,11 @@
 <div class="chart-description-container">
 	<p class="chart-description">{{ chart.description|safe }}</p>
 </div>
-{% if chart.show_explore_button %}
-<div class="explore-button-container">
-	<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" target="_blank">Explore</a>
+<div class="chart-confidence-traffic-light {{ chart.confidence }}"> 
+    <span class="chart-confidence-description">
+        Data Confidence: {{ chart.confidence }}
+    </span>
 </div>
+{% if chart.show_explore_button %}
+<a class="btn btn-default explore-button" href="{{ chart.explore_url }}" target="_blank">Explore</a>
 {% endif %}
