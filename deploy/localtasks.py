@@ -13,3 +13,30 @@ def dummy_task():
     """You can create many tasks callable individually, or just by
     post_deploy"""
     pass
+
+
+def run_jenkins():
+    """
+    Make sure the local settings is correct and the database exists.
+    Override the one in tasklib to load fixtures after all tables are created.
+    """
+    from dye.tasklib.environment import env
+    env['verbose'] = True
+
+    # don't want any stray .pyc files causing trouble
+    from dye.tasklib import tasklib, deploy
+    tasklib._rm_all_pyc()
+    tasklib._install_django_jenkins()
+    deploy('jenkins')
+    # tasklib.clean_db()
+    test_args = [
+        '--tb=short',
+        '--create-db',
+        # Remove all coverage options while pytest-cov is not installed.
+        # '--cov-config=jenkins/coverage.rc',
+        # '--cov=django/website/',
+        # '--cov-report=xml',
+        '--junitxml=junit.xml'
+    ]
+    test_args += env['django_apps']
+    tasklib._manage_py(['test'] + test_args)
