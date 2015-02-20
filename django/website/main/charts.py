@@ -80,7 +80,7 @@ class NutritionChart(Chart):
             "LSMS Post Planting Household Survey Section "
             "7b, year 2012 and 2010<br />"
             "Primary Data<br />"
-            "5000 Households<br />",
+            "5000 Households",
     }
     valuechain_filters = {
         'rice': [
@@ -118,7 +118,7 @@ class TechnologyChart(Chart):
             "LSMS Post Planting Agriculture Survey Section "
             "11c, year 2012 and 2010<br />"
             "Primary Data<br />"
-            "5000 Households<br />",
+            "5000 Households",
     }
 
 
@@ -137,10 +137,11 @@ class SeedAcquisitionChart(Chart):
         'title': "Percentage of Farmers using Purchased, Reused or Free Seed",
         'confidence': 'High',
         "description":
-            "DATASOURCE<br />"
-            "Living Standard Measurement Study (LSMS)<br />"
-            "2010 Post Planting Agriculture Survey (Section 11e)<br />"
-            "2012 Post Planting Agriculture Survey (Section 11e)<br />",
+            "Datasource:<br />"
+            "LSMS Post Planting Agriculture Survey Section "
+            "11e, year 2012 and 2010<br />"
+            "Primary Data<br />"
+            "5000 Households",
     }
 
     def update_args_for_valuechain(self, args, valuechain):
@@ -300,7 +301,7 @@ class PercentSalesDonutChart(Chart):
             "Post Harvest Agriculture Survey Section "
             "a3, year 2012 and 2010<br />"
             "Primary Data<br />"
-            "5000 Households<br />",
+            "5000 Households",
     }
 
     def __init__(self, year):
@@ -365,7 +366,7 @@ class AverageHouseholdSalesChart(Chart):
             "LSMS Post Harvest Agriculture Survey Section "
             "a3, year 2012 and 2010<br />"
             "Primary Data<br />"
-            "5000 Households<br />",
+            "5000 Households",
     }
 
     def update_args_for_state(self, args, state):
