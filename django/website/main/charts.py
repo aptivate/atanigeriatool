@@ -127,14 +127,14 @@ class SeedAcquisitionChart(Chart):
         "dataset": "34711b02b84e11e49da206909bee25eb",
         "dataset_id": "54e604f2a750b363fa334e6e",
         'variables': ["Year"],
-        'indicators': ["Seed Reuse", "Seed Purchased", "Free Seed"],
+        'indicators': ["Reused Seed", "Purchased Seed", "Free Seed"],
         'operation': "avg",
         'secondary_operation': "avg",
         'chart_type': "column",
-        'y0_label': "Seed Reuse,Seed Purchased,Free Seed",
+        'y0_label': "Reused Seed, Purchased Seed, Free Seed",
         'x_label': "Year",
         'colors': TIME_SERIES_COLORS,
-        'title': "Percentage of Farmers using Purchased, Reused or Free Seed",
+        'title': "Percentage of Farmers using Reused, Purchased or Free Seed",
         'confidence': 'High',
         "description":
             "Datasource:<br />"
