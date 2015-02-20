@@ -16,6 +16,7 @@
 @cover-image-break-width-gt: 768px;
 @cover-image-break-width-lt: 767px;
 
+/* Width for single column layout */
 @chart-text-break-width-gt: 990px;
 @chart-text-break-width-lt: 989px;
 
@@ -393,12 +394,12 @@ nav.ata-header {
 .chart-meta-sidebar > .chart-title-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
-        height: 200px;
+        height: 150px;
     }
 }
 .chart-meta-sidebar > .chart-title-container > .chart-title {
     @media only screen and (min-width: @chart-text-break-width-gt) {
-        margin-top: 2em;
+        margin-top: 0.5em;
     }
     @media only screen and (max-width: @chart-text-break-width-lt) {
         margin-top: 0.4em;
@@ -411,7 +412,7 @@ nav.ata-header {
 .chart-meta-sidebar > .chart-description-container {
     @media only screen and (min-width: @chart-text-break-width-gt) {
         display: table-row;
-        height: 200px;
+        height: 150px;
     }
 }
 .chart-meta-sidebar > .chart-description-container > .chart-description {
@@ -420,25 +421,14 @@ nav.ata-header {
         vertical-align: middle;
     }
     @media only screen and (max-width: @chart-text-break-width-lt) {
-        margin-top: 2em;
-        margin-bottom: 2em;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 }
 .chart-description {
     font-size: 1.2em;
     font-family: @font-family-serif;
     color: @chart-description-fg;
-}
-
-.chart-meta-sidebar > .explore-button-container {
-    @media only screen and (min-width: @chart-text-break-width-gt) {
-        display: table-row;
-        height: 200px;
-        vertical-align: middle;
-    }
-    @media only screen and (max-width: @chart-text-break-width-lt) {
-        margin-bottom: 3em;
-    }
 }
 
 .chart-confidence-traffic-light {
@@ -449,10 +439,15 @@ nav.ata-header {
     height: 2em;
     border-radius: 1em;
     line-height: 2em;
-    text-align: center;
     .chart-confidence-description {
         position: absolute;
-        margin-left: 2em;
+        margin-left: 2.5em;
+    }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        margin-bottom: 1em;
+    }
+    @media only screen and (min-width: @chart-text-break-width-gt) {
+        margin-top: 1em;
     }
 }
 
@@ -472,7 +467,10 @@ nav.ata-header {
     color: @explore-fg;
     @media only screen and (min-width: @chart-text-break-width-gt) {
         position: absolute;
-        bottom: 80px;
+        bottom: 15px;
+    }
+    @media only screen and (max-width: @chart-text-break-width-lt) {
+        margin-bottom: 3em;
     }
 }
 
