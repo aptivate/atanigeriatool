@@ -135,12 +135,25 @@ class SeedAcquisitionChart(Chart):
         'x_label': "Year",
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of Farmers using Purchased, Reused or Free Seed",
+        'confidence': 'High',
         "description":
             "DATASOURCE<br />"
             "Living Standard Measurement Study (LSMS)<br />"
             "2010 Post Planting Agriculture Survey (Section 11e)<br />"
             "2012 Post Planting Agriculture Survey (Section 11e)<br />",
     }
+
+    def update_args_for_valuechain(self, args, valuechain):
+        VALUECHAIN_LOOKUP = {
+            'cassava': "Cassava%20Old",
+            'rice': 'Rice',
+        }
+        args.update({
+            "dataset": "59dd9374b8fe11e4882906909bee25eb",
+            "dataset_id": "54e72c9ba750b363fa339a8e",
+            'filters': [("Crop", VALUECHAIN_LOOKUP[valuechain])],
+        })
+        args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
 
 
 class ProductivityPreATAChart(Chart):
