@@ -10,7 +10,7 @@ from main.charts import (
     ProductivityPreATAChart,
     ProductivityDuringATAChart,
     ProductivityMarketPricesChart,
-    # PercentSalesDonutChart,
+    PercentSalesDonutChart,
     AverageHouseholdSalesChart,
     get_colors_with_overrides
 )
@@ -71,7 +71,7 @@ class ChartStateTestMixin(object):
 class ChartValueChainTestMixin(object):
     def test_get_args_for_valuechain_has_crop_filter(self):
         chart = self.create_chart()
-        args = chart.get_args(state=None, valuechain='Rice')
+        args = chart.get_args(state=None, valuechain='rice')
         self.assertSequenceEqual(args['filters'], [('Crop', 'Rice')])
 
     def test_main_title_text_still_in_title_when_using_valuechain_filter(self):
@@ -246,23 +246,62 @@ class ProductivityMarketPricesChartTests(CreateChartTestMixin,
         self.assertIn('Rice', args['title'])
 
 
-# commented out as we're not sure we want this chart
 # TODO: write tests properly if we keep this chart
-"""class PercentSalesDonutChartTests(CreateChartTestMixin,
-                                  ChartStateTestMixin, ChartValueChainTestMixin,
+class PercentSalesDonutChartTests(CreateChartTestMixin,
                                   GetChartTestMixin, TestCase):
     chart_class = PercentSalesDonutChart
 
     def create_chart(self, year=2010):
         return self.chart_class(year)
 
-    def test_see_all_has_correct_filters(self):
-        self.fail('test not written yet')
+    def test_see_all_has_correct_filters_for_2010(self):
+        chart = self.create_chart(2010)
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertSequenceEqual(args['filters'], [('Year', '2010')])
+
+    def test_see_all_has_correct_filters_for_2012(self):
+        chart = self.create_chart(2012)
+        args = chart.get_args(state=None, valuechain=None)
+        self.assertSequenceEqual(args['filters'], [('Year', '2012')])
 
     def test_nationwide_in_title_when_no_state_or_valuechain(self):
         chart = self.create_chart()
         args = chart.get_args(state=None, valuechain=None)
-        self.assertIn('nationwide', args['title'])"""
+        self.assertIn('Nationwide', args['title'])
+
+    def test_get_args_for_state_has_state_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertSequenceEqual(
+            args['filters'],
+            [('Year', '2010'), ('State', 'Kogi')])
+
+    def test_main_title_text_still_in_title_when_using_state_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertIn(chart.static_args['title'], args['title'])
+
+    def test_get_args_for_state_has_state_name_in_title(self):
+        chart = self.create_chart()
+        args = chart.get_args(state='kogi', valuechain=None)
+        self.assertIn('Kogi', args['title'])
+
+    def test_get_args_for_valuechain_has_crop_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertSequenceEqual(
+            args['filters'],
+            [('Year', '2010'), ('Crop', 'Rice')])
+
+    def test_main_title_text_still_in_title_when_using_valuechain_filter(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertIn(chart.static_args['title'], args['title'])
+
+    def test_get_args_for_valuechain_has_crop_name_in_title(self):
+        chart = self.create_chart()
+        args = chart.get_args(state=None, valuechain='rice')
+        self.assertIn('Rice', args['title'])
 
 
 class AverageHouseholdSalesChartTests(ChartTestMixin, TestCase):
