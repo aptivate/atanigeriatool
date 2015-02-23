@@ -124,14 +124,14 @@ class TechnologyChart(Chart):
 
 class SeedAcquisitionChart(Chart):
     static_args = {
-        "dataset": "34711b02b84e11e49da206909bee25eb",
-        "dataset_id": "54e604f2a750b363fa334e6e",
-        'variables': ["Year"],
-        'indicators': ["Reused Seed", "Purchased Seed", "Free Seed"],
+        'dataset': "3a5883b8b96e11e487f506909bee25eb",
+        'dataset_id': "54e7e841a750b363fa3441b8",
+        'variables': ["Method", "Year"],
+        'indicators': ["Value"],
         'operation': "avg",
         'secondary_operation': "avg",
         'chart_type': "column",
-        'y0_label': "Reused Seed, Purchased Seed, Free Seed",
+        'y0_label': "Percentage of Farmers",
         'x_label': "Year",
         'colors': TIME_SERIES_COLORS,
         'title': "Percentage of Farmers using Reused, Purchased or Free Seed",
@@ -150,8 +150,8 @@ class SeedAcquisitionChart(Chart):
             'rice': 'Rice',
         }
         args.update({
-            "dataset": "59dd9374b8fe11e4882906909bee25eb",
-            "dataset_id": "54e72c9ba750b363fa339a8e",
+            "dataset": "3a5883b8b96e11e487f506909bee25eb",
+            "dataset_id": "54eb3f0aa750b363fa3525fe",
             'filters': [("Crop", VALUECHAIN_LOOKUP[valuechain])],
         })
         args['title'] += " ({0} Farmers Only, Nationwide)".format(valuechain.capitalize())
