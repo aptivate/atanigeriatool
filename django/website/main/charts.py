@@ -150,7 +150,7 @@ class SeedAcquisitionChart(Chart):
             'rice': 'Rice',
         }
         args.update({
-            "dataset": "3a5883b8b96e11e487f506909bee25eb",
+            "dataset": "7e06c4eabb6b11e487f506909bee25eb",
             "dataset_id": "54eb3f0aa750b363fa3525fe",
             'filters': [("Crop", VALUECHAIN_LOOKUP[valuechain])],
         })
