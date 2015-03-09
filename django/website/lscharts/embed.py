@@ -28,6 +28,11 @@ DEFAULT_COLORS = [
 
 
 class EmbedChartSettings(object):
+    CONFIDENCE_VERBOSE = {
+        'Low': "Data is based on reach and estimated yield therefore we have some concerns about it",
+        'Medium': "Data is not recent but primary and based on summary (but not raw)",
+        'High': "Data is raw, primary, recent but sample sizes are small",
+    }
 
     def __init__(self, **kwargs):
         # TODO: could split into chart types with relevant bits in each type
@@ -108,6 +113,9 @@ class EmbedChartSettings(object):
         if self.category_order:
             query_params['categoryOrder'] = self.category_order
         return query_params
+
+    def confidence_verbose(self):
+        return self.CONFIDENCE_VERBOSE.get(self.confidence, '')
 
     def explore_url(self):
         """should return something like

@@ -4,7 +4,7 @@
 <div class="chart-description-container">
 	<p class="chart-description">{{ chart.description|safe }}</p>
 </div>
-<div class="chart-confidence-traffic-light {{ chart.confidence }}"> 
+<div class="chart-confidence-traffic-light {{ chart.confidence }}" title="{{ chart.confidence_verbose }}">
     <span class="chart-confidence-description">
         Data Confidence: {{ chart.confidence }}
     </span>

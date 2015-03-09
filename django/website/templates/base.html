@@ -113,7 +113,7 @@
 				<nav class="{% block footer_nav_classes %}footer_nav navbar navbar-default{% endblock %}" role="navigation">
 					<div class="footer_left navbar-left navbar-text">
 						{% block footer_left %}
-						This is a knowledge and data management prototype tool to help the
+						<p>This is a knowledge and data management prototype tool to help the
 						<a href="http://www.fmard.gov.ng/">Federal Ministry of Agriculture and Rural Development Nigeria</a>
 						keep accurate track of the performance of its Agricultural Transformation Agenda. This project
 						is made in collaboration with
@@ -122,7 +122,15 @@
 						<a href="http://www.aptivate.org/">Aptivate</a>,
 						on behalf of the 
 						<a href="http://www.gatesfoundation.org/">Bill and Melinda Gates Foundation</a>
-						and at the request of the Honourable Minister of Agriculture.
+						and at the request of the Honourable Minister of Agriculture.</p>
+						<p>
+						The data traffic lights have the following meanings:
+						<ul>
+							<li>Red: Data is based on reach and estimated yield therefore we have some concerns about it</li>
+							<li>Yellow: Data is not recent but primary and based on summary (but not raw)</li>
+							<li>Green: Data is raw, primary, recent but sample sizes are small</li>
+						</ul>
+						</p>
 						{% endblock %}
 					</div>
 					{% comment %}

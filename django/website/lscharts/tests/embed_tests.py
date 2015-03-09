@@ -90,6 +90,21 @@ class EmbedChartSettingsTests(TestCase):
         filter_url_part = ecs.filters_for_embed_link().replace('&amp;', '&amp;amp;')
         self.assertIn(filter_url_part, ecs.explore_url())
 
+    def test_confidence_verbose_returns_text(self):
+        ecs = EmbedChartSettings()
+        for confidence in ('Low', 'Medium', 'High'):
+            ecs.confidence = confidence
+            full_string = ecs.confidence_verbose()
+            self.assertTrue(full_string.startswith('Data is'))
+
+    def test_confidence_verbose_does_not_raise_exception_for_invalid_confidence(self):
+        ecs = EmbedChartSettings()
+        ecs.confidence = 'invalid'
+        try:
+            ecs.confidence_verbose()
+        except Exception as e:
+            self.fail('confidence_verbose() raised unexpected Exception {}'.format(e))
+
 
 class EmbeddedChartTemplateTests(TestCase):
 
